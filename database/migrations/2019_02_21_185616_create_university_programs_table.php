@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudentsTable extends Migration
+class CreateUniversityProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,22 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->string('school_name')->nullable();;
-            $table->string('college_name')->nullable();;
-            $table->string('college_group')->nullable();;
-            $table->string('university')->nullable();;
+        Schema::create('university_programs', function (Blueprint $table) {
+            $table->increments('university_id');
+            $table->string('program_name');
             $table->float('ssc/a-level')->nullable();;
             $table->float('hsc/o-level')->nullable();;
             $table->float('cgpa(bachelor)')->nullable();
             $table->mediumText('others')->nullable();
+            $table->mediumText('extra_notes')->nullable();
+            $table->float('specific_fees')->nullable();
 
             //foreign key
-            $table->foreign('id')
+            $table->foreign('university_id')
                 ->references('id')
-                ->on('users')
+                ->on('universities')
                 ->onDelete('cascade');
+
         });
     }
 
@@ -39,6 +39,6 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('university_programs');
     }
 }
