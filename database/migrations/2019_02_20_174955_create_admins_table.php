@@ -15,7 +15,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string("Creator's_username");
+            $table->string("creator's_username");
 
             //foreign key
             $table->foreign('id')
