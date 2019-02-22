@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2019 at 08:38 PM
+-- Generation Time: Feb 22, 2019 at 08:46 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -36,6 +36,17 @@ CREATE TABLE `admins` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `countries`
+--
+
+CREATE TABLE `countries` (
+  `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `average_annual_living_cost` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -55,7 +66,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_02_20_171305_create_students_table', 1),
 (4, '2019_02_20_174955_create_admins_table', 2),
 (5, '2019_02_21_182754_create_universities_table', 3),
-(6, '2019_02_21_185616_create_university_programs_table', 4);
+(6, '2019_02_21_185616_create_university_programs_table', 4),
+(7, '2019_02_22_190226_create_countries_table', 5);
 
 -- --------------------------------------------------------
 
@@ -151,6 +163,12 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`country`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -203,7 +221,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `students`
