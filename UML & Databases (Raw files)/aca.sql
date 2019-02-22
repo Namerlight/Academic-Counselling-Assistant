@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2019 at 07:04 PM
+-- Generation Time: Feb 21, 2019 at 08:38 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `Creator's_username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `creator's_username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -53,7 +53,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_02_20_171305_create_students_table', 1),
-(4, '2019_02_20_174955_create_admins_table', 2);
+(4, '2019_02_20_174955_create_admins_table', 2),
+(5, '2019_02_21_182754_create_universities_table', 3),
+(6, '2019_02_21_185616_create_university_programs_table', 4);
 
 -- --------------------------------------------------------
 
@@ -79,10 +81,45 @@ CREATE TABLE `students` (
   `college_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `college_group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `university` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SSC/A-level` double(8,2) DEFAULT NULL,
-  `HSC/O-level` double(8,2) DEFAULT NULL,
-  `CGPA(Bachelor)` double(8,2) DEFAULT NULL,
-  `Others` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL
+  `ssc/a-level` double(8,2) DEFAULT NULL,
+  `hsc/o-level` double(8,2) DEFAULT NULL,
+  `cgpa(bachelor)` double(8,2) DEFAULT NULL,
+  `others` mediumtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `universities`
+--
+
+CREATE TABLE `universities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qs_ranking` int(11) NOT NULL,
+  `research_output` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `graduate_employability_ranking` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_student` int(11) NOT NULL,
+  `average_fees` double(8,2) NOT NULL,
+  `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `university_programs`
+--
+
+CREATE TABLE `university_programs` (
+  `university_id` int(10) UNSIGNED NOT NULL,
+  `program_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ssc/a-level` double(8,2) DEFAULT NULL,
+  `hsc/o-level` double(8,2) DEFAULT NULL,
+  `cgpa(bachelor)` double(8,2) DEFAULT NULL,
+  `others` mediumtext COLLATE utf8mb4_unicode_ci,
+  `extra_notes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `specific_fees` double(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -132,6 +169,19 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `universities`
+--
+ALTER TABLE `universities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `universities_name_unique` (`name`);
+
+--
+-- Indexes for table `university_programs`
+--
+ALTER TABLE `university_programs`
+  ADD PRIMARY KEY (`university_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -153,13 +203,25 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `universities`
+--
+ALTER TABLE `universities`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `university_programs`
+--
+ALTER TABLE `university_programs`
+  MODIFY `university_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -182,6 +244,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_id_foreign` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `university_programs`
+--
+ALTER TABLE `university_programs`
+  ADD CONSTRAINT `university_programs_university_id_foreign` FOREIGN KEY (`university_id`) REFERENCES `universities` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
