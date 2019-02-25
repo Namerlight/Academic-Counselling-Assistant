@@ -23,81 +23,34 @@
 
 
     <ul id="myMenu">
-        <!Introduction>
+        <!Purpose>
         <li>
-            <a href="#introduction">1. Introduction</a>
-            <ul id="myMenuIntro">
-                <li><a href="#purpose">1.1 Purpose</a></li>
-                <li><a href="#documentConvention">1.2 Document Convention</a></li>
-                <li><a href="#intendedAudience">1.3 Intended Audience and Reading Suggestion</a></li>
-                <li><a href="#productScope">1.4 Product Scope</a></li>
-                <li><a href="#references">1.5 References</a></li>
-            </ul>
+            <a href="#purpose">1. Purpose</a>
         </li>
 
 
-        <!Overall Description>
+        <!Architectural Design>
         <li>
-            <a href="#overallDescription">2. Overall Description</a>
-            <ul>
-                <li><a href="#produtPerspective">2.1 Product Perspective</a></li>
-                <li><a href="#productFunctions">2.2 Product Functions</a></li>
-                <li><a href="#useClassesAndCharacteristics">2.3 User Classes and Characteristics</a></li>
-                <li><a href="#operatingEnvironment">2.4 Operating Environment</a></li>
-                <li><a href="#designAndImplementation">2.5 Design and Implementation Constraints</a></li>
-                <li><a href="#userDocumentation">2.6 User Documentation</a></li>
-                <li><a href="#assumptionsAndDependencies">2.7 Assumptions and Dependencies</a></li>
-            </ul>
+            <a href="#architecturalDesign">2. Architectural Design</a>
         </li>
 
-
-        <!External Interface Requirements>
+        <!Architectural Pattern>
         <li>
-            <a href="#externameInterface">3. External Interface Requirements</a>
-            <ul>
-                <li><a href="#userInterfaces">3.1 User Interfaces</a></li>
-                <li><a href="#hardwareInterfaces">3.2 Hardware Interfaces</a></li>
-                <li><a href="#softwareInterfaces">3.3 Software Interfaces</a></li>
-                <li><a href="#communicationsInterfaces">3.4 Communications Interfaces</a></li>
-            </ul>
+            <a href="#architecturalPattern">3. Architectural Pattern</a>
         </li>
 
-        <!System Features>
+        <!Database Schema>
         <li>
-            <a href="#systemFeatures">4. System Features</a>
+            <a href="#databaseSchema">4. Database Schema</a>
         </li>
 
-        <!Other nonfunctional requirement>
+        <!Class Diagram>
         <li>
-            <a href="#otherNonfunctional">5. Other Nonfunctional Requiments</a>
-            <ul>
-                <li><a href="#performanceRequirements">5.1 Performance Requirements</a></li>
-                <li><a href="#safetyRequirements">5.2 Safety Requirements</a></li>
-                <li><a href="#securityRequirements">5.3 Security Requirements</a></li>
-                <li><a href="#softwareQualityAttribute">5.4 Software Quality Attribute</a></li>
-                <li><a href="#businessRules">5.5 Business Rules</a></li>
-
-            </ul>
+            <a href="#classDiagram">5. Class Diagram</a>
         </li>
 
-        <!Other requirements>
-        <li><a href="#otherRequirements">6. Other Requirements</a>
-            <ul>
-                <li><a href="#federatedUserCred">6.1 Federated User Credentials</a></li>
-            </ul>
-        </li>
-
-        <!Appendices>
-        <li>
-            <a href="#appendices">7. Appendices</a>
-            <ul>
-                <li><a href="#appendixA">7.1 Appendix A: Glossary</a></li>
-                <li><a href="#appendixB">7.2 Appendix B: Analysis Models</a></li>
-                <ul>
-                    <li><a href="#useCaseDiagram">7.1.1 Use Case Diagram</a></li>
-                    <li><a href="#expandedUseCases">7.1.2 Expanded Use Cases</a></li>
-                </ul>
-            </ul>
+        <!Class Descriptions>
+        <li><a href="#classDescriptions">6. Class Descriptions</a>
         </li>
 
     </ul>
@@ -118,7 +71,72 @@
     </button>
 
     <section>
-        <h1>SDS content Goes here</h1>
+        <div id="purpose">
+            <h3>Purpose</h3>
+            <p>The purpose of this software design specification is to outline the software architecture and design
+               of Academic Counselling Assistant (ACA). The document will show several views of the system design.</p>
+        </div>
+
+        <div id="architecturalDesign">
+            <h3>Architectural Design</h3>
+            <p>The software basically has 2 components. The frontend UI for both admins and end users, and the database
+               that only admins will see and interact with.</p>
+        </div>
+
+        <div id="architecturalPattern">
+            <h3>Architectural Pattern</h3>
+            <p>ACA will be developed in the MVC architectural style. There are three main components to it<br>
+                - Model component, which manages the data<br>
+                - View component, which determines how the data is presented<br>
+                - Controller component, that manages the both model and view components.<br>
+                The purpose of using MVC is to separate the user interface from the logic so that it is easier to
+                handle and this makes it more flexible to alter data or its representation. Hence being an easy option
+                for web applications.
+            </p>
+        </div>
+
+        <div id="databaseSchema">
+            <h3>Database Schema</h3>
+            <p>
+                <img src="Documents/dbschema.jpg">
+            </p>
+        </div>
+
+        <div id="classDiagram">
+            <h3>Class Diagram</h3>
+            <p>
+                <img src="Documents/classdiagram.jpg">
+            </p>
+        </div>
+
+        <div id="classDescriptions">
+        <h3>Class Descriptions</h3>
+        <p>
+            <h3>Users</h3><br>
+            This class responsibility is to handle the users and  their registration information.
+            It holds the users name  an unique id that will be randomly generated in the backend,
+            an unique username, email and password. The user class has two child class Student and Admin.<br>
+            <h3>Student</h3><br>
+            Upon registration, user may fill out further details of educational background that would help customize the search result. The student class contains the student’s profile . "Competitive entrance exam"  inherits student class and contains test scores of other tests that the student may have taken such as SAT, GREs, etc.<br>
+            Student has two methods.<br>
+            -GetInfo takes an integer as a parameter. It calls for student information by the unique student id<br>
+            -setInfo has three parameters: an integer, a value and a string type. The purpose of this method is to edit student information.
+            <h3>Admin</h3><br>
+            The admin class has a number of methods that allow it to change info regarding Students and Universities. Additionally, it has the power to delete an user.
+            <br><h3>Career map</h3><br>
+            This class controls information regarding various subjects offered around the world and the possible careers or further studies it is related to. Career mapping method takes name of university and program name and the student’s ID that invoked the action as parameters. The class is associated to "competitive entrance exam" ,"student" ,"university" and "programs" class.
+            <br><h3>University</h3><br>
+            The job of this class is to hold information about  a large collection of the top rated universities. It will hold info on ranking, name, location,fees. University class is associated with "programs" class.
+            <br>-GetInfo is a method that  takes an integer as a parameter. It calls for student information by the unique student id
+            <br>-setInfo has three parameters: an integer, a value and a string type. The purpose of this method is to edit student information.
+            <br><h3>Programs</h3><br>
+            Programs class contains detailed information of the individual programs offered by the university.
+            <br><h3>Financial Calculator</h3><br>
+            The responsibility of this class is to calculate an estimate of the total expense for a particular degree from a given university mentioned in the parameter by the user. It is associated with "university" class and "programs" class.
+            -calculate is a method that basically  takes the required information from "programs" and "university" class and calculates an estimate of the total expense. It  the shows the result to the user. The method takes  student id, program name and university name as an integer. It is also associated with country in order to take into account living expenses.
+        </p>
+        </div>
+
     </section>
 
 </article>
