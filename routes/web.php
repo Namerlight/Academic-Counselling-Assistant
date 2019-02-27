@@ -15,3 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/index', function () {
+    return view('pages.index');
+});
+
+Route::get('/temp', function () {
+    return view('pages.temporary');
+});
+
