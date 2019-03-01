@@ -4,22 +4,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/parallax.css') }}" rel="stylesheet">
+
+
+
 </head>
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#" style="font-size: 25px"><b>ACA</b></a>
-
+    <a class="navbar-brand" href="/index" style="font-size: 25px;margin-left: 3%">
+        <img src="/images/logo.png" height="10%" width="10%">
+        <font face="Arcitectura" style="letter-spacing: 5px;">ACA</font>
+    </a>
 
     <ul class="navbar-nav ml-auto">
         <li>
-            <a href="#" class="btn btn-primary">Search</a>
+            <a href="/register" class="btn btn-primary">Register</a>
+            <a href="#" id="button" class="btn btn-success"  >Login</a>
         </li>
     </ul>
 
 </nav>
 
+
 <div class="bgimg-1">
+
+
     <div class="caption" style="top: 20%">
         <h2><b>Academic Counselling Assistant</b></h2>
     </div>
@@ -62,19 +71,7 @@
 
 <!Navbar shrink animation>
 <script>
-    window.onscroll = function () {
-        scrollFunction()
-    };
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-            document.getElementById("navbar").style.padding = "30px 10px";
-            document.getElementById("logo").style.fontSize = "25px";
-        } else {
-            document.getElementById("navbar").style.padding = "80px 10px";
-            document.getElementById("logo").style.fontSize = "35px";
-        }
-    }
 </script>
 
 </body>

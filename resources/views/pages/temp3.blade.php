@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/parallax.css') }}" rel="stylesheet">
-
-
+    <title>Bootstrap Simple Modal Login Modal Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -73,24 +74,12 @@
             margin: 100px auto;
         }
     </style>
-
 </head>
 <body>
-
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="/index" style="font-size: 25px;margin-left: 3%">
-        <img src="/images/logo.png" height="10%" width="10%">
-        <font face="Arcitectura" style="letter-spacing: 5px;">ACA</font>
-    </a>
-
-    <ul class="navbar-nav ml-auto">
-        <li>
-            <a href="/register" class="btn btn-primary">Register</a>
-            <a id="button" class="btn btn-success" href="#myModal" data-toggle="modal" >Login</a>
-        </li>
-    </ul>
-
-</nav>
+<div class="text-center">
+    <!-- Button HTML (to Trigger Modal) -->
+    <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Login Modal</a>
+</div>
 
 <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
@@ -123,54 +112,5 @@
         </div>
     </div>
 </div>
-
-<div class="bgimg-1">
-
-
-    <div class="caption" style="top: 20%">
-        <h2><b>Academic Counselling Assistant</b></h2>
-    </div>
-</div>
-
-<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-    <h3 style="text-align:center;">Parallax Index</h3>
-    <p>Dialogues</p>
-</div>
-
-<div class="bgimg-2">
-    <div class="caption">
-        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">Scroll</span>
-    </div>
-</div>
-
-<div style="position:relative;">
-    <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-        <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
-    </div>
-</div>
-
-<div class="bgimg-3">
-    <div class="caption">
-        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span>
-    </div>
-</div>
-
-<div style="position:relative;">
-    <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-        <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
-    </div>
-</div>
-
-<div class="bgimg-1">
-    <div class="caption">
-        <span class="border">COOL!</span>
-    </div>
-</div>
-
-<!Navbar shrink animation>
-<script>
-
-</script>
-
 </body>
 </html>

@@ -24,3 +24,10 @@ Route::get('/temp', function () {
     return view('pages.temporary');
 });
 
+Route::get('/temp2', function () {
+    return view('pages.temp2');
+});
+
+Route::get('/temp3', function () {
+    return view('pages.temp3');
+});
