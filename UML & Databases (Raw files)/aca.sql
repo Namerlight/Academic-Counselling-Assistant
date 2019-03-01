@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2019 at 08:46 PM
+-- Generation Time: Feb 23, 2019 at 08:25 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -31,6 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` int(10) UNSIGNED NOT NULL,
   `creator's_username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `competitive_entrance_exams`
+--
+
+CREATE TABLE `competitive_entrance_exams` (
+  `student_id` int(10) UNSIGNED NOT NULL,
+  `ielts` double(8,2) DEFAULT NULL,
+  `sat` double(8,2) DEFAULT NULL,
+  `gre` double(8,2) DEFAULT NULL,
+  `toefl` double(8,2) DEFAULT NULL,
+  `gmat` double(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -67,7 +82,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_02_20_174955_create_admins_table', 2),
 (5, '2019_02_21_182754_create_universities_table', 3),
 (6, '2019_02_21_185616_create_university_programs_table', 4),
-(7, '2019_02_22_190226_create_countries_table', 5);
+(7, '2019_02_22_190226_create_countries_table', 5),
+(8, '2019_02_23_181943_add_subject_credit_points_to_students', 6),
+(10, '2019_02_23_185331_create_competitive__entrance__exams_table', 7);
 
 -- --------------------------------------------------------
 
@@ -95,8 +112,11 @@ CREATE TABLE `students` (
   `university` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ssc/a-level` double(8,2) DEFAULT NULL,
   `hsc/o-level` double(8,2) DEFAULT NULL,
+  `bachelor_subject` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bachelor_credit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cgpa(bachelor)` double(8,2) DEFAULT NULL,
-  `others` mediumtext COLLATE utf8mb4_unicode_ci
+  `others` mediumtext COLLATE utf8mb4_unicode_ci,
+  `academic_point` double(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -163,6 +183,12 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `competitive_entrance_exams`
+--
+ALTER TABLE `competitive_entrance_exams`
+  ADD PRIMARY KEY (`student_id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
@@ -218,10 +244,16 @@ ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `competitive_entrance_exams`
+--
+ALTER TABLE `competitive_entrance_exams`
+  MODIFY `student_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -256,6 +288,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admins_id_foreign` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `competitive_entrance_exams`
+--
+ALTER TABLE `competitive_entrance_exams`
+  ADD CONSTRAINT `competitive_entrance_exams_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `students`
