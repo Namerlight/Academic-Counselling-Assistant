@@ -31,3 +31,7 @@ Route::get('/temp2', function () {
 Route::get('/temp3', function () {
     return view('pages.temp3');
 });
+
+Route::get('/register', function () {
+    return view('pages.register');
+});
