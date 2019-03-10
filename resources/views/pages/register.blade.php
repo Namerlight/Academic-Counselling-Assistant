@@ -18,7 +18,7 @@
     <ul class="navbar-nav mr-auto" style="margin-left: 0.6%">
         <li>
             <a class="navbar-brand" href="/index" style="font-size: 25px;margin-left: 3%">
-                <img src="/images/logo.png" height="90%" width="10%" style="margin-top: -2%">
+                <img src="/images/logo.png" height="90%" width="10%" style="margin-top: -1.9%">
                 <font face="Arcitectura" style="letter-spacing: 10px; font-size: larger">ACA</font>
             </a>
         </li>
@@ -40,8 +40,7 @@
         <h3 class="fs-subtitle">Personal Information</h3>
 
         <p>
-
-            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Fill form via facebook</a>
+            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;Fill form via facebook</a>
         </p>
         <p class="divider-text">
             <span class="bg-light">OR</span>
