@@ -41,7 +41,7 @@
 
         <p>
 
-            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Fill form via facebook</a>
+            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Fill form via facebook</a>
         </p>
         <p class="divider-text">
             <span class="bg-light">OR</span>
@@ -64,7 +64,7 @@
         <input type="text" name="college" placeholder="College Name">
         <input type="text" name="college_group" placeholder="College Group">
         <input type="text" name="hsc" placeholder="HSC/O level">
-       <input type="text" name="university" placeholder="University Name">
+        <input type="text" name="university" placeholder="University Name">
         <input type="text" name="bsSubject" placeholder="Bachelor Subject">
         <input type="text" name="credits" placeholder="Total credits">
         <input type="text" name="cgpa" placeholder="CGPA">
