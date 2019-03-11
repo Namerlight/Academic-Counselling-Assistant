@@ -8,9 +8,32 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+
+    <!for text divider>
+
+    <style type="text/css">
+        .text-divider {
+            margin: 2em 0;
+            line-height: 0;
+            text-align: center;
+        }
+
+        .text-divider span {
+            background-color: #bebebe;
+            padding: 1em;
+        }
+
+        .text-divider:before {
+            content: " ";
+            display: block;
+            border-top: 1px solid black;
+            border-bottom: 1px solid #f7f7f7;
+        }
+    </style>
 
 
 </head>
@@ -58,7 +81,7 @@
             <form>
                 <div class="form-row">
 
-                    <div style="margin-left: 39%;margin-top: -17%">
+                    <div style="margin-left: 39%;margin-top: -18%">
                         <img src="/images/bulb.jpg" style="border-radius: 50%;height: 100px;width: 100px;">
                     </div>
                     <div>
@@ -66,15 +89,25 @@
                     </div>
 
 
-                    <div class="col-12 col-md-9 mb-2 mb-md-0" style="margin-top: 3%">
+                    <div class="col-12 col-md-9 mb-2 mb-md-0" style="margin-top: 2%">
                         <input type="text" class="form-control form-control-lg">
                     </div>
-                    <div class="col-12 col-md-3" style="margin-top: 3%">
+                    <div class="col-12 col-md-3" style="margin-top: 2%">
                         <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
                     </div>
+
+                    <p class="text-divider" style="width: 50%;margin-left: 24%"><span><font color="black">OR</font></span></p>
+
+                    <div style="margin-left: 27%">
+                        <h4><font color="black" >&nbsp;Let us do it for you!</font></h4>
+                        <button type="submit" class="btn btn-block btn-lg btn-success">Auto Suggestion</button>
+                    </div>
+
+
                 </div>
             </form>
         </div>
+
 
 
     </header>

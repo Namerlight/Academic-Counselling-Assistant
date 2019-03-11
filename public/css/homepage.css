@@ -16984,7 +16984,7 @@ footer.footer {
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active,
@@ -17007,7 +17007,7 @@ footer.footer {
     background: none;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     #wrapper {
         padding-left: 250px;
     }
@@ -17034,3 +17034,6 @@ footer.footer {
         margin-right: 0;
     }
 }
+
+/*text divider*/
+
