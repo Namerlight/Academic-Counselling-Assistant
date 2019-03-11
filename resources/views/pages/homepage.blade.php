@@ -18,16 +18,15 @@
 <div id="wrapper">
 
     <div id="sidebar-wrapper" style="overflow-x: hidden">
-       <img src="/images/profile.jpg" style="border-radius: 50%;height: 100px;width: 100px;margin-top: 40%;margin-left: 25%" > <br>
+        <img src="/images/profile.jpg"
+             style="border-radius: 50%;height: 100px;width: 100px;margin-top: 40%;margin-left: 25%"> <br>
         <ul class="sidebar-nav" style="margin-top: 90%;margin-left: 10%">
             <li>
                 <a href="#">My profile</a>
             </li>
             <li>
-                <a href="#">Settings</a>
+                <a href="#">Edit profile</a>
             </li>
-
-
         </ul>
     </div>
 
@@ -46,7 +45,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li>
-                <a id="button" class="btn  btn-danger" href="#myModal" data-toggle="modal">Logout</a>
+                <a id="button" class="btn  btn-danger" href="#" data-toggle="modal">Logout</a>
             </li>
         </ul>
 
@@ -58,10 +57,19 @@
         <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
             <form>
                 <div class="form-row">
-                    <div class="col-12 col-md-9 mb-2 mb-md-0">
+
+                    <div style="margin-left: 39%;margin-top: -17%">
+                        <img src="/images/bulb.jpg" style="border-radius: 50%;height: 100px;width: 100px;">
+                    </div>
+                    <div>
+                        <h1><font color="black">Have your own preference ?</font></h1>
+                    </div>
+
+
+                    <div class="col-12 col-md-9 mb-2 mb-md-0" style="margin-top: 3%">
                         <input type="text" class="form-control form-control-lg">
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-3" style="margin-top: 3%">
                         <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
                     </div>
                 </div>
