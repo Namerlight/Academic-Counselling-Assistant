@@ -39,3 +39,7 @@ Route::get('/register', function () {
 Route::get('/homepage', function () {
     return view('pages.homepage');
 });
+
+/*for registering new input*/
+
+Route::post('reg', 'RegistrationController@register');

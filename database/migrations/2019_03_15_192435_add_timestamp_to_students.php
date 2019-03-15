@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSubjectCreditPointsToStudents extends Migration
+class AddTimestampToStudents extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddSubjectCreditPointsToStudents extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->string('bachelor_subject')->after('hsc/o-level')->nullable();
-            $table->string('bachelor_credit')->after('bachelor_subject')->nullable();
-            $table->float('academic_point')->nullable();
-
+            $table->timestamps();
         });
     }
 
@@ -29,9 +26,6 @@ class AddSubjectCreditPointsToStudents extends Migration
     public function down()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('bachelor_subject');
-            $table->dropColumn('bachelor_credit');
-            $table->dropColumn('academic_point');
 
         });
     }

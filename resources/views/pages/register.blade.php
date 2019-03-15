@@ -8,7 +8,6 @@
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
 
 
-
 </head>
 
 <body>
@@ -27,34 +26,46 @@
 </nav>
 
 <br><br>
-<form id="msform">
-    <!-- progressbar -->
+<form id="msform" method="post" action="{{'reg'}}">
+{{ csrf_field()}}
+<!-- progressbar -->
     <ul id="progressbar">
         <li class="active">Personal Information</li>
         <li>Academic Information</li>
         <li>Competitive Entrance Exams</li>
     </ul>
     <!-- fieldsets -->
-
-    <!--personal info-->
     <fieldset>
+        <!--personal info-->
+        @if(count($errors)>0)
+
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger">
+                    {{$error}}
+                </div>
+
+            @endforeach
+
+        @endif
+
         <h2 class="fs-title">Create your account</h2>
         <h3 class="fs-subtitle">Personal Information</h3>
 
         <p>
-            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;Fill form via facebook</a>
+            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;Fill form
+                                                                                            via facebook</a>
         </p>
         <p class="divider-text">
             <span class="bg-light">OR</span>
         </p>
 
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="username" placeholder="username">
-        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="name" placeholder="Name &#x00B**" value="{{old('name')}}">
+        <input type="text" name="username" placeholder="username" value="{{old('username')}}">
+        <input type="text" name="email" placeholder="Email" value="{{old('email')}}">
 
         <input type="password" name="pass" placeholder="Password"/>
         <input type="password" name="cpass" placeholder="Confirm Password"/>
-        <input type="button" name="next" class="next action-button" value="Next"/>
+        <input type="button" name="next" class="next action-button" value="Next" value="{{old('name')}}"/>
     </fieldset>
 
     <!--academic info-->
@@ -62,17 +73,16 @@
         <h2 class="fs-title">Academic Information</h2>
         <h3 class="fs-subtitle">Please fill the information carefully</h3>
 
-        <input type="text" name="school" placeholder="School Name">
-        <input type="text" name="ssc" placeholder="SSC/A level">
-        <input type="text" name="college" placeholder="College Name">
-        <input type="text" name="college_group" placeholder="College Group">
-        <input type="text" name="hsc" placeholder="HSC/O level">
-        <input type="text" name="university" placeholder="University Name">
-        <input type="text" name="bsSubject" placeholder="Bachelor Subject">
-        <input type="text" name="credits" placeholder="Total credits">
-        <input type="text" name="cgpa" placeholder="CGPA">
-        <textarea type="text" name="others" placeholder="Others!!"></textarea>
-
+        <input type="text" name="school" placeholder="School Name" value="{{old('school')}}">
+        <input type="text" name="ssc" placeholder="SSC/A level grade" value="{{old('ssc')}}">
+        <input type="text" name="college" placeholder="College Name" value="{{old('college')}}">
+        <input type="text" name="college_group" placeholder="College Group" value="{{old('college_group')}}">
+        <input type="text" name="hsc" placeholder="HSC/O level grade" value="{{old('hsc')}}">
+        <input type="text" name="university" placeholder="University Name" value="{{old('university')}}">
+        <input type="text" name="bsSubject" placeholder="Bachelor Subject" value="{{old('bsSubject')}}">
+        <input type="text" name="credits" placeholder="Total credits" value="{{old('credits')}}">
+        <input type="text" name="cgpa" placeholder="CGPA" value="{{old('cgpa')}}">
+        <textarea type="text" name="others" placeholder="Others!!" value="{{old('others')}}"></textarea>
 
 
         <input type="button" name="previous" class="previous action-button" value="Previous"/>
@@ -83,11 +93,11 @@
     <fieldset>
         <h2 class="fs-title">Competitive Entrance Exam</h2>
         <h3 class="fs-subtitle">All of these are optional</h3>
-        <input type="text" name="sat" placeholder="SAT"/>
-        <input type="text" name="ielt" placeholder="IELTS"/>
-        <input type="text" name="gre" placeholder="GRE"/>
-        <input type="text" name="gmat" placeholder="GMAT"/>
-        <input type="text" name="toefl" placeholder="TOEFL"/>
+        <input type="text" name="sat" placeholder="SAT" value="{{old('sat')}}"/>
+        <input type="text" name="ielts" placeholder="IELTS" value="{{old('ielts')}}"/>
+        <input type="text" name="gre" placeholder="GRE" value="{{old('gre')}}"/>
+        <input type="text" name="gmat" placeholder="GMAT" value="{{old('gmat')}}"/>
+        <input type="text" name="toefl" placeholder="TOEFL" value="{{old('toefl')}}"/>
 
         <input type="button" name="previous" class="previous action-button" value="Previous"/>
         <input type="submit" name="submit" class="submit action-button" value="Submit"/>
@@ -199,9 +209,7 @@
 
     });
 
-    $(".submit").click(function () {
-        return false;
-    });
+
     //# sourceURL=pen.js
 </script>
 

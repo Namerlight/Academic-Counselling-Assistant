@@ -19,9 +19,9 @@ class CreateStudentsTable extends Migration
             $table->string('college_name')->nullable();;
             $table->string('college_group')->nullable();;
             $table->string('university')->nullable();;
-            $table->float('ssc/a-level')->nullable();;
-            $table->float('hsc/o-level')->nullable();;
-            $table->float('cgpa(bachelor)')->nullable();
+            $table->float('ssc_a_level')->nullable();;
+            $table->float('hsc_o_level')->nullable();;
+            $table->float('cgpa_bachelor')->nullable();
             $table->mediumText('others')->nullable();
 
             //foreign key
