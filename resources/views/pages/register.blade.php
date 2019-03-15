@@ -35,6 +35,8 @@
         <li>Competitive Entrance Exams</li>
     </ul>
     <!-- fieldsets -->
+
+    <!--personal info-->
     <fieldset>
         <h2 class="fs-title">Create your account</h2>
         <h3 class="fs-subtitle">Personal Information</h3>
@@ -54,6 +56,8 @@
         <input type="password" name="cpass" placeholder="Confirm Password"/>
         <input type="button" name="next" class="next action-button" value="Next"/>
     </fieldset>
+
+    <!--academic info-->
     <fieldset>
         <h2 class="fs-title">Academic Information</h2>
         <h3 class="fs-subtitle">Please fill the information carefully</h3>
@@ -74,6 +78,8 @@
         <input type="button" name="previous" class="previous action-button" value="Previous"/>
         <input type="button" name="next" class="next action-button" value="Next"/>
     </fieldset>
+
+    <!--Competitive exam info-->
     <fieldset>
         <h2 class="fs-title">Competitive Entrance Exam</h2>
         <h3 class="fs-subtitle">All of these are optional</h3>
