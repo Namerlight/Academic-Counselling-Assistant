@@ -90,6 +90,11 @@
 </head>
 <body>
 
+<!--for checking session-->
+@if (isset(Auth::user()->email))
+    <script>window.location = "/Login/successLogin"</script>
+@endif
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
     <ul class="navbar-nav mr-auto" style="margin-left: 1%">
@@ -116,15 +121,29 @@
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
-            <form action="/examples/actions/confirmation.php" method="post">
+
+
+            <!-- for showing validation error (currently of no use) -->
+            @if (count($errors)>0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li> {{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{url('/Login/checkLogin')}}" method="post">
+                {{csrf_field()}}
                 <div class="modal-header">
                     <h4 class="modal-title">Login</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" required="required">
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control" required="required">
                     </div>
                     <div class="form-group">
                         <div class="clearfix">
@@ -134,7 +153,7 @@
                             </a>
                         </div>
 
-                        <input type="password" class="form-control" required="required">
+                        <input type="password" name="password" class="form-control" required="required">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -147,9 +166,17 @@
 </div>
 
 <div class="bgimg-1">
-
-
     <div class="caption" style="top: 20%">
+
+        <!--for wrong login details-->
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger"
+                 style="width: 30%;margin-left: 35%;margin-top: -3%;border-color: #761b18;background-color:red ">
+                <strong><font color="white" >{{$message}}</font></strong>
+            </div>
+        @endif
+
+
         <h2><b>Academic Counselling Assistant</b></h2>
     </div>
 </div>

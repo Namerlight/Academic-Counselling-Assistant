@@ -43,3 +43,8 @@ Route::get('/homepage', function () {
 /*for registering new input*/
 
 Route::post('reg', 'RegistrationController@register');
+
+/*For Login*/
+Route::post('/Login/checkLogin', 'LoginController@checkLogin');
+Route::get('Login/successLogin','LoginController@successLogin');
+Route::get('Login/logout','LoginController@logout');

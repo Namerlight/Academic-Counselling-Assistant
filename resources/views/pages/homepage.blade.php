@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 
-    <title>Landing Page - Start Bootstrap Theme</title>
+    <title>Homepage</title>
 
 
     <!side nav custom css>
@@ -79,6 +79,18 @@
 
 </head>
 <body>
+
+<!--for checking session-->
+@if (isset(Auth::user()->email))
+
+@elseif(session('response'))
+    <!--for redirect to this page after registration till now-->
+    <!-- need to put a middle verification page-->
+@else
+    <script> window.location = "/index";</script>
+@endif
+
+
 <div id="wrapper">
 
     <div id="sidebar-wrapper" style="overflow-x: hidden">
@@ -86,8 +98,13 @@
              style="border-radius: 50%;height: 100px;width: 100px;margin-top: 40%;margin-left: 25%"> <br>
         <ul class="sidebar-nav" style="margin-top: 90%;margin-left: 10%">
             <li>
-                <a href="#">My profile</a>
+                <a href="#">
+                    @if (isset(Auth::user()->email))
+                        {{Auth::user()->name}}
+                    @endif
+                </a>
             </li>
+
             <li>
                 <a href="#">Edit profile</a>
             </li>
@@ -116,7 +133,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li>
-                <a id="button" class="btn  btn-danger" href="#" data-toggle="modal">Logout</a>
+                <a id="button" class="btn  btn-danger" href="{{url('/Login/logout')}}" data-toggle="modal">Logout</a>
             </li>
         </ul>
 
@@ -163,6 +180,7 @@
 
     </header>
 </div>
+
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function (e) {

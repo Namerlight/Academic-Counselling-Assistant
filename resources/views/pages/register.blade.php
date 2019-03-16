@@ -60,8 +60,8 @@
         </p>
 
         <input type="text" name="name" placeholder="Name &#x00B**" value="{{old('name')}}">
-        <input type="text" name="username" placeholder="username" value="{{old('username')}}">
-        <input type="text" name="email" placeholder="Email" value="{{old('email')}}">
+        <input type="text" name="username" placeholder="username &#x00B**" value="{{old('username')}}">
+        <input type="text" name="email" placeholder="Email &#x00B**" value="{{old('email')}}">
 
         <input type="password" name="pass" placeholder="Password"/>
         <input type="password" name="cpass" placeholder="Confirm Password"/>
@@ -75,13 +75,13 @@
 
         <input type="text" name="school" placeholder="School Name" value="{{old('school')}}">
         <input type="text" name="ssc" placeholder="SSC/A level grade" value="{{old('ssc')}}">
-        <input type="text" name="college" placeholder="College Name" value="{{old('college')}}">
-        <input type="text" name="college_group" placeholder="College Group" value="{{old('college_group')}}">
-        <input type="text" name="hsc" placeholder="HSC/O level grade" value="{{old('hsc')}}">
-        <input type="text" name="university" placeholder="University Name" value="{{old('university')}}">
-        <input type="text" name="bsSubject" placeholder="Bachelor Subject" value="{{old('bsSubject')}}">
-        <input type="text" name="credits" placeholder="Total credits" value="{{old('credits')}}">
-        <input type="text" name="cgpa" placeholder="CGPA" value="{{old('cgpa')}}">
+        <input type="text" name="college" placeholder="College Name &#x00B**" value="{{old('college')}}">
+        <input type="text" name="college_group" placeholder="College Group &#x00B**" value="{{old('college_group')}}">
+        <input type="text" name="hsc" placeholder="HSC/O level grade &#x00B**" value="{{old('hsc')}}">
+        <input type="text" name="university" placeholder="University Name &#x00B**" value="{{old('university')}}">
+        <input type="text" name="bsSubject" placeholder="Bachelor Subject &#x00B**" value="{{old('bsSubject')}}">
+        <input type="text" name="credits" placeholder="Total credits &#x00B**" value="{{old('credits')}}">
+        <input type="text" name="cgpa" placeholder="CGPA &#x00B**" value="{{old('cgpa')}}">
         <textarea type="text" name="others" placeholder="Others!!" value="{{old('others')}}"></textarea>
 
 

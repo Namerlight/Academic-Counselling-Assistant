@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Student;
 use App\Competitive_Entrance_Exams;
+use Illuminate\Support\Facades\Hash;
+
 
 class RegistrationController extends Controller
 {
@@ -13,18 +15,17 @@ class RegistrationController extends Controller
     public function register(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'username' => 'required|min:12|unique:users',
+            'username' => 'required|min:6|unique:users',
             'email' => 'required|email|unique:users',
             'pass' => 'required|min:6',
             'cpass' => 'required_with:pass|same:pass|min:6',
-            'school' => 'required',
             'college' => 'required',
             'college_group' => 'required',
-            'hsc' => 'required',
+            'hsc' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'university' => 'required',
             'bsSubject' => 'required',
-            'credits' => 'required',
-            'cgpa' => 'required'
+            'credits' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'cgpa' => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
         $user = new User();
@@ -34,7 +35,11 @@ class RegistrationController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->username = $request->input('username');
-        $user->password = $request->input('pass');
+
+        /*for password hashing*/
+        $temp = $request->input('pass');
+        $hashedPassword = Hash::make($temp);
+        $user->password = $hashedPassword;
 
         $student->username = $request->input('username');
         $student->school_name = $request->input('school');
@@ -59,6 +64,7 @@ class RegistrationController extends Controller
         $student->save();
         $cExam->save();
 
-        return redirect('/homepage')->with('response', 'Register Successfully');
+        $emailToAuth = $user->email;
+        return redirect('/homepage')->with('response', $emailToAuth);
     }
 }
