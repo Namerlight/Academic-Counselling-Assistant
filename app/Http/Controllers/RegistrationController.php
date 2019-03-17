@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Request;
 use App\User;
 use App\Student;
 use App\Competitive_Entrance_Exams;
 use Illuminate\Support\Facades\Hash;
+
 
 
 class RegistrationController extends Controller
@@ -41,6 +43,8 @@ class RegistrationController extends Controller
         $hashedPassword = Hash::make($temp);
         $user->password = $hashedPassword;
 
+        $user->token = str_random(25);
+
         $student->username = $request->input('username');
         $student->school_name = $request->input('school');
         $student->college_name = $request->input('college');
@@ -60,11 +64,14 @@ class RegistrationController extends Controller
         $cExam->toefl = $request->input('toefl');
         $cExam->gmat = $request->input('gmat');
 
+
+
         $user->save();
         $student->save();
         $cExam->save();
 
-        $emailToAuth = $user->email;
-        return redirect('/homepage')->with('response', $emailToAuth);
+        $user->sendVerificationEmail();
+
+        return redirect('/index')->with('response', 'Registration Successful || Please Verify your email and login to continue');
     }
 }

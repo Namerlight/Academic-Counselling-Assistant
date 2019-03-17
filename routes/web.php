@@ -48,3 +48,6 @@ Route::post('reg', 'RegistrationController@register');
 Route::post('/Login/checkLogin', 'LoginController@checkLogin');
 Route::get('Login/successLogin','LoginController@successLogin');
 Route::get('Login/logout','LoginController@logout');
+
+
+Route::get('/verify/{token}','VerifyController@verify')->name('verify');
