@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2019 at 08:25 PM
+-- Generation Time: Mar 18, 2019 at 06:47 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -40,13 +40,22 @@ CREATE TABLE `admins` (
 --
 
 CREATE TABLE `competitive_entrance_exams` (
-  `student_id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ielts` double(8,2) DEFAULT NULL,
   `sat` double(8,2) DEFAULT NULL,
   `gre` double(8,2) DEFAULT NULL,
   `toefl` double(8,2) DEFAULT NULL,
-  `gmat` double(8,2) DEFAULT NULL
+  `gmat` double(8,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `competitive_entrance_exams`
+--
+
+INSERT INTO `competitive_entrance_exams` (`username`, `ielts`, `sat`, `gre`, `toefl`, `gmat`, `created_at`, `updated_at`) VALUES
+('masudurhimel', 6.50, NULL, NULL, NULL, NULL, '2019-03-17 14:06:40', '2019-03-17 14:06:40');
 
 -- --------------------------------------------------------
 
@@ -84,7 +93,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2019_02_21_185616_create_university_programs_table', 4),
 (7, '2019_02_22_190226_create_countries_table', 5),
 (8, '2019_02_23_181943_add_subject_credit_points_to_students', 6),
-(10, '2019_02_23_185331_create_competitive__entrance__exams_table', 7);
+(10, '2019_02_23_185331_create_competitive__entrance__exams_table', 7),
+(11, '2019_03_15_192435_add_timestamp_to_students', 8),
+(12, '2019_03_15_193006_add_timestamp_to_competitive_entrance_exams', 9),
+(13, '2019_03_15_203238_update_foreign_key_to_competitive_entrance_exams', 10),
+(14, '2019_03_17_170157_add_tokaten_to_users', 11);
 
 -- --------------------------------------------------------
 
@@ -105,19 +118,28 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `students` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `school_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `college_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `college_group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `university` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ssc/a-level` double(8,2) DEFAULT NULL,
-  `hsc/o-level` double(8,2) DEFAULT NULL,
+  `ssc_a_level` double(8,2) DEFAULT NULL,
+  `hsc_o_level` double(8,2) DEFAULT NULL,
   `bachelor_subject` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bachelor_credit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cgpa(bachelor)` double(8,2) DEFAULT NULL,
+  `cgpa_bachelor` double(8,2) DEFAULT NULL,
   `others` mediumtext COLLATE utf8mb4_unicode_ci,
-  `academic_point` double(8,2) DEFAULT NULL
+  `academic_point` double(8,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`username`, `school_name`, `college_name`, `college_group`, `university`, `ssc_a_level`, `hsc_o_level`, `bachelor_subject`, `bachelor_credit`, `cgpa_bachelor`, `others`, `academic_point`, `created_at`, `updated_at`) VALUES
+('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'NSU', 5.00, 5.00, 'CSE', '130', 3.93, 'Project + Research', NULL, '2019-03-17 14:06:40', '2019-03-17 14:06:40');
 
 -- --------------------------------------------------------
 
@@ -162,15 +184,23 @@ CREATE TABLE `university_programs` (
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `name`, `email`, `email_verified_at`, `password`, `created_at`, `updated_at`, `remember_token`, `token`) VALUES
+(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$ke0U.w4p.995NxtV1KTtEeKLovG1ys.uXdp17e7EOEgkS6ZPlf4Om', '2019-03-17 14:06:40', '2019-03-17 14:07:58', 'PR76MTFFA4UjywQE7FDKbmZqdY2ENvXhhVgfipMIoZx8LihYjVBFe5INwbcv', NULL);
 
 --
 -- Indexes for dumped tables
@@ -186,7 +216,7 @@ ALTER TABLE `admins`
 -- Indexes for table `competitive_entrance_exams`
 --
 ALTER TABLE `competitive_entrance_exams`
-  ADD PRIMARY KEY (`student_id`);
+  ADD KEY `competitive_entrance_exams_username_foreign` (`username`);
 
 --
 -- Indexes for table `countries`
@@ -210,7 +240,7 @@ ALTER TABLE `password_resets`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `FKusername` (`username`);
 
 --
 -- Indexes for table `universities`
@@ -244,22 +274,10 @@ ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `competitive_entrance_exams`
---
-ALTER TABLE `competitive_entrance_exams`
-  MODIFY `student_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `students`
---
-ALTER TABLE `students`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `universities`
@@ -277,7 +295,7 @@ ALTER TABLE `university_programs`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -293,13 +311,13 @@ ALTER TABLE `admins`
 -- Constraints for table `competitive_entrance_exams`
 --
 ALTER TABLE `competitive_entrance_exams`
-  ADD CONSTRAINT `competitive_entrance_exams_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `competitive_entrance_exams_username_foreign` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
-  ADD CONSTRAINT `students_id_foreign` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FKusername` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `university_programs`
