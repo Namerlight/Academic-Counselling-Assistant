@@ -177,7 +177,7 @@
         @endif
 
     <!--after registering-->
-        @if (($message = Session::get('response')) ||  ($message = Session::get('success')))
+        @if (($message = Session::get('verificationResponse')))
             <div class="alert alert-success"
                  style="width: 30%;margin-left: 35%;margin-top: -3%;border-color: #497652;background-color:#3cff5f ">
                 <strong><font color="white" >{!! nl2br(e($message)) !!}</font></strong>

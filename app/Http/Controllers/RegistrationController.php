@@ -72,7 +72,7 @@ class RegistrationController extends Controller
 
         $user->sendVerificationEmail();
 
-        return redirect('/homepage')->with('verificationResponse', $user);
+        return redirect('/index')->with('verificationResponse', 'Registration Successful || Please Verify your email and login to continue');
         /*Registration Successful || Please Verify your email and login to continue*/
     }
 }

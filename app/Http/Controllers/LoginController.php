@@ -39,7 +39,6 @@ class LoginController extends Controller
 
     function successLogin()
     {
-
         return view('pages.homepage');
     }
 
