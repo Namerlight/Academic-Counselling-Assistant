@@ -17,6 +17,6 @@ class VerifyController extends Controller
         User::where('token',$token)->firstOrFail()
             ->update(['token' => null]);
 
-        return redirect('/index')->with('success', 'Account verified || Login to continue');
+        return redirect('/homepage')->with('verificationResponse', 'Account verified || Login to continue');
     }
 }

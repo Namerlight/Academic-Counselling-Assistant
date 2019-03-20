@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +22,7 @@ class LoginController extends Controller
 
         */
 
+        $email = $request->get('email');
 
         $userData = array(
             'email' => $request->get('email'),
@@ -36,6 +39,7 @@ class LoginController extends Controller
 
     function successLogin()
     {
+
         return view('pages.homepage');
     }
 

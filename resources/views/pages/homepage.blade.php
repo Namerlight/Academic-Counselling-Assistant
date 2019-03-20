@@ -84,7 +84,7 @@
 @if (isset(Auth::user()->email))
 
 
-@elseif(session('response') || session('success'))
+@elseif(session('verificationResponse') || session('success'))
     <!--for redirect to this page after registration till now-->
 <!-- need to put a middle verification page-->
 @else
@@ -100,9 +100,7 @@
         <ul class="sidebar-nav" style="margin-top: 90%;margin-left: 10%">
             <li>
                 <a href="#">
-                    @if (isset(Auth::user()->email))
-                        {{Auth::user()->name}}
-                    @endif
+                    {{Auth::user()->name}} <br>
                 </a>
             </li>
 
@@ -146,6 +144,7 @@
         <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
             <form autocomplete="off">
                 <div class="form-row">
+
 
                     <div style="margin-left: 39%;margin-top: -18%">
                         <img src="/images/bulb.jpg" style="border-radius: 50%;height: 100px;width: 100px;">
