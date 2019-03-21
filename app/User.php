@@ -10,6 +10,8 @@ use phpDocumentor\Reflection\Types\This;
 
 class User extends Authenticatable
 {
+
+
     use Notifiable;
 
     /**
@@ -51,5 +53,9 @@ class User extends Authenticatable
     }
 
 
+    public function students()
+    {
+        return $this->hasOne('App\Student');
+    }
 
 }

@@ -99,7 +99,7 @@
         <ul class="sidebar-nav" style="margin-top: 90%;margin-left: 10%">
             <li>
                 <a href="#">
-                    {{Auth::user()->name}} <br>
+                    {{$user->name}}
                 </a>
             </li>
 
@@ -122,7 +122,7 @@
 
         <ul class="navbar-nav mr-auto" style="margin-left: 0.6%">
             <li>
-                <a class="navbar-brand" href="/homepage" style="font-size: 25px;margin-left: 3%">
+                <a class="navbar-brand" href="/index" style="font-size: 25px;margin-left: 3%">
                     <img src="/images/logo.png" height="90%" width="10%" style="margin-top: -1.9%">
                     <font face="Arcitectura" style="letter-spacing: 10px; font-size: larger">ACA</font>
                 </a>

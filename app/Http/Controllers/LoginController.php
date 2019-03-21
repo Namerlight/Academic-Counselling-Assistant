@@ -39,7 +39,12 @@ class LoginController extends Controller
 
     function successLogin()
     {
-        return view('pages.homepage');
+        $username = auth()->user()->username;
+
+        $user = User::where('username',$username) -> first();
+        $students = Student::find($username);
+
+        return view('pages.homepage')->with('students',$students)->with('user',$user);
     }
 
     function logout()

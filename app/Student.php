@@ -8,4 +8,8 @@ class Student extends Model
 {
     //primary key
     protected $primaryKey = 'username';
+
+    public function user(){
+        return $this->belongsTo('App\User','username');
+    }
 }
