@@ -98,7 +98,7 @@
              style="border-radius: 50%;height: 100px;width: 100px;margin-top: 40%;margin-left: 25%"> <br>
         <ul class="sidebar-nav" style="margin-top: 90%;margin-left: 10%">
             <li>
-                <a href="#">
+                <a href="/profile">
                     {{$user->name}}
                 </a>
             </li>

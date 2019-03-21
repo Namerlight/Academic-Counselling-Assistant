@@ -47,6 +47,16 @@ class LoginController extends Controller
         return view('pages.homepage')->with('students',$students)->with('user',$user);
     }
 
+    function profile()
+    {
+        $username = auth()->user()->username;
+
+        $user = User::where('username',$username) -> first();
+        $students = Student::find($username);
+
+        return view('pages.profile')->with('students',$students)->with('user',$user);
+    }
+
     function logout()
     {
         Auth::logout();

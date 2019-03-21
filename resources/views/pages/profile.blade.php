@@ -5,65 +5,81 @@
 
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
 
-
-    <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
+
+<!--for checking session-->
+@if (isset(Auth::user()->email))
+
+@else
+    <script> window.location = "/index";</script>
+@endif
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 9.7%">
+
+    <ul class="navbar-nav mr-auto" style="margin-left: 0.6%">
+        <li>
+            <a class="navbar-brand" href="/index" style="font-size: 25px;margin-left: 3%">
+                <img src="/images/logo.png" height="90%" width="10%" style="margin-top: -1.9%">
+                <font face="Arcitectura" style="letter-spacing: 10px; font-size: larger">ACA</font>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+        <li>
+            <a id="button" class="btn  btn-danger" href="{{url('/Login/logout')}}" >Logout</a>
+        </li>
+    </ul>
+
+</nav>
 <div class="container emp-profile">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                         alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
+                    <img src="/images/profile.jpg"
+                         style="border-radius: 50%;height: 150px;width: 150px;margin-left: -20%">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
-                    <h5>
-                        Kshiti Ghelani
-                    </h5>
-                    <h6>
-                        Web Developer and Designer
-                    </h6>
-                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <br>
+                    <h2>
+                        {{$user->name}}
+                    </h2>
+                    <br><br>
+
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                               aria-controls="home" aria-selected="true">About</a>
+                               aria-controls="home" aria-selected="true">Personal</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                               aria-controls="profile" aria-selected="false">Timeline</a>
+                               aria-controls="profile" aria-selected="false">Academic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="more-tab" data-toggle="tab" href="#more" role="tab"
+                               aria-controls="more" aria-selected="false">Exams</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                <input type="submit" class="profile-edit-btn btn-primary" name="btnAddMore" value="Edit Profile"/>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-work">
-                    <p>WORK LINK</p>
-                    <a href="">Website Link</a><br/>
-                    <a href="">Bootsnipp Profile</a><br/>
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br/>
-                    <a href="">Web Developer</a><br/>
-                    <a href="">WordPress</a><br/>
-                    <a href="">WooCommerce</a><br/>
-                    <a href="">PHP, .Net</a><br/>
+                <div class="profile-work" style="margin-left: -25%;text-align: center">
+                    <h2><b>Academic Counselling Assistant</b></h2> <br>
+                    <h3>Your<br>One Stop<br>Solution</h3>
                 </div>
             </div>
             <div class="col-md-8">
@@ -71,18 +87,10 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>User Id</label>
+                                <label>Username</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Kshiti123</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Kshiti Ghelani</p>
+                                <p>username</p>
                             </div>
                         </div>
                         <div class="row">
@@ -90,71 +98,134 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p>kshitighelani@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>123 456 7890</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Profession</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Web Developer and Designer</p>
+                                <p>email</p>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Experience</label>
+                                <label>School Name</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Expert</p>
+                                <p>school_name</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Hourly Rate</label>
+                                <label>SSC/O level</label>
                             </div>
                             <div class="col-md-6">
-                                <p>10$/hr</p>
+                                <p>gpa</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Total Projects</label>
+                                <label>College Name</label>
                             </div>
                             <div class="col-md-6">
-                                <p>230</p>
+                                <p>college_name</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>English Level</label>
+                                <label>College group</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Expert</p>
+                                <p>group</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Availability</label>
+                                <label>HSC/A level</label>
                             </div>
                             <div class="col-md-6">
-                                <p>6 months</p>
+                                <p>gpa</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br/>
-                                <p>Your detail description</p>
+                            <div class="col-md-6">
+                                <label>University</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>uni name</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>BS subject</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>subject</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>BS credit</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>credit</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>BS CGPA</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>cgpa</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Others</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>other values</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="more" role="tabpanel" aria-labelledby="more-tab">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>IELTS</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>ielts</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>SAT</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>sat</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>GRE</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>gre</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>TOEFL</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>toefl</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>GMAT</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>gmat</p>
                             </div>
                         </div>
                     </div>

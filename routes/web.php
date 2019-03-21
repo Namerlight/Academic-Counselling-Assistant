@@ -40,9 +40,7 @@ Route::get('/homepage', function () {
     return view('pages.homepage');
 });
 
-Route::get('/profile', function () {
-    return view('pages.profile');
-});
+Route::get('/profile','LoginController@profile');
 
 /*for registering new input*/
 
