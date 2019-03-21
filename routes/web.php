@@ -40,6 +40,10 @@ Route::get('/homepage', function () {
     return view('pages.homepage');
 });
 
+Route::get('/profile', function () {
+    return view('pages.profile');
+});
+
 /*for registering new input*/
 
 Route::post('reg', 'RegistrationController@register');
