@@ -1,39 +1,75 @@
-from urllib.request import Request, urlopen
+from urllib.request import Request, urlopen, ftperrors
 from bs4 import BeautifulSoup
 
-# page_being_crawled = 'https://www.topuniversities.com/university-rankings/world-university-rankings/2019'
-# req = Request(page_being_crawled, headers={'User-Agent': 'Mozilla/5.0'})
-# page_html = urlopen(req).read()
+list_of_names = []
+list_of_country = []
+list_of_url_names = []
 
-page_being_crawled = 'https://www.timeshighereducation.com/world-university-rankings/2019/' \
-                     'world-ranking#!/page/0/length/100/sort_by/rank/sort_order/asc/cols/stats'
+page_being_crawled = 'https://www.topuniversities.com/student-info/choosing-university/worlds-top-100-universities'
+req = Request(page_being_crawled)
+req.add_header('User-Agent', 'Mozilla/5.0')
 
-page_html = urlopen(page_being_crawled)
-
+page_html = urlopen(req)
 bs_format = BeautifulSoup(page_html, 'html.parser')
 
-title = bs_format.find('h1', attrs={'class': 'pane-title'})
+table = bs_format.find('table')
+allrows = table.findChild()
 
-test = title.text.strip()
+for row in allrows:
+    second_column = row.find('td', attrs={'style': 'width: 455px;'})
+    uni_names = second_column.text.strip()
+    list_of_names.append(uni_names)
 
-print(test)
+for row2 in allrows:
+    third_column = row2.find('td', attrs={'style': 'width: 124px;'})
+    uni_countries = third_column.text.strip()
+    list_of_country.append(uni_countries)
 
-table = bs_format.find('table', id='datatable-1')
+del list_of_names[0]
+del list_of_country[0]
 
-name1 = table.find('a', attrs={'class': 'ranking-institution-title'})
+to_replace = {" of", "in ", " at", ",", " -", "'", " and", " &", "(", ")"}
 
-tablebody = table.find('tbody')
+for name in list_of_names:
+    nm = name.lower()
+    for word in to_replace:
+        nm = nm.replace(word, '')
+    nm = nm.replace(' ste ', ' state ')
+    nm = nm.replace(' ', '-')
+    nm = nm.replace('universität', 'universitat')
+    nm = nm.replace('münchen', 'munchen')
+    list_of_url_names.append(nm)
 
-row1 = tablebody.find('tr', role='row')
+for name in list_of_url_names:
+    print(name)
 
-name2 = table.find('td', attrs={'class': 'name namesearch'})
+unilistIter = 0
 
-# <a class="ranking-institution-title" href="/world-university-rankings/university-oxford" data-position="title" data-mz="">University of Oxford</a>
+for url_uni_name in list_of_url_names:
 
-data1 = tablebody.find('a', attrs={'class': "ranking-institution-title", 'data-position': "title"})
+    uni_page_url = 'https://www.topuniversities.com/universities/' + url_uni_name
+    reqe = Request(uni_page_url)
+    reqe.add_header('User-Agent', 'Mozilla/5.0')
 
-print(table)
+    try:
+        uni_page_html = urlopen(reqe)
+    except ftperrors():
+        print("", end='')
+        continue
 
-print(row1)
-print(name1)
-print(data1)
+    uni_bs_format = BeautifulSoup(uni_page_html, 'html.parser')
+    uni_stats_txt = uni_bs_format.find('div', class_='uni_stats').prettify()
+    bs_f = BeautifulSoup(uni_stats_txt, 'html.parser')
+    uni_rank = bs_f.findAll('div', attrs={'class': 'val'})
+
+    listIter = 0
+
+    print(list_of_names[unilistIter], end=' | ')
+
+    while listIter < 5:
+        print(uni_rank[listIter].text.strip(), end=' | ')
+        listIter += 1
+
+    print('\n', end='')
+    unilistIter += 1
+
