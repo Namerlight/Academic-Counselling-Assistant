@@ -53,3 +53,10 @@ Route::get('Login/logout','LoginController@logout');
 
 
 Route::get('/verify/{token}','VerifyController@verify')->name('verify');
+
+/*updating user profile*/
+
+Route::get('/profile/{username}','LoginController@updateView');
+
+/*updating profile*/
+Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);

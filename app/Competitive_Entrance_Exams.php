@@ -10,6 +10,6 @@ class Competitive_Entrance_Exams extends Model
     protected $primaryKey = 'username';
 
     public function students(){
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo('App\Student','username');
     }
 }

@@ -50,8 +50,8 @@ class RegistrationController extends Controller
         $student->college_name = $request->input('college');
         $student->college_group = $request->input('college_group');
         $student->university = $request->input('university');
-        $student->ssc_a_level = $request->input('ssc');
-        $student->hsc_o_level = $request->input('hsc');
+        $student->ssc_o_level = $request->input('ssc');
+        $student->hsc_a_level = $request->input('hsc');
         $student->bachelor_subject = $request->input('bsSubject');
         $student->bachelor_credit = $request->input('credits');
         $student->cgpa_bachelor = $request->input('cgpa');

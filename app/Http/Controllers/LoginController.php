@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Competitive_Entrance_Exams;
 use App\Student;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    /**
+     * this controller contains
+     * login things
+     * profile view
+     * update the profile
+     */
+
     function checkLogin(Request $request)
     {
 
@@ -41,21 +50,102 @@ class LoginController extends Controller
     {
         $username = auth()->user()->username;
 
-        $user = User::where('username',$username) -> first();
+        $user = User::where('username', $username)->first();
         $students = Student::find($username);
 
-        return view('pages.homepage')->with('students',$students)->with('user',$user);
+        return view('pages.homepage')->with('students', $students)->with('user', $user);
     }
+
+    // profile view
 
     function profile()
     {
         $username = auth()->user()->username;
 
-        $user = User::where('username',$username) -> first();
-        $students = Student::find($username);
+        $user = User::where('username', $username)->first();
+        $student = Student::find($username);
+        $exams = Competitive_Entrance_Exams::find($username);
 
-        return view('pages.profile')->with('students',$students)->with('user',$user);
+
+        return view('pages.profile')->with('student', $student)->with('user', $user)->with('exams', $exams);
     }
+
+    function updateView()
+    {
+        $username = auth()->user()->username;
+
+        $user = User::where('username', $username)->first();
+        $student = Student::find($username);
+        $exams = Competitive_Entrance_Exams::find($username);
+
+
+        return view('pages.updateProfile')->with('student', $student)->with('user', $user)->with('exams', $exams);
+    }
+
+    public function update(Request $request, $username)
+    {
+
+        $this->validate($request, [
+            'name' => 'required',
+            'pass' => 'required|min:6',
+            'cpass' => 'required_with:pass|same:pass|min:6',
+            'college' => 'required',
+            'college_group' => 'required',
+            'hsc' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'university' => 'required',
+            'bsSubject' => 'required',
+            'credits' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'cgpa' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+        ]);
+
+
+        $user = User::where('username', $username)->first();
+        $student = Student::find($username);
+        $cExam = Competitive_Entrance_Exams::find($username);
+
+        $email = $user->email;
+
+        $user->name = $request->input('name');
+
+        $user->email = $email;
+        $user->username = $username;
+
+        /*for password hashing*/
+        $temp = $request->input('pass');
+        $hashedPassword = Hash::make($temp);
+        $user->password = $hashedPassword;
+
+
+        $student->username = $username;
+        $student->school_name = $request->input('school');
+        $student->college_name = $request->input('college');
+        $student->college_group = $request->input('college_group');
+        $student->university = $request->input('university');
+        $student->ssc_o_level = $request->input('ssc');
+        $student->hsc_a_level = $request->input('hsc');
+        $student->bachelor_subject = $request->input('bsSubject');
+        $student->bachelor_credit = $request->input('credits');
+        $student->cgpa_bachelor = $request->input('cgpa');
+        $student->others = $request->input('others');
+
+        $cExam->username = $username;
+        $cExam->ielts = $request->input('ielts');
+        $cExam->sat = $request->input('sat');
+        $cExam->gre = $request->input('gre');
+        $cExam->toefl = $request->input('toefl');
+        $cExam->gmat = $request->input('gmat');
+
+
+        $user->save();
+        $student->save();
+        $cExam->save();
+
+
+        return redirect('/index')->with('verificationResponse', 'Profile updated');
+
+
+    }
+
 
     function logout()
     {

@@ -39,7 +39,8 @@
 
 </nav>
 <div class="container emp-profile">
-    <form method="post">
+    <form  method="post" action="/profile/{{$user->username}}/update">
+        {{ csrf_field()}}
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -49,6 +50,17 @@
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
+
+                    @if(count($errors)>0)
+
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{$error}}
+                            </div>
+
+                        @endforeach
+
+                    @endif
                     <br>
                     <h2>
                         {{$user->name}}
@@ -72,9 +84,9 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <a type="button" class="btn btn-primary"
-                       href="/profile/{{$user->username}}">Edit Profile</a>
+                <input type="submit" name="submit" class="btn btn-primary" value="Submit"/>
             </div>
+
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -83,33 +95,56 @@
                     <h3>Your<br>One Stop<br>Solution</h3>
                 </div>
             </div>
+
+
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
+
+                    <!--user info-->
+
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Username</label>
+                                <label>Name</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$user->username}}</p>
+                                <input type="text" name="name" value="{{$user->name}}">
+
                             </div>
                         </div>
+
+
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Email</label>
+                                <label>Password</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$user->email}}</p>
+                                <input type="password" name="pass">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Confirm password</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" name="cpass">
+
                             </div>
                         </div>
                     </div>
+
+                    <!--academic info-->
+
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>School Name</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->school_name}}</p>
+                                <input type="text" name="school" value="{{$student->school_name}}">
                             </div>
                         </div>
                         <div class="row">
@@ -117,7 +152,7 @@
                                 <label>SSC/O level</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->ssc_o_level}}</p>
+                                <input type="text" name="ssc" value="{{$student->ssc_o_level}}">
                             </div>
                         </div>
                         <div class="row">
@@ -125,7 +160,7 @@
                                 <label>College Name</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->college_name}}</p>
+                                <input type="text" name="college" value="{{$student->college_name}}">
                             </div>
                         </div>
                         <div class="row">
@@ -133,7 +168,7 @@
                                 <label>College group</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->college_group}}</p>
+                                <input type="text" name="college_group" value="{{$student->college_group}}">
                             </div>
                         </div>
                         <div class="row">
@@ -141,7 +176,7 @@
                                 <label>HSC/A level</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->hsc_a_level}}</p>
+                                <input type="text" name="hsc" value="{{$student->hsc_a_level}}">
                             </div>
                         </div>
                         <div class="row">
@@ -149,7 +184,7 @@
                                 <label>University</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->university}}</p>
+                                <input type="text" name="university" value="{{$student->university}}">
                             </div>
                         </div>
                         <div class="row">
@@ -157,7 +192,7 @@
                                 <label>BS subject</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->bachelor_subject}}</p>
+                                <input type="text" name="bsSubject" value="{{$student->bachelor_subject}}">
                             </div>
                         </div>
                         <div class="row">
@@ -165,7 +200,7 @@
                                 <label>BS credit</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->bachelor_credit}}</p>
+                                <input type="text" name="credits" value="{{$student->bachelor_credit}}">
                             </div>
                         </div>
                         <div class="row">
@@ -173,7 +208,7 @@
                                 <label>BS CGPA</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->cgpa_bachelor}}</p>
+                                <input type="text" name="cgpa" value="{{$student->cgpa_bachelor}}">
                             </div>
                         </div>
                         <div class="row">
@@ -181,12 +216,15 @@
                                 <label>Others</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$student->others}}</p>
+                                <input type="text" name="others" value="{{$student->others}}">
                             </div>
                         </div>
 
 
                     </div>
+
+                    <!--exam info-->
+
                     <div class="tab-pane fade" id="more" role="tabpanel" aria-labelledby="more-tab">
 
                         <div class="row">
@@ -194,7 +232,7 @@
                                 <label>IELTS</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$exams->ielts}}</p>
+                                <input type="text" name="ielts" value="{{$exams->ielts}}">
                             </div>
                         </div>
                         <div class="row">
@@ -202,7 +240,7 @@
                                 <label>SAT</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$exams->sat}}</p>
+                                <input type="text" name="sat" value="{{$exams->sat}}">
                             </div>
                         </div>
                         <div class="row">
@@ -210,7 +248,7 @@
                                 <label>GRE</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$exams->gre}}</p>
+                                <input type="text" name="gre" value="{{$exams->gre}}">
                             </div>
                         </div>
                         <div class="row">
@@ -218,7 +256,7 @@
                                 <label>TOEFL</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$exams->toefl}}</p>
+                                <input type="text" name="toefl" value="{{$exams->toefl}}">
                             </div>
                         </div>
                         <div class="row">
@@ -226,7 +264,7 @@
                                 <label>GMAT</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$exams->gmat}}</p>
+                                <input type="text" name="gmat" value="{{$exams->gmat}}">
                             </div>
                         </div>
                     </div>

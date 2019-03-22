@@ -103,9 +103,7 @@
                 </a>
             </li>
 
-            <li>
-                <a href="#">Edit profile</a>
-            </li>
+
             <li>
                 <a href="#">Instructions</a>
             </li>
@@ -144,6 +142,12 @@
             <form autocomplete="off">
                 <div class="form-row">
 
+                    @if (($message = Session::get('verificationResponse')))
+                        <div class="alert alert-success"
+                             style="width: 30%;margin-left: 35%;margin-top: -3%;border-color: #497652;background-color:#3cff5f ">
+                            <strong><font color="white" >{!! nl2br(e($message)) !!}</font></strong>
+                        </div>
+                    @endif
 
                     <div style="margin-left: 39%;margin-top: -18%">
                         <img src="/images/bulb.jpg" style="border-radius: 50%;height: 100px;width: 100px;">
