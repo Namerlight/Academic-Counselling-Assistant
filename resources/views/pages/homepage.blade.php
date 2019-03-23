@@ -116,8 +116,7 @@
 
     <!navigation>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 9.7%">
-        <a href="#menu-toggle" class="btn btn" id="menu-toggle"><font color="white">|||</font></a>
-
+        <!--  <a href="#menu-toggle" class="btn btn" id="menu-toggle"><font color="white">|||</font></a>  -->
         <ul class="navbar-nav mr-auto" style="margin-left: 0.6%">
             <li>
                 <a class="navbar-brand" href="/index" style="font-size: 25px;margin-left: 3%">
@@ -142,37 +141,29 @@
             <form autocomplete="off">
                 <div class="form-row">
 
-                    @if (($message = Session::get('verificationResponse')))
-                        <div class="alert alert-success"
-                             style="width: 30%;margin-left: 35%;margin-top: -3%;border-color: #497652;background-color:#3cff5f ">
-                            <strong><font color="white" >{!! nl2br(e($message)) !!}</font></strong>
-                        </div>
-                    @endif
 
                     <div style="margin-left: 39%;margin-top: -18%">
                         <img src="/images/bulb.jpg" style="border-radius: 50%;height: 100px;width: 100px;">
                     </div>
-                    <div>
-                        <h1><font color="black">Have your own preference ?</font></h1>
+
+
+                    <div style="margin-left: 10%">
+                        <p><font color="black" face='Calibri' size="8px">Explore the potential !!</font></p>
+                        <p style="color: black">
+                            Find the perfect university program for you. Explore the functions and use the
+                            matching tool filters to tell us what you want.
+                        </p>
+                        <p class="text-divider" style="width: 100%;margin-left: 0%"></p>
                     </div>
 
+                    <div style="margin-left: 12%">
+                        <a id="button" class="btn btn-primary" href="#">Dummy 1</a> &nbsp;&nbsp;
+                        <a id="button" class="btn btn-success" href="#">Dummy 2</a> &nbsp;&nbsp;
+                        <a id="button" class="btn btn-warning" href="#">Dummy 3</a> &nbsp;&nbsp;
+                        <a id="button" class="btn btn-dark" href="#">Dummy 4</a>
+                        <p class="text-divider" style="width: 80%;margin-left: 10%"></p>
 
-                    <div class="col-12 col-md-9 mb-2 mb-md-0 autocomplete" style="margin-top: 2%;text-align: left;">
-                        <font color="black"> <input type="text" class="form-control form-control-lg "
-                                                    placeholder="Program or Country Name"
-                                                    id="filterType"> </font>
-                    </div>
-                    <div class="col-12 col-md-3" style="margin-top: 2%">
-                        <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
-                    </div>
-
-                    <p class="text-divider" style="width: 50%;margin-left: 24%"><span><font
-                                    color="black">OR</font></span></p>
-
-                    <div style="margin-top: -3%;margin-left: 27%">
-
-                        <h4><font color="black">Let us do it for you!</font></h4>
-                        <button type="submit" class="btn btn-block btn-lg btn-success">Auto Suggestion</button>
+                        <a id="button" class="btn  btn-lg btn-success" href="#">Auto Suggestion</a>
                     </div>
 
 

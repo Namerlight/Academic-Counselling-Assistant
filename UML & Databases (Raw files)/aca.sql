@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2019 at 06:47 PM
+-- Generation Time: Mar 23, 2019 at 06:24 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -123,8 +123,8 @@ CREATE TABLE `students` (
   `college_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `college_group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `university` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ssc_a_level` double(8,2) DEFAULT NULL,
-  `hsc_o_level` double(8,2) DEFAULT NULL,
+  `ssc_o_level` double(8,2) DEFAULT NULL,
+  `hsc_a_level` double(8,2) DEFAULT NULL,
   `bachelor_subject` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bachelor_credit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cgpa_bachelor` double(8,2) DEFAULT NULL,
@@ -138,8 +138,8 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`username`, `school_name`, `college_name`, `college_group`, `university`, `ssc_a_level`, `hsc_o_level`, `bachelor_subject`, `bachelor_credit`, `cgpa_bachelor`, `others`, `academic_point`, `created_at`, `updated_at`) VALUES
-('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'NSU', 5.00, 5.00, 'CSE', '130', 3.93, 'Project + Research', NULL, '2019-03-17 14:06:40', '2019-03-17 14:06:40');
+INSERT INTO `students` (`username`, `school_name`, `college_name`, `college_group`, `university`, `ssc_o_level`, `hsc_a_level`, `bachelor_subject`, `bachelor_credit`, `cgpa_bachelor`, `others`, `academic_point`, `created_at`, `updated_at`) VALUES
+('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'North South University', 5.00, 5.00, 'CSE', '130', 3.93, 'Project + Research', NULL, '2019-03-17 14:06:40', '2019-03-22 11:41:24');
 
 -- --------------------------------------------------------
 
@@ -200,7 +200,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `email_verified_at`, `password`, `created_at`, `updated_at`, `remember_token`, `token`) VALUES
-(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$ke0U.w4p.995NxtV1KTtEeKLovG1ys.uXdp17e7EOEgkS6ZPlf4Om', '2019-03-17 14:06:40', '2019-03-17 14:07:58', 'PR76MTFFA4UjywQE7FDKbmZqdY2ENvXhhVgfipMIoZx8LihYjVBFe5INwbcv', NULL);
+(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$K.mo6/cG85EOiUhM0js9du9zJks8WCE6mcagjs2pda8zm0kjsmBTS', '2019-03-17 14:06:40', '2019-03-22 11:42:59', 'ly1DCBb6fUZseCPRSHDEMooYPPtSKxtCuYaOOfAixHA5PNBaNjMjhJtzhEUu', NULL);
 
 --
 -- Indexes for dumped tables
@@ -311,7 +311,7 @@ ALTER TABLE `admins`
 -- Constraints for table `competitive_entrance_exams`
 --
 ALTER TABLE `competitive_entrance_exams`
-  ADD CONSTRAINT `competitive_entrance_exams_username_foreign` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `competitive_entrance_exams_username_foreign` FOREIGN KEY (`username`) REFERENCES `students` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students`
