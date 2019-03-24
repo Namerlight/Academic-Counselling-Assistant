@@ -30,3 +30,9 @@
     <h4><font color="black">Let us do it for you!</font></h4>
     <button type="submit" class="btn btn-block btn-lg btn-success">Auto Suggestion</button>
 </div>
+
+
+<a href="{{url('login/google')}}" class="btn btn-block btn-facebook"> <i class="fab fa-google"></i>&nbsp;&nbsp;&nbsp;Fill
+                                                                                                   form
+                                                                                                   via
+                                                                                                   Google</a>

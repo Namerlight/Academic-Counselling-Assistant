@@ -201,6 +201,10 @@
                 </div>
                 <div class="modal-body">
                     @if ($user = Session::get('user'))
+
+                        <input type="text" name="email" class="form-control" value="{{$user->email}}"
+                               required="required" style="visibility: hidden">
+
                         <div class="form-group">
                             <div class="clearfix">
                                 <label>Password</label>
