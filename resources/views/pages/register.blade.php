@@ -52,8 +52,8 @@
         <h3 class="fs-subtitle">Personal Information</h3>
 
         <p>
-            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;Fill form
-                                                                                            via facebook</a>
+            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-google"></i>&nbsp;&nbsp;&nbsp;Fill form
+                                                                                            via Google</a>
         </p>
         <p class="divider-text">
             <span class="bg-light">OR</span>

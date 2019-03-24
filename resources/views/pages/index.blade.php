@@ -6,6 +6,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/parallax.css') }}" rel="stylesheet">
     <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -69,14 +70,14 @@
             margin-top: 2px;
         }
 
-        .modal-login .btn {
+        .modal-login {
             min-width: 100px;
             background: #3498db;
             border: none;
             line-height: normal;
         }
 
-        .modal-login .btn:hover, .modal-login .btn:focus {
+        .modal-login  .modal-login  {
             background: #248bd0;
         }
 
@@ -84,6 +85,51 @@
             color: #999;
         }
 
+        /*for google button*/
+
+        .loginBtn {
+            box-sizing: border-box;
+            position: relative;
+            /* width: 13em;  - apply for fixed size */
+            margin: 0.2em;
+            padding: 0 15px 0 46px;
+            border: none;
+            text-align: left;
+            line-height: 34px;
+            white-space: nowrap;
+            border-radius: 0.2em;
+            font-size: 16px;
+            color: #FFF;
+        }
+        .loginBtn:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 100%;
+        }
+        .loginBtn:focus {
+            outline: none;
+        }
+        .loginBtn:active {
+            box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+        }
+
+        /* Google */
+        .loginBtn--google {
+            /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+            background: #DD4B39;
+        }
+        .loginBtn--google:before {
+            border-right: #BB3F30 1px solid;
+            background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+        }
+        .loginBtn--google:hover,
+        .loginBtn--google:focus {
+            background: #E74B37;
+        }
 
     </style>
 
@@ -156,9 +202,15 @@
                         <input type="password" name="password" class="form-control" required="required">
                     </div>
                 </div>
+
+                <a href="#" class="btn loginBtn loginBtn--google" style="margin-left: 20%">
+                    Login with Google
+                </a>
+
                 <div class="modal-footer">
                     <label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>
                     <input type="submit" class="btn btn-primary pull-right" value="Login">
+
                 </div>
             </form>
         </div>
