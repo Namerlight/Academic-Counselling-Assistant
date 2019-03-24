@@ -65,6 +65,7 @@ for url_uni_name in list_of_url_names:
     listIter = 0
 
     print(list_of_names[unilistIter], end=' | ')
+    print(list_of_country[unilistIter], end=' | ')
 
     while listIter < 5:
         print(uni_rank[listIter].text.strip(), end=' | ')
