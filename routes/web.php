@@ -60,3 +60,8 @@ Route::get('/profile/{username}','LoginController@updateView');
 
 /*updating profile*/
 Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);
+
+/*for google authentication*/
+
+Route::get('login/google', 'LoginController@redirectToProvider');
+Route::get('login/google/callback', 'LoginController@handleProviderCallback');

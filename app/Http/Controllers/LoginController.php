@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
+
+use Laravel\Socialite\Facades\Socialite;
+
 class LoginController extends Controller
 {
     /**
@@ -151,6 +154,38 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect('/index');
+    }
+
+
+    /**
+     * For google verification
+     */
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('google')->stateless()->user();
+
+        $existOrNot = User::where('email',$user->email)->first();
+
+        if($existOrNot){
+            return redirect('/index')->with('user',$user);
+        }
+        else{
+            return redirect('/register')->with('user',$user);
+        }
+
+        //return redirect()->back()->with('user', $user);
+
     }
 
 }

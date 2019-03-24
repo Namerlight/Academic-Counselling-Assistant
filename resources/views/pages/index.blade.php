@@ -11,6 +11,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    @if (session('user'))
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#myModal").modal('show');
+            });
+        </script>
+    @endif
+
     <!For modal window modification>
     <style type="text/css">
 
@@ -77,7 +85,7 @@
             line-height: normal;
         }
 
-        .modal-login  .modal-login  {
+        .modal-login .modal-login {
             background: #248bd0;
         }
 
@@ -101,6 +109,7 @@
             font-size: 16px;
             color: #FFF;
         }
+
         .loginBtn:before {
             content: "";
             box-sizing: border-box;
@@ -110,11 +119,13 @@
             width: 34px;
             height: 100%;
         }
+
         .loginBtn:focus {
             outline: none;
         }
+
         .loginBtn:active {
-            box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
         }
 
         /* Google */
@@ -122,10 +133,12 @@
             /*font-family: "Roboto", Roboto, arial, sans-serif;*/
             background: #DD4B39;
         }
+
         .loginBtn--google:before {
             border-right: #BB3F30 1px solid;
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
         }
+
         .loginBtn--google:hover,
         .loginBtn--google:focus {
             background: #E74B37;
@@ -187,9 +200,29 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
+                    @if ($user = Session::get('user'))
+                        <div class="form-group">
+                            <div class="clearfix">
+                                <label>Password</label>
+                                <a href="#" class="pull-right text-muted">
+                                    <small>Forgot?</small>
+                                </a>
+                            </div>
+
+                            <input type="password" name="password" class="form-control" required="required">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary pull-right" value="Enter">
+                </div>
+
+                @else
                     <div class="form-group">
                         <label>Email</label>
+
                         <input type="text" name="email" class="form-control" required="required">
+
+
                     </div>
                     <div class="form-group">
                         <div class="clearfix">
@@ -201,20 +234,21 @@
 
                         <input type="password" name="password" class="form-control" required="required">
                     </div>
-                </div>
-
-                <a href="#" class="btn loginBtn loginBtn--google" style="margin-left: 20%">
-                    Login with Google
-                </a>
-
-                <div class="modal-footer">
-                    <label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>
-                    <input type="submit" class="btn btn-primary pull-right" value="Login">
-
-                </div>
-            </form>
         </div>
+
+        <a href="{{url('login/google')}}" class="btn loginBtn loginBtn--google" style="margin-left: 20%">
+            Login with Google
+        </a>
+
+        <div class="modal-footer">
+            <label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>
+            <input type="submit" class="btn btn-primary pull-right" value="Login">
+
+        </div>
+        @endif
+        </form>
     </div>
+</div>
 </div>
 
 <div class="bgimg-1">
@@ -224,7 +258,7 @@
         @if ($message = Session::get('error'))
             <div class="alert alert-danger"
                  style="width: 30%;margin-left: 35%;margin-top: -3%;border-color: #761b18;background-color:red ">
-                <strong><font color="white" >{{$message}}</font></strong>
+                <strong><font color="white">{{$message}}</font></strong>
             </div>
         @endif
 
@@ -232,7 +266,7 @@
         @if (($message = Session::get('verificationResponse')))
             <div class="alert alert-success"
                  style="width: 30%;margin-left: 35%;margin-top: -3%;border-color: #497652;background-color:#3cff5f ">
-                <strong><font color="white" >{!! nl2br(e($message)) !!}</font></strong>
+                <strong><font color="white">{!! nl2br(e($message)) !!}</font></strong>
             </div>
         @endif
 
@@ -275,10 +309,6 @@
     </div>
 </div>
 
-<!Navbar shrink animation>
-<script>
-
-</script>
 
 </body>
 </html>

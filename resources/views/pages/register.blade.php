@@ -52,16 +52,26 @@
         <h3 class="fs-subtitle">Personal Information</h3>
 
         <p>
-            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-google"></i>&nbsp;&nbsp;&nbsp;Fill form
-                                                                                            via Google</a>
+            <a href="{{url('login/google')}}" class="btn btn-block btn-facebook"> <i class="fab fa-google"></i>&nbsp;&nbsp;&nbsp;Fill
+                                                                                                               form
+                                                                                                               via
+                                                                                                               Google</a>
         </p>
         <p class="divider-text">
             <span class="bg-light">OR</span>
         </p>
 
-        <input type="text" name="name" placeholder="Name &#x00B**" value="{{old('name')}}">
+        @if ($user = Session::get('user'))
+            <input type="text" name="name" placeholder="Name &#x00B**" value="{{$user->name}}">
+            <input type="text" name="email" placeholder="Email &#x00B**" value="{{$user->email}}">
+        @else
+            <input type="text" name="name" placeholder="Name &#x00B**" value="{{old('name')}}">
+            <input type="text" name="email" placeholder="Email &#x00B**" value="{{old('email')}}">
+        @endif
+
+
         <input type="text" name="username" placeholder="username &#x00B**" value="{{old('username')}}">
-        <input type="text" name="email" placeholder="Email &#x00B**" value="{{old('email')}}">
+
 
         <input type="password" name="pass" placeholder="Password"/>
         <input type="password" name="cpass" placeholder="Confirm Password"/>
