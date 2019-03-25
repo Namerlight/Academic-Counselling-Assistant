@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 
 use Laravel\Socialite\Facades\Socialite;
@@ -175,17 +177,24 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
 
-        $existOrNot = User::where('email',$user->email)->first();
+        $existOrNot = User::where('email', $user->email)->first();
 
-        if($existOrNot){
-            return redirect('/index')->with('user',$user);
-        }
-        else{
-            return redirect('/register')->with('user',$user);
+        if ($existOrNot) {
+            return redirect('/index')->with('user', $user);
+        } else {
+            return redirect('/register')->with('user', $user);
         }
 
         //return redirect()->back()->with('user', $user);
 
+    }
+
+    public function pythonReader()
+    {
+
+        $command = escapeshellcmd('C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe C:\xampp\htdocs\ACADEMIC_COUNSELLING_ASSISTANT\webcrawler\crawler.py');
+        $output = shell_exec($command);
+        echo $output;
     }
 
 }

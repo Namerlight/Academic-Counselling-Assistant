@@ -65,3 +65,6 @@ Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);
 
 Route::get('login/google', 'LoginController@redirectToProvider');
 Route::get('login/google/callback', 'LoginController@handleProviderCallback');
+
+
+Route::get('/python', 'LoginController@pythonReader');
