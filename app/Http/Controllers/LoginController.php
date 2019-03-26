@@ -192,9 +192,23 @@ class LoginController extends Controller
     public function pythonReader()
     {
 
-        $command = escapeshellcmd('C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe C:\xampp\htdocs\ACADEMIC_COUNSELLING_ASSISTANT\webcrawler\crawler.py');
-        $output = shell_exec($command);
-        echo $output;
+        $pythonInt = "C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe";
+        $pyFile = "\webcrawler\temp.py";
+
+        $string = "";
+
+        $text = 'The text you are desperate to analyze :)';
+        $process = new Process($pythonInt.app_path()."\webcrawler\temp.py \"{$text}\"");
+        $process->run();
+
+// executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        echo $process->getOutput();
+// Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
+
     }
 
 }

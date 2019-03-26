@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2019 at 06:24 PM
+-- Generation Time: Mar 26, 2019 at 07:34 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -139,7 +139,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`username`, `school_name`, `college_name`, `college_group`, `university`, `ssc_o_level`, `hsc_a_level`, `bachelor_subject`, `bachelor_credit`, `cgpa_bachelor`, `others`, `academic_point`, `created_at`, `updated_at`) VALUES
-('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'North South University', 5.00, 5.00, 'CSE', '130', 3.93, 'Project + Research', NULL, '2019-03-17 14:06:40', '2019-03-22 11:41:24');
+('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'North South University', 5.00, 5.00, 'CSE', '130', 3.93, 'Project experience + have research works', NULL, '2019-03-17 14:06:40', '2019-03-26 10:34:31');
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,7 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -200,7 +200,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `email_verified_at`, `password`, `created_at`, `updated_at`, `remember_token`, `token`) VALUES
-(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$K.mo6/cG85EOiUhM0js9du9zJks8WCE6mcagjs2pda8zm0kjsmBTS', '2019-03-17 14:06:40', '2019-03-22 11:42:59', 'ly1DCBb6fUZseCPRSHDEMooYPPtSKxtCuYaOOfAixHA5PNBaNjMjhJtzhEUu', NULL);
+(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$WNhBc37ozhYFazIaXdRn2ut7ENvQQ2YNQv.jn31HXWRAbHHQuoVke', '2019-03-17 14:06:40', '2019-03-26 10:34:31', 'OPkrRws9NIHgd5Ve5KVFW1KjrcIp6JOo5hQ3c4VN2YwcZtvRWPSzM4mqDVs0', NULL);
 
 --
 -- Indexes for dumped tables
