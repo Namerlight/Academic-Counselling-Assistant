@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 
 use Laravel\Socialite\Facades\Socialite;
@@ -175,16 +177,37 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
 
-        $existOrNot = User::where('email',$user->email)->first();
+        $existOrNot = User::where('email', $user->email)->first();
 
-        if($existOrNot){
-            return redirect('/index')->with('user',$user);
-        }
-        else{
-            return redirect('/register')->with('user',$user);
+        if ($existOrNot) {
+            return redirect('/index')->with('user', $user);
+        } else {
+            return redirect('/register')->with('user', $user);
         }
 
         //return redirect()->back()->with('user', $user);
+
+    }
+
+    public function pythonReader()
+    {
+
+        $pythonInt = "C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe";
+        $pyFile = "\webcrawler\temp.py";
+
+        $string = "";
+
+        $text = 'The text you are desperate to analyze :)';
+        $process = new Process($pythonInt.app_path()."\webcrawler\temp.py \"{$text}\"");
+        $process->run();
+
+// executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        echo $process->getOutput();
+// Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
 
     }
 

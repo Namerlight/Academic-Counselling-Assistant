@@ -65,6 +65,12 @@
 
 <body>
 
+@if (isset(Auth::user()->email))
+    <script> window.location = "/index";</script>
+@else
+
+@endif
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
     <ul class="navbar-nav mr-auto" style="margin-left: 0.6%">

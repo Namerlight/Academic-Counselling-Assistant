@@ -36,3 +36,8 @@
                                                                                                    form
                                                                                                    via
                                                                                                    Google</a>
+
+
+$command = escapeshellcmd('C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe C:\xampp\htdocs\ACADEMIC_COUNSELLING_ASSISTANT\webcrawler\crawler.py');
+$output = shell_exec($command);
+echo $output;
