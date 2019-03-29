@@ -49,7 +49,7 @@ def generate_url_names():
 
 def crawl_uni_info():
     unilistIter = 0
-    for url_uni_name in list_of_url_names[0:5]:
+    for url_uni_name in list_of_url_names:
         uni_page_url = 'https://www.topuniversities.com/universities/' + url_uni_name
         reqe = Request(uni_page_url)
         reqe.add_header('User-Agent', 'Mozilla/5.0')
@@ -108,8 +108,9 @@ def crawl_uni_info():
         print('\n', end='')
         unilistIter += 1
 
-page_crawl_unilist()
-generate_url_names()
+
+#page_crawl_unilist()
+#generate_url_names()
 crawl_uni_info()
 
 try:
@@ -117,7 +118,8 @@ try:
         host='localhost',
         database='aca',
         user='root',
-        password='')
+        password=''
+    )
     if connection.is_connected():
             db_Info = connection.get_server_info()
             print("Connected to MySQL database... MySQL Server version on ", db_Info)
@@ -130,14 +132,19 @@ except Error as e:
 
 cursor = connection.cursor()
 
-sql = "INSERT INTO universities(qs_ranking, name) VALUES (%s, %s)"
-val = (list_of_ranking[0], list_of_names[0])
+print(cursor.rowcount)
 
-cursor.execute(sql, val)
-
+sql1 = "DELETE FROM universities"
+cursor.execute(sql1)
 connection.commit()
 
-print(cursor.rowcount, "record inserted.")
+for rw in range(0, len(list_of_names)-1):
+    sql2 = "INSERT INTO universities(name, qs_ranking, research_output, status, total_student, average_fees, country) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    val = (list_of_names[rw], list_of_ranking[rw], list_of_research[rw], list_of_ownership[rw], list_of_student_pop[rw], list_of_avg_price[rw], list_of_country[rw])
+    cursor.execute(sql2, val)
+    connection.commit()
+
+print(cursor.rowcount, "records inserted.")
 
 
 
