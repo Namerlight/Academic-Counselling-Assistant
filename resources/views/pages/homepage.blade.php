@@ -118,9 +118,9 @@
                         <p class="text-divider" style="width: 100%;margin-left: 0%"></p>
                     </div>
 
-                    <div style="margin-left: 12%">
+                    <div style="margin-left: 17%">
                         <a id="button" class="btn btn-primary" href="/courseMatching">Course Matching</a> &nbsp;&nbsp;
-                        <a id="button" class="btn btn-success" href="#">Dummy 2</a> &nbsp;&nbsp;
+                        <a id="button" class="btn btn-success" href="/countryMatching">Country Matching</a> &nbsp;&nbsp;
                         <a id="button" class="btn btn-warning" href="#">Dummy 3</a> &nbsp;
                         <p class="text-divider" style="width: 80%;margin-left: 10%"></p>
 

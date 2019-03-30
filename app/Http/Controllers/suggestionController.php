@@ -2,15 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\University;
 use Illuminate\Http\Request;
 
 class suggestionController extends Controller
 {
-    function suggestion(Request $request,$studyType,$country)
+    function suggestion(Request $request, $studyType, $country)
     {
         $subject = $request->input('subject');
-       echo $studyType."<br>";
-       echo $country."<br>";
-       echo $subject;
+
+        if ($country != "don't_mind") {
+            $university = University::where('country', $country)->get();
+        } else {
+            $university = University::all();
+            $country = "NULL";
+        }
+
+
+        return view("pages.suggestionLandingPage")
+            ->with('university', $university)
+            ->with('subject', $subject)
+            ->with('country', $country)
+            ->with('studyType', $studyType);
+
     }
+
+    function suggestionCountry(Request $request)
+    {
+        $country = $request->input('country');
+
+        $university = University::where('country', $country)->get();
+        $subject = null;
+        $studyType = null;
+
+        return view("pages.suggestionLandingPage")
+            ->with('university', $university)
+            ->with('subject', $subject)
+            ->with('country', $country)
+            ->with('studyType', $studyType);
+
+
+    }
+
 }

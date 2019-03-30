@@ -26,7 +26,7 @@
             /*position the autocomplete items to be the same width as the container:*/
             top: 100%;
             left: -2%;
-            width: 412px;
+            width: 400px;
             right: 0;
         }
 
@@ -87,22 +87,22 @@
     <header class="masthead text-white text-center">
 
         <div class="col-md-10 col-lg-8 col-xl-6 mx-auto" style="font-family: Arial">
-            <form method="post" action="{{url()->current()}}/subject" autocomplete="off">
+            <form method="post" action="{{url()->current()}}/country" autocomplete="off">
                 {{ csrf_field()}}
                 <div class="form-row" style="margin-left: -5%;margin-top: 10%">
 
                     <div align="left">
                         <p align="left" style="font-size: 25px">
-                            Which subject ?
+                            Which country do you prefer ?
                         </p>
 
                         <input type="text" class="form-control form-control-lg "
-                               placeholder="Subject Name"
-                               id="subject" name="subject" style="background-color: #d0d0d0;width: 150%">
+                               placeholder="Country Name"
+                               id="country" name="country" style="background-color: #d0d0d0;width: 120%">
 
 
                         <input type="submit" name="submit" class="btn btn-primary" value="Submit"
-                               style="margin-top: -17.3%;margin-left: 151%;height: 8%;width: 50%"/>
+                               style="margin-top: -14.5%;margin-left: 121%;height: 8%;width: 45%"/>
 
                     </div>
 
@@ -223,12 +223,12 @@
     }
 
     /*An array containing subject names*/
-    var countries = ["Computer Science & Engineering", "Electrical & Electronic Engineering", "Civil & Environmental Engineering", "Electronic & Telecom Engineering",
-        "Biochemistry and Biotechnology", "Environmental Science & Management", "Microbiology", "Pharmacy",
-        "International Business", "Management",  "Economics", "English"];
-
+    var countries = ["United States",
+        "United Kingdom", "Switzerland", "Singapore", "China", "Japan", "Australia",
+        "Hong Kong", "Canada", "South Korea", "France", "Netherlands",
+        "Germany", "Taiwan", "Argentina", "Denmark", "Belgium", "New Zealand", "Malaysia", "Russia", "Sweden", "Leeds"];
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("subject"), countries);
+    autocomplete(document.getElementById("country"), countries);
 </script>
 
 

@@ -52,8 +52,8 @@
                         <p align="left" style="font-size: 25px">
                             Which study destination ?
                         </p>
-                        <a id="button" class="btn btn-secondary" href="{{url()->current()}}/US">US</a>
-                        <a id="button" class="btn btn-secondary" href="{{url()->current()}}/UK">UK</a>
+                        <a id="button" class="btn btn-secondary" href="{{url()->current()}}/United States">United States</a>
+                        <a id="button" class="btn btn-secondary" href="{{url()->current()}}/United Kingdom">United Kingdom</a>
                         <a id="button" class="btn btn-secondary" href="{{url()->current()}}/Australia">Australia</a>
                         <a id="button" class="btn btn-secondary" href="{{url()->current()}}/don't_mind">I don't mind</a>
 

@@ -8,4 +8,8 @@ class UniversityProgram extends Model
 {
     //as id is the foreign key and can appear multiple times
     public $incrementing=false;
+
+    public function university(){
+        return $this->belongsTo('App\University');
+    }
 }

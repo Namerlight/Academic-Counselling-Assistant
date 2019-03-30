@@ -279,8 +279,8 @@
 </div>
 
 <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-    <h3 style="text-align:center;">Parallax Index</h3>
-    <p>Dialogues</p>
+    <h3 style="text-align:center;">Scroll</h3>
+    <p>Motto #1</p>
 </div>
 
 <div class="bgimg-2">
@@ -291,7 +291,7 @@
 
 <div style="position:relative;">
     <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-        <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+        <p>Motto #2</p>
     </div>
 </div>
 
@@ -303,7 +303,7 @@
 
 <div style="position:relative;">
     <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-        <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+        <p>Motto #3</p>
     </div>
 </div>
 

@@ -58,7 +58,7 @@
                         <p align="left" style="font-size: 25px">
                            Which level study ?
                         </p>
-                        <a id="button" class="btn btn-secondary" href="/courseMatching/masters">Masters</a>
+                        <a id="button" class="btn btn-secondary" href="/courseMatching/Masters">Masters</a>
 
                     </div>
 

@@ -70,6 +70,7 @@ Route::get('login/google', 'LoginController@redirectToProvider');
 Route::get('login/google/callback', 'LoginController@handleProviderCallback');
 
 
+/*for python script things*/
 Route::get('/python', 'LoginController@pythonReader');
 
 
@@ -88,4 +89,21 @@ Route::get('/courseMatching/{studyType}/{country}', function () {
     return view('pages.courseMatchingSubjectPage');
 });
 
+Route::get('/courseMatching/{studyType}/{country}/{subject}', function () {
+    return view('pages.suggestionLandingPage');
+});
+
+
 Route::post('/courseMatching/{studyType}/{country}/subject',['uses' =>'suggestionController@suggestion']);
+
+/*country matching*/
+Route::get('/countryMatching', function () {
+    return view('pages.countryMatchingLandingPage');
+});
+
+Route::post('/countryMatching/country',['uses' =>'suggestionController@suggestionCountry']);
+
+Route::get('/suggestionLandingPage', function () {
+    return view('pages.suggestionLandingPage');
+});
+

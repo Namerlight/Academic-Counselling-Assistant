@@ -261,3 +261,6 @@ print('\n', end='')
 unilistIter += 1
 >>>>>>> masudurhimel
 
+<nav class="navbar navbar-expand-md navbar-dark bg-info" style="height: 12%;width: 100%;margin-top: 6%;margin-left: -10%">
+    <p class=" col-xl-2 mx-auto" style="text-align: center;font-size: 20px"><b>Course Matching Tool</b></p>
+</nav>
