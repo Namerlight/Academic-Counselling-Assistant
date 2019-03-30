@@ -42,6 +42,7 @@ Route::get('/homepage', function () {
     return view('pages.homepage');
 });
 
+
 Route::get('/profile','LoginController@profile');
 
 /*for registering new input*/
@@ -70,3 +71,21 @@ Route::get('login/google/callback', 'LoginController@handleProviderCallback');
 
 
 Route::get('/python', 'LoginController@pythonReader');
+
+
+
+
+/*course matching tool*/
+Route::get('/courseMatching', function () {
+    return view('pages.courseMatchingLandingPage');
+});
+
+Route::get('/courseMatching/{studyType}', function () {
+    return view('pages.courseMatchingCountryPage');
+});
+
+Route::get('/courseMatching/{studyType}/{country}', function () {
+    return view('pages.courseMatchingSubjectPage');
+});
+
+Route::post('/courseMatching/{studyType}/{country}/subject',['uses' =>'suggestionController@suggestion']);

@@ -109,8 +109,8 @@ def crawl_uni_info():
         unilistIter += 1
 
 
-#page_crawl_unilist()
-#generate_url_names()
+page_crawl_unilist()
+generate_url_names()
 crawl_uni_info()
 
 try:

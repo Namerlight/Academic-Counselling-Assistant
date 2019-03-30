@@ -1,80 +1,67 @@
-<!DOCTYPE html>
+<html>
 <head>
 
-    <title>Homepage</title>
-
-
-    <!side nav custom css>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+    <title>ACA</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
 
-    <!for text divider>
+    <style>
+        /*Autocomplete part*/
 
-    <style type="text/css">
-        .text-divider {
-            margin: 2em 0;
-            line-height: 0;
-            text-align: center;
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+
         }
 
-        .text-divider span {
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            color: black;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: -2%;
+            width: 412px;
+            right: 0;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        /*when hovering an item:*/
+        .autocomplete-items div:hover {
             background-color: #bebebe;
-            padding: 1em;
         }
 
-        .text-divider:before {
-            content: " ";
-            display: block;
-            border-top: 1px solid black;
-            border-bottom: 1px solid #f7f7f7;
+        /*when navigating through the items using the arrow keys:*/
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
         }
-
-
 
     </style>
 
-
 </head>
-<body>
+
+<body background="/images/eduImg.jpg" style="background-size: cover; ">
 
 <!--for checking session-->
 @if (isset(Auth::user()->email))
 
-@elseif(session('verificationResponse') || session('success'))
-    <!--for redirect to this page after registration till now-->
-<!-- need to put a middle verification page-->
 @else
     <script> window.location = "/index";</script>
 @endif
 
-
 <div id="wrapper">
-
-    <div id="sidebar-wrapper" style="overflow-x: hidden">
-        <img src="/images/profile.jpg"
-             style="border-radius: 50%;height: 100px;width: 100px;margin-top: 40%;margin-left: 25%"> <br>
-        <ul class="sidebar-nav" style="margin-top: 90%;margin-left: 10%">
-            <li>
-                <a href="/profile">
-                    {{$user->name}}
-                </a>
-            </li>
-
-
-            <li>
-                <a href="#">Instructions</a>
-            </li>
-            <li>
-                <a href="#">About Us</a>
-            </li>
-        </ul>
-
-    </div>
 
     <!navigation>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 9.7%">
@@ -99,34 +86,25 @@
     <!-- Masthead -->
     <header class="masthead text-white text-center">
 
-        <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
-            <form autocomplete="off">
-                <div class="form-row">
+        <div class="col-md-10 col-lg-8 col-xl-6 mx-auto" style="font-family: Arial">
+            <form method="post" action="{{url()->current()}}/subject" autocomplete="off">
+                {{ csrf_field()}}
+                <div class="form-row" style="margin-left: -5%;margin-top: 10%">
 
-
-                    <div style="margin-left: 39%;margin-top: -18%">
-                        <img src="/images/bulb.jpg" style="border-radius: 50%;height: 100px;width: 100px;">
-                    </div>
-
-
-                    <div style="margin-left: 10%">
-                        <p><font color="black" face='Calibri' size="8px">Explore the potential !!</font></p>
-                        <p style="color: black">
-                            Find the perfect university program for you. Explore the functions and use the
-                            matching tool filters to tell us what you want.
+                    <div align="left">
+                        <p align="left" style="font-size: 25px">
+                            Which subject ?
                         </p>
-                        <p class="text-divider" style="width: 100%;margin-left: 0%"></p>
+
+                        <input type="text" class="form-control form-control-lg "
+                               placeholder="Subject Name"
+                               id="subject" name="subject" style="background-color: #d0d0d0;width: 150%">
+
+
+                        <input type="submit" name="submit" class="btn btn-primary" value="Submit"
+                               style="margin-top: -17.3%;margin-left: 151%;height: 8%;width: 50%"/>
+
                     </div>
-
-                    <div style="margin-left: 12%">
-                        <a id="button" class="btn btn-primary" href="/courseMatching">Course Matching</a> &nbsp;&nbsp;
-                        <a id="button" class="btn btn-success" href="#">Dummy 2</a> &nbsp;&nbsp;
-                        <a id="button" class="btn btn-warning" href="#">Dummy 3</a> &nbsp;
-                        <p class="text-divider" style="width: 80%;margin-left: 10%"></p>
-
-                        <a id="button" class="btn  btn-lg btn-success" href="#">Auto Suggestion</a>
-                    </div>
-
 
                 </div>
             </form>
@@ -136,15 +114,10 @@
     </header>
 </div>
 
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
 
-<!--Script for country name-->
+</body>
+
+
 <script>
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
@@ -249,13 +222,12 @@
         });
     }
 
-    /*An array containing all the country names in the world:*/
-    var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+    /*An array containing subject names*/
+    var countries = ["Computer Science & Engineering","Electrical engineering"];
 
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("filterType"), countries);
+    autocomplete(document.getElementById("subject"), countries);
 </script>
 
-</body>
 
 </html>
