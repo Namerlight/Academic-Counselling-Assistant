@@ -197,17 +197,12 @@ class LoginController extends Controller
 
         $string = "";
 
-        $text = 'The text you are desperate to analyze :)';
-        $process = new Process($pythonInt.app_path()."\webcrawler\temp.py \"{$text}\"");
-        $process->run();
+        echo "Himel";
 
-// executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        $output = shell_exec('ls -lart');
+        echo "<pre>$output</pre>";
 
-        echo $process->getOutput();
-// Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
+        echo "Himel";
 
     }
 
