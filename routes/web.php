@@ -96,6 +96,10 @@ Route::get('/courseMatching/{studyType}/{country}/{subject}', function () {
 
 Route::post('/courseMatching/{studyType}/{country}/subject',['uses' =>'suggestionController@suggestion']);
 
+
+Route::get('/courseMatching/{studyType}/{country}/subject/{average_fees}', 'suggestionController@financialCalculator');
+
+
 /*country matching*/
 Route::get('/countryMatching', function () {
     return view('pages.countryMatchingLandingPage');
@@ -106,4 +110,7 @@ Route::post('/countryMatching/country',['uses' =>'suggestionController@suggestio
 Route::get('/suggestionLandingPage', function () {
     return view('pages.suggestionLandingPage');
 });
+
+
+
 

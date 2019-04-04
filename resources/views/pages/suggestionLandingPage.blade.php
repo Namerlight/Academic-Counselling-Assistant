@@ -4,8 +4,10 @@
     <title>ACA</title>
 
     <!-- Bootstrap core CSS -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+
 
     <style>
 
@@ -16,7 +18,7 @@
 
 /*style="background-color: rgba(104,169,163,0.98)"*/
 
-<body background="/images/gradient_2.jpg" style="background-size: cover" >
+<body background="/images/gradient_2.jpg" style="background-size: cover">
 
 <!--for checking session-->
 @if (isset(Auth::user()->email))
@@ -52,6 +54,7 @@
 
     <!-- Masthead -->
     <header class="masthead text-white text-center">
+
 
         <div class="col-md-10 col-lg-8 " style="font-family: Arial;color: black;margin-top: -5%">
 
@@ -89,11 +92,20 @@
                             </p>
                         </div>
 
-                        <div style="margin-top: -8%;margin-left: 80%">
-                            <a href="#" style="text-decoration: none;color: black"><img src="/images/calculateIcon.png"
-                                                                                        height="30%" width="15%">Calculate
-                                                                                                                 Budget</a>
-                        </div>
+
+                        <!--need to change when we change the domain name-->
+                        @if( url()->current() == "http://aca.dev/countryMatching/country")
+
+                        @else
+                            <div style="margin-top: -8%;margin-left: 80%">
+                                <a href="{{url()->current()}}/{{$uni->average_fees}}"
+                                   style="text-decoration: none;color: black"><img
+                                            src="/images/calculateIcon.png"
+                                            height="30%" width="15%">Financial Calculator
+                                </a>
+                            </div>
+
+                        @endif
 
                     </div>
                     <br>
