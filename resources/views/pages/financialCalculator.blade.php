@@ -38,15 +38,36 @@
 </nav>
 
 <br><br>
-<form id="msform" method="post" action="{{'reg'}}">
 
 
+<form id="msform">
+
+    <div class="jumbotron" style="width: 130%;margin-left: -15%">
+        <h4><u>Financial Calculator</u></h4>
+        <big><b><u>{{$name}}</u></b></big><br><br>
+        <div><b>
+                <p align="left">University Average Fees : <span style="float: right">{{$average_fees}}</span></p>
+                <br><br>
+
+                <p align="left">Average Living Cost in {{$country}} : <span
+                            style="float: right">$ {{$countryObject->average_annual_living_cost}}</span>
+                </p>
+
+                <hr style="background-color: #00000a">
+
+
+
+                <p align="left">Total Cost(Approx) : <span style="float: right">$ {{$totalCost}}</span></p>
+                <br><br>
+
+
+            </b></div>
+
+        <a href="#"
+           class="btn btn-success">Go Back</a>
+    </div>
 
 </form>
-
-
-
-
 
 
 </body>

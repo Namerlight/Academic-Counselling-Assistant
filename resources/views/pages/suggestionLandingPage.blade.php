@@ -18,7 +18,9 @@
 
 /*style="background-color: rgba(104,169,163,0.98)"*/
 
-<body background="/images/gradient_2.jpg" style="background-size: cover">
+<body style="background-color: #FF3CAC;
+background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+">
 
 <!--for checking session-->
 @if (isset(Auth::user()->email))
@@ -92,13 +94,19 @@
                             </p>
                         </div>
 
+                        <!--for making the unknown value as NULL-->
+                        @if($uni->average_fees == '')
+                            <div style="visibility: hidden;height: 0%;width: 0%">
+                                {{$uni->average_fees = "Unknown"}}
+                            </div>
+                        @endif
 
-                        <!--need to change when we change the domain name-->
+                    <!--need to change when we change the domain name-->
                         @if( url()->current() == "http://aca.dev/countryMatching/country")
 
                         @else
                             <div style="margin-top: -8%;margin-left: 80%">
-                                <a href="{{url()->current()}}/{{$uni->average_fees}}"
+                                <a href="{{url()->current()}}/{{$uni->average_fees}}/{{$uni->name}}"
                                    style="text-decoration: none;color: black"><img
                                             src="/images/calculateIcon.png"
                                             height="30%" width="15%">Financial Calculator

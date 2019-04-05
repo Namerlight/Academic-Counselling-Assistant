@@ -13,4 +13,10 @@ class University extends Model
     {
         return $this->hasMany('App\UniversityProgram');
     }
+
+    public function countries()
+    {
+        return $this->belongsTo('App\Country');
+    }
+
 }

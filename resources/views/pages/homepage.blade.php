@@ -42,6 +42,7 @@
 </head>
 <body>
 
+
 <!--for checking session-->
 @if (isset(Auth::user()->email))
 

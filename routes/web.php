@@ -96,8 +96,8 @@ Route::get('/courseMatching/{studyType}/{country}/{subject}', function () {
 
 Route::post('/courseMatching/{studyType}/{country}/subject',['uses' =>'suggestionController@suggestion']);
 
-
-Route::get('/courseMatching/{studyType}/{country}/subject/{average_fees}', 'suggestionController@financialCalculator');
+/*financial calculator*/
+Route::get('/courseMatching/{studyType}/{country}/subject/{average_fees}/{name}', 'suggestionController@financialCalculator');
 
 
 /*country matching*/
