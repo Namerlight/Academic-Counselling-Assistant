@@ -27,7 +27,7 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
-$env:VIRTUAL_ENV="D:\Programs\Jetbrains\327\nsu.spring2019.cse327.1.t4\webcrawler\venv"
+$env:VIRTUAL_ENV="D:\Programs\XAMPP\htdocs\nsu.spring2019.cse327.1.t4\webcrawler\venv"
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name

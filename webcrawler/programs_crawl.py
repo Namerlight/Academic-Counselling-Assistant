@@ -108,8 +108,8 @@ def find_caltech_programs():
 
 
 def find_oxford_programs():
-    page_being_crawled = 'https://www.ox.ac.uk/admissions/undergraduate/' \
-                         'colleges/which-oxford-colleges-offer-my-course?wssl=1#'
+    page_being_crawled = 'https://www.ox.ac.uk/admissions/undergraduate/colleges/which-oxford-colleges-offer-my-' \
+                         'course?wssl=1#'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
     oxford_programs = bs_format.findAll('h3')
 
@@ -289,16 +289,89 @@ def find_edinburgh_programs():
         commit_to_sql("Edinburgh University", edinburgh_programs[count].text.strip())
         count += 34
 
+
 def find_pennsylvania_programs():
-    page_being_crawled = 'https://www.upenn.edu/programs/academics-degrees-and-programs'
+    page_being_crawled = 'https://catalog.upenn.edu/programs/'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
-    pennsylvania_programs = bs_format.find('div', attrs={'class': 'grid-item -full--hand -two-thirds--lap'})
-    print(pennsylvania_programs.prettify())
+    list_of_programs = bs_format.find('div', attrs={'class': 'az_sitemap'})
+    pennsylvania_programs = list_of_programs.findAll('li')
 
     count = 0
-    #while count < len(pennsylvania_programs()):
-        #print(pennsylvania_programs[count].text.strip())
-        ##commit_to_sql("Edinburgh University", edinburgh_programs[count].text.strip())
-        #count += 34
+    while count < len(pennsylvania_programs):
+        print(pennsylvania_programs[count].text.strip())
+        commit_to_sql("University of Pennsylvania", pennsylvania_programs[count].text.strip())
+        count += 60
 
-find_pennsylvania_programs()
+
+def find_michigan_programs():
+    page_being_crawled = 'https://admissions.umich.edu/academics-majors/majors-degrees'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    michigan_programs = bs_format.findAll('h3')
+
+    count = 0
+    while count < len(michigan_programs):
+        print(michigan_programs[count].text.strip())
+        commit_to_sql("University of Michigan", michigan_programs[count].text.strip())
+        count += 19
+
+def find_jhu_programs():
+    page_being_crawled = 'https://ep.jhu.edu/programs-and-courses/programs'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    jhu_programs = bs_format.findAll('div', attrs={'class': 'views-field views-field-title'})
+
+    count = 0
+    while count < len(jhu_programs):
+        print(jhu_programs[count].text.strip())
+        commit_to_sql("John Hopkins University", jhu_programs[count].text.strip())
+        count += 5
+
+def find_efpl_programs():
+    page_being_crawled = 'https://www.epfl.ch/education/bachelor/programs/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    efpl_programs = bs_format.findAll('h3', attrs={'class': 'h4 card-title'})
+
+    count = 0
+    while count < len(efpl_programs):
+        print(efpl_programs[count].text.strip())
+        commit_to_sql("EPFL - Ecole Polytechnique Federale de Lausanne", efpl_programs[count].text.strip())
+        count += 3
+
+def find_utokyo_programs():
+    page_being_crawled = 'https://www.u-tokyo.ac.jp/en/prospective-students/graduate_course_list.html'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('table', attrs={'height': '1224'})
+    utokyo_programs = list_of_programs.findAll('a')
+    print(utokyo_programs)
+
+    count = 0
+    while count < len(utokyo_programs):
+        print(utokyo_programs[count].text.strip())
+        #commit_to_sql("University of Tokyo", utokyo_programs[count].text.strip())
+        count += 6
+
+def find_anu_programs():
+    page_being_crawled = 'https://www.hotcoursesabroad.com/india/all-degrees/all-courses-at-the-australian-national-' \
+                         'university/864/programs.html#search&smode=&collegeId=864&restRefineFlag=Y&collegeId=864&pa' \
+                         'geNo=1&collegeId=864'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    anu_programs = bs_format.findAll('h3')
+    print(anu_programs)
+
+    count = 0
+    while count < len(anu_programs)-1:
+        print(anu_programs[count].text.strip())
+        commit_to_sql("Australian National University", anu_programs[count].text.strip())
+        count += 3
+
+def find_hku_programs():
+    page_being_crawled = 'https://engg.hku.hk/Teaching-Learning/BEng/Academic-Programmes'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('div', attrs={'class': 'inner-content'})
+    hku_programs = list_of_programs.findAll('li')
+
+    count = 0
+    while count < len(hku_programs) - 1:
+        print(hku_programs[count].text.strip())
+        commit_to_sql("University of Hong Kong", hku_programs[count].text.strip())
+        count += 1
+

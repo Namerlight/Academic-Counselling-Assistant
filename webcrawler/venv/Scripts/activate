@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\Programs\Jetbrains\327\nsu.spring2019.cse327.1.t4\webcrawler\venv"
+VIRTUAL_ENV="D:\Programs\XAMPP\htdocs\nsu.spring2019.cse327.1.t4\webcrawler\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

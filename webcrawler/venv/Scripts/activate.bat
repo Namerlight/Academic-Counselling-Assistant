@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=D:\Programs\Jetbrains\327\nsu.spring2019.cse327.1.t4\webcrawler\venv"
+set "VIRTUAL_ENV=D:\Programs\XAMPP\htdocs\nsu.spring2019.cse327.1.t4\webcrawler\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"
