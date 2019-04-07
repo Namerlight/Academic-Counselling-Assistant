@@ -1,9 +1,12 @@
-from urllib.request import Request, urlopen, ftperrors
+from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import mysql.connector
 from mysql.connector import Error
 
 
+# Function that runs BeautifulSoup code to extract the html of a web page.
+# Page is the address of the page, page_html is the extracted html of the page
+# Requests that page, Mozilla Browser header to circumvent bot crawling protection
 def find_page_html(page):
     page_being_crawled = page
     req = Request(page_being_crawled)
@@ -12,6 +15,9 @@ def find_page_html(page):
     return page_html
 
 
+# Connects to SQL database
+# Database is named aca, user is root, no password
+# Gives output on successful connection, error otherwise
 try:
     connection = mysql.connector.connect(
         host='localhost',
@@ -29,16 +35,22 @@ try:
 except Error as e:
         print("Error while connecting to MySQL", e)
 
+# Setting cursor to database head
 cursor = connection.cursor()
 
+# Creating table that will hold the data to be crawled by this script
 sql0 = "CREATE TABLE IF NOT EXISTS universities_programs (university_name varchar(199), program_name varchar(199), GRE_reqs varchar(199), ielts_reqs varchar(199))"
 cursor.execute(sql0)
 connection.commit()
+
+# Removing outdated data in order to be replaced with newer data
 sql1 = "DELETE FROM universities_programs"
 cursor.execute(sql1)
 connection.commit()
 
 
+# Places crawled data into the sql database, in universities_programs table
+# Uni Name is manually in code, programs list is scraped and is in the form of a list item
 def commit_to_sql(uni_name, programs_list):
     sql = "INSERT INTO universities_programs (university_name, program_name) VALUES (%s, %s)"
     val = (uni_name, programs_list)
@@ -46,6 +58,12 @@ def commit_to_sql(uni_name, programs_list):
     connection.commit()
 
 
+# Address of the page containing the list of programs offered by the university is set as page_being_crawled
+# Using find_page_html function defined earlier to get the html of the web page
+# The html is converted into the BeautifulSoup4 format (which is the scraping library) and stored as bs_format
+# List_of_programs and <university>_programs extract the data by searching for keywords or tags in the html doc
+# Iterating through the <university>_programs list and pushing each item to the database, also printing the value.
+# Similar structure is used for every function for every university, only varying due to page layout variations
 def find_mit_programs():
     page_being_crawled = 'https://mitadmissions.org/discover/the-mit-education/majors-minors/'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -155,7 +173,7 @@ def find_ethzurich_programs():
     count = 0
     while count < len(ethzurich_programs):
         print(ethzurich_programs[count].text.strip())
-        #commit_to_sql("ETH Zurich - Swiss Federal Institute of Technology", ethzurich_programs[count].text.strip())
+        commit_to_sql("ETH Zurich - Swiss Federal Institute of Technology", ethzurich_programs[count].text.strip())
         count += 1
 
 
@@ -231,7 +249,6 @@ def find_cornell_programs():
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
     cornell_programs = bs_format.findAll('a', attrs={'aria-describedby': 'majors'})
 
-
     count = 0
     while count < len(cornell_programs):
         print(cornell_programs[count].text.strip())
@@ -278,6 +295,7 @@ def find_tsinghua_programs():
         commit_to_sql("Tsinghua University", tsinghua_programs[count].text.strip())
         count += 34
 
+
 def find_edinburgh_programs():
     page_being_crawled = 'https://www.ed.ac.uk/studying/undergraduate/degrees/index.php?action=degreeList'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -314,6 +332,7 @@ def find_michigan_programs():
         commit_to_sql("University of Michigan", michigan_programs[count].text.strip())
         count += 19
 
+
 def find_jhu_programs():
     page_being_crawled = 'https://ep.jhu.edu/programs-and-courses/programs'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -324,6 +343,7 @@ def find_jhu_programs():
         print(jhu_programs[count].text.strip())
         commit_to_sql("John Hopkins University", jhu_programs[count].text.strip())
         count += 5
+
 
 def find_efpl_programs():
     page_being_crawled = 'https://www.epfl.ch/education/bachelor/programs/'
@@ -336,6 +356,7 @@ def find_efpl_programs():
         commit_to_sql("EPFL - Ecole Polytechnique Federale de Lausanne", efpl_programs[count].text.strip())
         count += 3
 
+
 def find_utokyo_programs():
     page_being_crawled = 'https://www.u-tokyo.ac.jp/en/prospective-students/graduate_course_list.html'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -346,8 +367,9 @@ def find_utokyo_programs():
     count = 0
     while count < len(utokyo_programs):
         print(utokyo_programs[count].text.strip())
-        #commit_to_sql("University of Tokyo", utokyo_programs[count].text.strip())
+        commit_to_sql("University of Tokyo", utokyo_programs[count].text.strip())
         count += 6
+
 
 def find_anu_programs():
     page_being_crawled = 'https://www.hotcoursesabroad.com/india/all-degrees/all-courses-at-the-australian-national-' \
@@ -363,6 +385,7 @@ def find_anu_programs():
         commit_to_sql("Australian National University", anu_programs[count].text.strip())
         count += 3
 
+
 def find_hku_programs():
     page_being_crawled = 'https://engg.hku.hk/Teaching-Learning/BEng/Academic-Programmes'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -375,3 +398,7 @@ def find_hku_programs():
         commit_to_sql("University of Hong Kong", hku_programs[count].text.strip())
         count += 1
 
+# Main program code after this. Call each function to put the programs list for each respective Uni into the database
+
+
+print("Database of Programs Updated")
