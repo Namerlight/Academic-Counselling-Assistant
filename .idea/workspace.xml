@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b22f639-72f7-4d3c-850d-d24261fb55c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcrawler/crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webcrawler/crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webcrawler/programs_crawl.py" beforeDir="false" afterPath="$PROJECT_DIR$/webcrawler/programs_crawl.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,7 +32,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webcrawler/crawler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
+            <state relative-caret-position="1455">
               <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -46,11 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webcrawler/programs_crawl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
-              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="10013">
+              <caret line="592" lean-forward="true" selection-start-line="592" selection-end-line="592" />
             </state>
           </provider>
         </entry>
@@ -63,8 +58,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webcrawler/programs_crawl.py" />
         <option value="$PROJECT_DIR$/webcrawler/crawler.py" />
+        <option value="$PROJECT_DIR$/webcrawler/programs_crawl.py" />
       </list>
     </option>
   </component>
@@ -172,6 +167,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,7 +184,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -283,11 +278,12 @@
       <workItem from="1554577453272" duration="404000" />
       <workItem from="1554577870182" duration="5748000" />
       <workItem from="1554662411571" duration="3530000" />
+      <workItem from="1554835033674" duration="8582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9886000" />
+    <option name="totallyTimeSpent" value="18468000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -300,13 +296,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17537314" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17697228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -329,7 +326,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/nsu_spring2019_cse327_1_t4$crawler.coverage" NAME="crawler Coverage Results" MODIFIED="1554578565782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webcrawler" />
-    <SUITE FILE_PATH="coverage/nsu_spring2019_cse327_1_t4$programs_crawl.coverage" NAME="programs_crawl Coverage Results" MODIFIED="1554582827625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webcrawler" />
+    <SUITE FILE_PATH="coverage/nsu_spring2019_cse327_1_t4$programs_crawl.coverage" NAME="programs_crawl Coverage Results" MODIFIED="1554847072760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webcrawler" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/webcrawler/countries_col_crawl.py" />
@@ -342,7 +339,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webcrawler/crawler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
+        <state relative-caret-position="1455">
           <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -352,11 +349,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webcrawler/programs_crawl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="10013">
+          <caret line="592" lean-forward="true" selection-start-line="592" selection-end-line="592" />
         </state>
       </provider>
     </entry>

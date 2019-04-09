@@ -398,7 +398,198 @@ def find_hku_programs():
         commit_to_sql("University of Hong Kong", hku_programs[count].text.strip())
         count += 1
 
+
+def find_duke_programs():
+    page_being_crawled = 'https://admissions.duke.edu/education/majors'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('div', attrs={'class': 'grid-cell'})
+    duke_programs = list_of_programs.findAll('li')
+
+    count = 0
+    while count < len(duke_programs):
+        print(duke_programs[count].text.strip())
+        commit_to_sql("Duke University", duke_programs[count].text.strip())
+        count += 11
+
+
+def find_ucb_programs():
+    page_being_crawled = 'http://guide.berkeley.edu/undergraduate/degree-programs/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    ucb_programs = bs_format.findAll('a', attrs={'class': 'pview'})
+
+    count = 6
+    while count < len(ucb_programs):
+        print(ucb_programs[count].text.strip())
+        commit_to_sql("University of California, Berkeley (UCB)", ucb_programs[count].text.strip())
+        count += 25
+
+
+def find_toronto_programs():
+    page_being_crawled = 'https://www.utoronto.ca/academics/programs-directory/all'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    toronto_programs = bs_format.findAll('h4')
+
+    count = 30
+    while count < len(toronto_programs):
+        print(toronto_programs[count].text.strip())
+        commit_to_sql("University of Toronto", toronto_programs[count].text.strip())
+        count += 35
+
+
+def find_manchester_programs():
+    page_being_crawled = 'https://www.manchester.ac.uk/study/undergraduate/courses/2020/?k=Computer%20Science'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('select', attrs={'id': 'subject-area'})
+    manchester_programs = list_of_programs.findAll('option')
+
+    count = 1
+    while count < len(manchester_programs):
+        print(manchester_programs[count].text.strip())
+        commit_to_sql("University of Manchester", manchester_programs[count].text.strip())
+        count += 15
+
+
+def find_peking_programs():
+    page_being_crawled = 'http://www.isd.pku.edu.cn/info/1465/5616.htm'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    peking_programs = bs_format.findAll('td', attrs={'width': '308'})
+
+    count = 1
+    while count < len(peking_programs):
+        print(peking_programs[count].text.strip())
+        commit_to_sql("Peking University", peking_programs[count].text.strip())
+        count += 10
+
+
+def find_kcl_programs():
+    page_being_crawled = 'https://www.kcl.ac.uk/aboutkings/quality/academic/prog/specs/nms/2018-19/informaticscusp'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('div', attrs={'id': 'content_column'})
+    kcl_programs = list_of_programs.findAll('li')
+
+    count = 1
+    while count < len(kcl_programs):
+        print(kcl_programs[count].text.strip())
+        commit_to_sql("King's College London", kcl_programs[count].text.strip())
+        count += 7
+
+
+def find_ucla_programs():
+    page_being_crawled = 'http://www.ucla.edu/academics/departments-and-programs'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('div', attrs={'id': 'main-content'})
+    ucla_programs = list_of_programs.findAll('a')
+
+    count = 2
+    while count < len(ucla_programs):
+        if len(ucla_programs[count].text.strip()) > 1:
+            print(ucla_programs[count].text.strip())
+            commit_to_sql("University of California, Los Angeles (UCLA)", ucla_programs[count].text.strip())
+        count += 24
+
+
+def find_mcgill_programs():
+    page_being_crawled = 'https://www.mcgill.ca/undergraduate-admissions/programs'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    mcgill_programs = bs_format.findAll('div', attrs={'class': 'content'})
+
+    count = 0
+    while count < len(mcgill_programs):
+        print(mcgill_programs[count].text.strip())
+        commit_to_sql("McGill University", mcgill_programs[count].text.strip())
+        count += 45
+
+
+def find_northwestern_programs():
+    page_being_crawled = 'https://www.tgs.northwestern.edu/academics/programs/index.html'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('table', attrs={'id': 'programs'})
+    northwestern_programs = list_of_programs.findAll('tr')
+
+    count = 1
+    while count < len(northwestern_programs):
+        print(northwestern_programs[count].text.strip())
+        commit_to_sql("Northwestern University", northwestern_programs[count].text.strip())
+        count += 20
+
+
+def find_kyoto_programs():
+    page_being_crawled = 'http://www.opir.kyoto-u.ac.jp/study/en/curriculum/inenglish/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    kyoto_programs = bs_format.findAll('a', attrs={'target': '_blank'})
+
+    count = 1
+    while count < len(kyoto_programs):
+        print(kyoto_programs[count].text.strip())
+        commit_to_sql("University of Kyoto", kyoto_programs[count].text.strip())
+        count += 3
+
+
+def find_snu_programs():
+    page_being_crawled = 'http://www.useoul.edu/undergraduate-programs?cid=106'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('ul', attrs={'class': 'deptlist'})
+    snu_programs = list_of_programs.findAll('li')
+
+    count = 0
+    while count < len(snu_programs):
+        print(snu_programs[count].text.strip())
+        commit_to_sql("Seoul National University", snu_programs[count].text.strip())
+        count += 3
+
+
+def find_hkust_programs():
+    page_being_crawled = 'https://join.ust.hk/undergraduate/school-of-engineering/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('div', attrs={'class': 'entry-content'})
+    hkust_programs = list_of_programs.findAll('li')
+
+    count = 6
+    while count < len(hkust_programs):
+        print(hkust_programs[count].text.strip())
+        commit_to_sql("Hong Kong University of Science and Technology", hkust_programs[count].text.strip())
+        count += 4
+
+
+def find_lse_programs():
+    page_being_crawled = 'http://www.lse.ac.uk/Programmes/Search-Courses?query&f.Study+Type%7Ctype=undergraduate'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    lse_programs = bs_format.findAll('h1', attrs={'class': 'largeList__title'})
+
+    count = 0
+    while count < len(lse_programs):
+        print(lse_programs[count].text.strip()[43:])
+        commit_to_sql("London School of Economics and Political Science (LSE)", lse_programs[count].text.strip())
+        count += 2
+
+
+def find_unimelb_programs():
+    page_being_crawled = 'https://study.unimelb.edu.au/find/interests/engineering/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('ul', attrs={'class': 'grid'})
+    unimelb_programs = list_of_programs.findAll('span', attrs={'class': 'course-item__name'})
+
+    count = 10
+    while count < len(unimelb_programs):
+        print(unimelb_programs[count].text.strip())
+        commit_to_sql("University of Melbourne", unimelb_programs[count].text.strip())
+        count += 5
+
+
+def find_kaist_programs():
+    page_being_crawled = 'https://engineering.kaist.ac.kr/education/department'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    kaist_programs = bs_format.findAll('dt')
+
+    count = 22
+    while count < len(kaist_programs)-1:
+        print(kaist_programs[count].text.strip())
+        commit_to_sql("KAIST - Korea Advanced Institute of Science & Technology", kaist_programs[count].text.strip())
+        count += 2
+
+
 # Main program code after this. Call each function to put the programs list for each respective Uni into the database
 
 
-print("Database of Programs Updated")
+
+print("\n<<Database of Programs Updated>>")
