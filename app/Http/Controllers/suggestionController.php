@@ -57,6 +57,12 @@ class suggestionController extends Controller
         $flag = 0;
         $totalCost = 0;
 
+
+        if($country == "don't_mind"){
+            $university = University::where('name',$name)->first();
+            $country = $university->country;
+        }
+
         $countryObject = Country::where('country', $country)->first();
 
         if ($average_fees != "Unknown") {
@@ -101,6 +107,10 @@ class suggestionController extends Controller
            }
 
 
+        }
+
+        else{
+            $totalCost = " -- ";
         }
 
 

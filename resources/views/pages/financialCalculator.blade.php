@@ -65,6 +65,8 @@
 
         <a href="#"
            class="btn btn-success">Go Back</a>
+
+        <p>**Costing may differ from the real world time to time </p>
     </div>
 
 </form>

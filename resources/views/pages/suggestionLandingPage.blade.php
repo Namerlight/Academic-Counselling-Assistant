@@ -14,12 +14,12 @@
 
     </style>
 
-</head>
+</head>784BA0
 
 /*style="background-color: rgba(104,169,163,0.98)"*/
 
-<body style="background-color: #FF3CAC;
-background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+<body style="background-color: #784BA0;
+background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%);
 ">
 
 <!--for checking session-->
