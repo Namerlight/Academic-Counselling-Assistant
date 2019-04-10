@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class suggestionController extends Controller
 {
     /**
-     * For suggestion
+     * For suggestion with user preference
      * country suggestion
      * financial calculator
      */
