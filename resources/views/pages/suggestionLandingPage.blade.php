@@ -4,8 +4,10 @@
     <title>ACA</title>
 
     <!-- Bootstrap core CSS -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+
 
     <style>
 
@@ -13,10 +15,13 @@
     </style>
 
 </head>
+784BA0
 
 /*style="background-color: rgba(104,169,163,0.98)"*/
 
-<body background="/images/gradient_2.jpg" style="background-size: cover" >
+<body style="background-color: #784BA0;
+background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%);
+">
 
 <!--for checking session-->
 @if (isset(Auth::user()->email))
@@ -53,6 +58,7 @@
     <!-- Masthead -->
     <header class="masthead text-white text-center">
 
+
         <div class="col-md-10 col-lg-8 " style="font-family: Arial;color: black;margin-top: -5%">
 
 
@@ -71,34 +77,51 @@
             </div>
 
             <br>
-            @if(count($university)>0)
+        @if(count($university)>0)
 
-                @foreach($university as $uni)
-                    <div class="card" style="width: 177%;height: 20%;margin-left: -30%">
-                        <p align="center" style="font-size: 20px">
-                            <b>{{$uni->name}}</b>
-                        </p>
-                        <br>
-                        <div class="card" style="background-color: #a3a3a3;border-color: black">
-                            <p style="color: black">
-                                Ranking : {{$uni->qs_ranking}} &nbsp;&nbsp;&nbsp;
-                                Status : {{$uni->status}}&nbsp;&nbsp;&nbsp;
-                                Total Student : {{$uni->total_student}}&nbsp;&nbsp;&nbsp;
-                                Average Fees : {{$uni->average_fees}}&nbsp;&nbsp;&nbsp;
-                                Country : {{$uni->country}}
-                            </p>
-                        </div>
+            @foreach($university as $uni)
 
-                        <div style="margin-top: -8%;margin-left: 80%">
-                            <a href="#" style="text-decoration: none;color: black"><img src="/images/calculateIcon.png"
-                                                                                        height="30%" width="15%">Calculate
-                                                                                                                 Budget</a>
-                        </div>
+                <!--for checking the university subject-->
+                    @foreach($universitySubjectFiltered as $filter)
+                        @if($uni->name == $filter->university_name)
+                            <div class="card" style="width: 177%;height: 20%;margin-left: -30%">
+                                <p align="center" style="font-size: 20px">
+                                    <b>{{$uni->name}}</b>
+                                </p>
+                                <br>
+                                <div class="card" style="background-color: #a3a3a3;border-color: black">
+                                    <p style="color: black">
+                                        Ranking : {{$uni->qs_ranking}} &nbsp;&nbsp;&nbsp;
+                                        Status : {{$uni->status}}&nbsp;&nbsp;&nbsp;
+                                        Total Student : {{$uni->total_student}}&nbsp;&nbsp;&nbsp;
+                                        Average Fees : {{$uni->average_fees}}&nbsp;&nbsp;&nbsp;
+                                        Country : {{$uni->country}}
+                                    </p>
+                                </div>
 
-                    </div>
-                    <br>
+                                <!--for making the unknown value as NULL-->
+                                @if($uni->average_fees == '')
+                                    <div style="visibility: hidden;height: 0%;width: 0%">
+                                        {{$uni->average_fees = "Unknown"}}
+                                    </div>
+                                @endif
+
+
+                                <div style="margin-top: -8%;margin-left: 80%">
+                                    <a href="{{url()->current()}}/{{$uni->average_fees}}/{{$uni->name}}"
+                                       style="text-decoration: none;color: black"><img
+                                                src="/images/calculateIcon.png"
+                                                height="30%" width="15%">Financial Calculator
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <br>
+
+                        @endif
+                    @endforeach
                 @endforeach
-
             @else
                 <h3>No university found</h3>
             @endif

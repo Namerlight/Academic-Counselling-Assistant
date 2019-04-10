@@ -35,12 +35,12 @@
         }
 
 
-
     </style>
 
 
 </head>
 <body>
+
 
 <!--for checking session-->
 @if (isset(Auth::user()->email))
@@ -118,6 +118,7 @@
                         <p class="text-divider" style="width: 100%;margin-left: 0%"></p>
                     </div>
 
+<<<<<<< HEAD
                     <div style="margin-left: 17%">
                         <a id="button" class="btn btn-primary" href="/courseMatching">Course Matching</a> &nbsp;
                         <a id="button" class="btn btn-success" href="/countryMatching">Country Matching</a> &nbsp;
@@ -129,6 +130,16 @@
 
 
 
+=======
+                    <div style="margin-left: 10%">
+                        <a id="button" class="btn btn-primary" href="/courseMatching">Course Matching</a> &nbsp;
+                        <a id="button" class="btn btn-success" href="/countryMatching">Country Matching</a> &nbsp;
+                        <a id="button" class="btn btn-warning" href="/universitySearch">University Profile</a> &nbsp;
+                        <p class="text-divider" style="width: 80%;margin-left: 10%"></p>
+
+                        <a id="button" class="btn  btn-lg btn-success" href="/autosuggestion/{{$user->username}}">Auto
+                                                                                                                  Suggestion</a>
+>>>>>>> masudurhimel
                     </div>
 
 

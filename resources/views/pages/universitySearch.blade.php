@@ -87,18 +87,19 @@
     <header class="masthead text-white text-center">
 
         <div class="col-md-10 col-lg-8 col-xl-6 mx-auto" style="font-family: Arial">
-            <form method="post" action="{{url()->current()}}/subject" autocomplete="off">
+            <form method="post" action="{{url()->current()}}/universityProfile" autocomplete="off">
                 {{ csrf_field()}}
                 <div class="form-row" style="margin-left: -5%;margin-top: 10%">
 
                     <div align="left">
                         <p align="left" style="font-size: 25px">
-                            Which subject ?
+                            Which University ?
                         </p>
 
                         <input type="text" class="form-control form-control-lg "
-                               placeholder="Subject Name"
-                               id="subject" name="subject" required="required" style="background-color: #d0d0d0;width: 150%">
+                               placeholder="University Name"
+                               id="university" name="university" required="required"
+                               style="background-color: #d0d0d0;width: 150%">
 
 
                         <input type="submit" name="submit" class="btn btn-primary" value="Submit"
@@ -223,12 +224,10 @@
     }
 
     /*An array containing subject names*/
-    var countries = ["Computer Science & Engineering", "Electrical & Electronic Engineering", "Civil & Environmental Engineering", "Electronic & Telecom Engineering",
-        "Biochemistry and Biotechnology", "Environmental Science & Management", "Microbiology", "Pharmacy",
-        "International Business", "Management", "Economics", "English"];
+    var countries = ["University of Oxford"];
 
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("subject"), countries);
+    autocomplete(document.getElementById("university"), countries);
 </script>
 
 
