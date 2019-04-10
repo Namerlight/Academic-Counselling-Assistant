@@ -45,11 +45,15 @@ Route::get('/homepage', function () {
 
 Route::get('/profile','LoginController@profile');
 
-/*for registering new input*/
+/**
+ * for registering new input
+ */
 
 Route::post('reg', 'RegistrationController@register');
 
-/*For Login*/
+/**
+ * For Login
+ */
 Route::post('/Login/checkLogin', 'LoginController@checkLogin');
 Route::get('Login/successLogin','LoginController@successLogin');
 Route::get('Login/logout','LoginController@logout');
@@ -57,14 +61,18 @@ Route::get('Login/logout','LoginController@logout');
 
 Route::get('/verify/{token}','VerifyController@verify')->name('verify');
 
-/*updating user profile*/
+/**
+ * updating user profile
+ */
 
 Route::get('/profile/{username}','LoginController@updateView');
 
 /*updating profile*/
 Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);
 
-/*for google authentication*/
+/**
+ * for google authentication
+ */
 
 Route::get('login/google', 'LoginController@redirectToProvider');
 Route::get('login/google/callback', 'LoginController@handleProviderCallback');
@@ -74,9 +82,9 @@ Route::get('login/google/callback', 'LoginController@handleProviderCallback');
 Route::get('/python', 'LoginController@pythonReader');
 
 
-
-
-/*course matching tool*/
+/**
+ * course matching tool
+ */
 Route::get('/courseMatching', function () {
     return view('pages.courseMatchingLandingPage');
 });
@@ -96,11 +104,15 @@ Route::get('/courseMatching/{studyType}/{country}/{subject}', function () {
 
 Route::post('/courseMatching/{studyType}/{country}/subject',['uses' =>'suggestionController@suggestion']);
 
-/*financial calculator*/
+/**
+ * financial calculator
+ */
 Route::get('/courseMatching/{studyType}/{country}/subject/{average_fees}/{name}', 'suggestionController@financialCalculator');
 
 
-/*country matching*/
+/**
+ * country matching
+ */
 Route::get('/countryMatching', function () {
     return view('pages.countryMatchingLandingPage');
 });
@@ -112,5 +124,20 @@ Route::get('/suggestionLandingPage', function () {
 });
 
 
+/**
+ * Auto suggestion part
+ */
 
+Route::get('autosuggestion/{name}', 'suggestionController@autoSuggestion');
+
+
+/**
+ * University Profile search
+ */
+
+Route::get('/universitySearch', function () {
+    return view('pages.universitySearch');
+});
+
+Route::post('/universitySearch/universityProfile',['uses' =>'suggestionController@universityProfile']);
 

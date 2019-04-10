@@ -55,6 +55,7 @@
                         <a id="button" class="btn btn-secondary" href="{{url()->current()}}/United States">United States</a>
                         <a id="button" class="btn btn-secondary" href="{{url()->current()}}/United Kingdom">United Kingdom</a>
                         <a id="button" class="btn btn-secondary" href="{{url()->current()}}/Australia">Australia</a>
+                        <a id="button" class="btn btn-secondary" href="{{url()->current()}}/Canada">Canada</a>
                         <a id="button" class="btn btn-secondary" href="{{url()->current()}}/don't_mind">I don't mind</a>
 
                     </div>

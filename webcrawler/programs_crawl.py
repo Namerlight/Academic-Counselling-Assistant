@@ -39,12 +39,12 @@ except Error as e:
 cursor = connection.cursor()
 
 # Creating table that will hold the data to be crawled by this script
-sql0 = "CREATE TABLE IF NOT EXISTS universities_programs (id int NOT NULL AUTO_INCREMENT,university_name varchar(199), program_name varchar(199), GRE_reqs varchar(199), ielts_reqs varchar(199), PRIMARY KEY (id))"
+sql0 = "CREATE TABLE IF NOT EXISTS university_programs (id int NOT NULL AUTO_INCREMENT,university_name varchar(199), program_name varchar(199), GRE_reqs varchar(199), ielts_reqs varchar(199), PRIMARY KEY (id))"
 cursor.execute(sql0)
 connection.commit()
 
 # Removing outdated data in order to be replaced with newer data
-sql1 = "DELETE FROM universities_programs"
+sql1 = "DELETE FROM university_programs"
 cursor.execute(sql1)
 connection.commit()
 
@@ -52,7 +52,7 @@ connection.commit()
 # Places crawled data into the sql database, in universities_programs table
 # Uni Name is manually in code, programs list is scraped and is in the form of a list item
 def commit_to_sql(uni_name, programs_list):
-    sql = "INSERT INTO universities_programs (university_name, program_name) VALUES (%s, %s)"
+    sql = "INSERT INTO university_programs (university_name, program_name) VALUES (%s, %s)"
     val = (uni_name, programs_list)
     cursor.execute(sql, val)
     connection.commit()
