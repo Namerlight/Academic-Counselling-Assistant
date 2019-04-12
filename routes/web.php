@@ -67,7 +67,10 @@ Route::get('/verify/{token}','VerifyController@verify')->name('verify');
 
 Route::get('/profile/{username}','LoginController@updateView');
 
-/*updating profile*/
+/**
+ * updating profile
+ */
+
 Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);
 
 /**
@@ -97,8 +100,11 @@ Route::get('/courseMatching/{studyType}/{country}', function () {
     return view('pages.courseMatchingSubjectPage');
 });
 
+/**
+ * for financial calculator Go back button
+ */
 Route::get('/courseMatching/{studyType}/{country}/{subject}', function () {
-    return view('pages.suggestionLandingPage');
+         /*return view(pages.suggestionLandingPage);*/
 });
 
 

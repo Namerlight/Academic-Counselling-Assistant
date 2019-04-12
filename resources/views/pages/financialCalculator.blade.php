@@ -56,21 +56,29 @@
                 <hr style="background-color: #00000a">
 
 
-
                 <p align="left">Total Cost(Approx) : <span style="float: right">$ {{$totalCost}}</span></p>
                 <br><br>
 
 
             </b></div>
 
-        <a href="#"
-           class="btn btn-success">Go Back</a>
+        <button onclick="goBack()"
+                class="btn btn-success">Go Back
+        </button>
 
         <p>**Costing may differ from the real world time to time </p>
     </div>
 
 </form>
 
+
+<!-- for going to previous page -->
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </body>
 

@@ -222,7 +222,7 @@
         });
     }
 
-    /*An array containing subject names*/
+    /*An array containing country names*/
     var countries = ["United States",
         "United Kingdom", "Switzerland", "Singapore", "China", "Japan", "Australia",
         "Hong Kong", "Canada", "South Korea", "France", "Netherlands",
