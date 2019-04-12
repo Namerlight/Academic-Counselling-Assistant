@@ -132,6 +132,7 @@ page_crawl_unilist()
 generate_url_names()
 crawl_uni_info()
 
+
 # Connects to SQL database
 # Database is named aca, user is root, no password
 # Gives output on successful connection, error otherwise
@@ -156,7 +157,7 @@ except Error as e:
 cursor = connection.cursor()
 print(cursor.rowcount)
 
-# Removes all prexisting data
+# Removes all preexisting data
 sql1 = "DELETE FROM universities"
 cursor.execute(sql1)
 connection.commit()
