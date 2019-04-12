@@ -9,12 +9,23 @@ use App\Student;
 use App\Competitive_Entrance_Exams;
 use Illuminate\Support\Facades\Hash;
 
-
-
+/**
+ * Class RegistrationController
+ * @package App\Http\Controllers
+ */
 class RegistrationController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     *
+     * registration
+     *
+     */
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'username' => 'required|min:6|unique:users',
@@ -65,6 +76,22 @@ class RegistrationController extends Controller
         $cExam->gmat = $request->input('gmat');
 
 
+        /**
+         * For academic point calculation
+         */
+
+        $bachelorCGPA = $student->cgpa_bachelor;
+        $ielts = $cExam->ielts;
+        $sat = $cExam->sat;
+        $gre = $cExam->gre;
+        $toefl = $cExam->toefl;
+        $gmat = $cExam->gmat;
+
+        $student->academic_point = ($bachelorCGPA*100) + ($ielts*10) + ($gre) + ($sat) + ($toefl) + ($gmat);
+
+        /**
+         * for saving all the data into DB
+         */
 
         $user->save();
         $student->save();
