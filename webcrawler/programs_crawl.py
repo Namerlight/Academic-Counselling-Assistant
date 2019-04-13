@@ -26,20 +26,20 @@ try:
         password=''
     )
     if connection.is_connected():
-        db_Info = connection.get_server_info()
-        print("Connected to MySQL database... MySQL Server version on ", db_Info)
-        cursor = connection.cursor()
-        cursor.execute("select database()")
-        record = cursor.fetchone()
-        print("You're connected to", record)
+            db_Info = connection.get_server_info()
+            print("Connected to MySQL database... MySQL Server version on ", db_Info)
+            cursor = connection.cursor()
+            cursor.execute("select database()")
+            record = cursor.fetchone()
+            print("You're connected to", record)
 except Error as e:
-    print("Error while connecting to MySQL", e)
+        print("Error while connecting to MySQL", e)
 
 # Setting cursor to database head
 cursor = connection.cursor()
 
 # Creating table that will hold the data to be crawled by this script
-sql0 = "CREATE TABLE IF NOT EXISTS university_programs (id int NOT NULL AUTO_INCREMENT,university_name varchar(199), program_name varchar(199), GRE_reqs varchar(199), ielts_reqs varchar(199), PRIMARY KEY (id))"
+sql0 = "CREATE TABLE IF NOT EXISTS university_programs (uni_prog_id INT NOT NULL AUTO_INCREMENT, university_name VARCHAR(199), program_name VARCHAR(199), GRE_reqs VARCHAR(199), ielts_reqs VARCHAR(199), PRIMARY KEY (uni_prog_id))"
 cursor.execute(sql0)
 connection.commit()
 
@@ -48,14 +48,30 @@ sql1 = "DELETE FROM university_programs"
 cursor.execute(sql1)
 connection.commit()
 
+# Resetting the auto incrementation to 1
+sql2 = "ALTER TABLE university_programs AUTO_INCREMENT = 1"
+cursor.execute(sql2)
+connection.commit()
+
 
 # Places crawled data into the sql database, in universities_programs table
 # Uni Name is manually in code, programs list is scraped and is in the form of a list item
 def commit_to_sql(uni_name, programs_list):
-    sql = "INSERT INTO university_programs (university_name, program_name) VALUES (%s, %s)"
+    sql = "INSERT INTO university_programs (university_name, program_name) " \
+          "VALUES (%s, %s)"
     val = (uni_name, programs_list)
     cursor.execute(sql, val)
     connection.commit()
+
+# Searches database for the university name that corresponds to an id
+# The name is placed in uni_name, extra parts of the string are removed
+def fetch_uni_name(uni_id):
+    sql = "SELECT name FROM universities WHERE id = %s"
+    cursor.execute(sql, (uni_id, ))
+    uni_name = str(cursor.fetchone())
+    uni_name = uni_name.replace('(\'', '')
+    uni_name = uni_name.replace('\',)', '')
+    return uni_name
 
 
 # Address of the page containing the list of programs offered by the university is set as page_being_crawled
@@ -71,10 +87,9 @@ def find_mit_programs():
     mit_programs = list_of_programs.findAll('strong')
 
     count = 0
-    print("A list of a few MIT programs.")
     while count < len(mit_programs):
         print(mit_programs[count].text.strip())
-        commit_to_sql("Massachusetts Institute of Technology (MIT)", mit_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(1), mit_programs[count].text.strip())
         count += 12
 
 
@@ -89,7 +104,7 @@ def find_harvard_programs():
     print("A list of a few Harvard programs.")
     while count < len(harvard_programs):
         print(harvard_programs[count].text.strip())
-        commit_to_sql("Harvard University", harvard_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(2), harvard_programs[count].text.strip())
         count += 8
 
 
@@ -107,7 +122,7 @@ def find_stanford_programs():
         count = 0
         while count < len(stanford_programs):
             print(stanford_programs[count].text.strip())
-            commit_to_sql("Stanford University", stanford_programs[count].text.strip())
+            commit_to_sql(fetch_uni_name(3), stanford_programs[count].text.strip())
             count += 6
 
 
@@ -121,7 +136,7 @@ def find_caltech_programs():
     count = 0
     while count < len(caltech_programs):
         print(caltech_programs[count].text.strip())
-        commit_to_sql("California Institute of Technology (Caltech)", caltech_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(4), caltech_programs[count].text.strip())
         count += 6
 
 
@@ -134,7 +149,7 @@ def find_oxford_programs():
     count = 0
     while count < len(oxford_programs):
         print(oxford_programs[count].text.strip())
-        commit_to_sql("Oxford University", oxford_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(5), oxford_programs[count].text.strip())
         count += 7
 
 
@@ -147,7 +162,7 @@ def find_cambridge_programs():
     count = 0
     while count < len(cambridge_programs):
         print(cambridge_programs[count].text.strip())
-        commit_to_sql("Cambridge University", cambridge_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(6), cambridge_programs[count].text.strip())
         count += 6
 
 
@@ -160,7 +175,7 @@ def find_ntu_programs():
     count = 0
     while count < len(ntu_programs):
         print(ntu_programs[count].text.strip())
-        commit_to_sql("Nanyang Technological University, Singapore (NTU)", ntu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(12), ntu_programs[count].text.strip())
         count += 4
 
 
@@ -173,7 +188,7 @@ def find_ethzurich_programs():
     count = 0
     while count < len(ethzurich_programs):
         print(ethzurich_programs[count].text.strip())
-        commit_to_sql("ETH Zurich - Swiss Federal Institute of Technology", ethzurich_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(7), ethzurich_programs[count].text.strip())
         count += 1
 
 
@@ -186,7 +201,7 @@ def find_princeton_programs():
     count = 1
     while count < len(princeton_programs):
         print(princeton_programs[count].text.strip())
-        commit_to_sql("Princeton University", princeton_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(13), princeton_programs[count].text.strip())
         count += 6
 
 
@@ -199,7 +214,7 @@ def find_icl_programs():
     count = 1
     while count < len(icl_programs):
         print(icl_programs[count].text.strip())
-        commit_to_sql("Imperial College London", icl_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(8), icl_programs[count].text.strip())
         count += 17
 
 
@@ -213,7 +228,7 @@ def find_chicago_programs():
     count = 1
     while count < len(chicago_programs):
         print(chicago_programs[count].text.strip())
-        commit_to_sql("University of Chicago", chicago_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(9), chicago_programs[count].text.strip())
         count += 1
 
 
@@ -226,7 +241,7 @@ def find_ucl_programs():
     count = 1
     while count < len(ucl_programs):
         print(ucl_programs[count].text.strip())
-        commit_to_sql("UCL (University College London", ucl_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(10), ucl_programs[count].text.strip())
         count += 70
 
 
@@ -240,7 +255,7 @@ def find_nus_programs():
     count = 0
     while count < len(nus_programs):
         print(nus_programs[count].text.strip())
-        commit_to_sql("National University of Singapore (NUS)", nus_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(11), nus_programs[count].text.strip())
         count += 10
 
 
@@ -252,7 +267,7 @@ def find_cornell_programs():
     count = 0
     while count < len(cornell_programs):
         print(cornell_programs[count].text.strip())
-        commit_to_sql("Cornell University", cornell_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(14), cornell_programs[count].text.strip())
         count += 12
 
 
@@ -265,7 +280,7 @@ def find_yale_programs():
     count = 1
     while count < len(yale_programs):
         print(yale_programs[count].text.strip())
-        commit_to_sql("Yale University", yale_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(15), yale_programs[count].text.strip())
         count += 9
 
 
@@ -278,7 +293,7 @@ def find_columbia_programs():
     count = 1
     while count < len(columbia_programs):
         print(columbia_programs[count].text.strip())
-        commit_to_sql("Columbia University", columbia_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(16), columbia_programs[count].text.strip())
         count += 14
 
 
@@ -292,7 +307,7 @@ def find_tsinghua_programs():
         if len(tsinghua_programs[count].text.strip()) < 3:
             del tsinghua_programs[count]
         print(tsinghua_programs[count].text.strip())
-        commit_to_sql("Tsinghua University", tsinghua_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(17), tsinghua_programs[count].text.strip())
         count += 34
 
 
@@ -302,9 +317,9 @@ def find_edinburgh_programs():
     edinburgh_programs = bs_format.findAll('a', attrs={'class': 'list-group-item'})
 
     count = 0
-    while count < 0.5 * len(edinburgh_programs):
+    while count < 0.5*len(edinburgh_programs):
         print(edinburgh_programs[count].text.strip())
-        commit_to_sql("Edinburgh University", edinburgh_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(18), edinburgh_programs[count].text.strip())
         count += 34
 
 
@@ -317,7 +332,7 @@ def find_pennsylvania_programs():
     count = 0
     while count < len(pennsylvania_programs):
         print(pennsylvania_programs[count].text.strip())
-        commit_to_sql("University of Pennsylvania", pennsylvania_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(19), pennsylvania_programs[count].text.strip())
         count += 60
 
 
@@ -329,7 +344,7 @@ def find_michigan_programs():
     count = 0
     while count < len(michigan_programs):
         print(michigan_programs[count].text.strip())
-        commit_to_sql("University of Michigan", michigan_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(20), michigan_programs[count].text.strip())
         count += 19
 
 
@@ -341,7 +356,7 @@ def find_jhu_programs():
     count = 0
     while count < len(jhu_programs):
         print(jhu_programs[count].text.strip())
-        commit_to_sql("John Hopkins University", jhu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(21), jhu_programs[count].text.strip())
         count += 5
 
 
@@ -353,7 +368,7 @@ def find_efpl_programs():
     count = 0
     while count < len(efpl_programs):
         print(efpl_programs[count].text.strip())
-        commit_to_sql("EPFL - Ecole Polytechnique Federale de Lausanne", efpl_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(22), efpl_programs[count].text.strip())
         count += 3
 
 
@@ -367,7 +382,7 @@ def find_utokyo_programs():
     count = 0
     while count < len(utokyo_programs):
         print(utokyo_programs[count].text.strip())
-        commit_to_sql("University of Tokyo", utokyo_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(23), utokyo_programs[count].text.strip())
         count += 6
 
 
@@ -380,9 +395,9 @@ def find_anu_programs():
     print(anu_programs)
 
     count = 0
-    while count < len(anu_programs) - 1:
+    while count < len(anu_programs)-1:
         print(anu_programs[count].text.strip())
-        commit_to_sql("Australian National University", anu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(24), anu_programs[count].text.strip())
         count += 3
 
 
@@ -395,7 +410,7 @@ def find_hku_programs():
     count = 0
     while count < len(hku_programs) - 1:
         print(hku_programs[count].text.strip())
-        commit_to_sql("University of Hong Kong", hku_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(25), hku_programs[count].text.strip())
         count += 1
 
 
@@ -408,7 +423,7 @@ def find_duke_programs():
     count = 0
     while count < len(duke_programs):
         print(duke_programs[count].text.strip())
-        commit_to_sql("Duke University", duke_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(26), duke_programs[count].text.strip())
         count += 11
 
 
@@ -420,7 +435,7 @@ def find_ucb_programs():
     count = 6
     while count < len(ucb_programs):
         print(ucb_programs[count].text.strip())
-        commit_to_sql("University of California, Berkeley (UCB)", ucb_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(27), ucb_programs[count].text.strip())
         count += 25
 
 
@@ -432,7 +447,7 @@ def find_toronto_programs():
     count = 30
     while count < len(toronto_programs):
         print(toronto_programs[count].text.strip())
-        commit_to_sql("University of Toronto", toronto_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(28), toronto_programs[count].text.strip())
         count += 35
 
 
@@ -445,7 +460,7 @@ def find_manchester_programs():
     count = 1
     while count < len(manchester_programs):
         print(manchester_programs[count].text.strip())
-        commit_to_sql("University of Manchester", manchester_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(29), manchester_programs[count].text.strip())
         count += 15
 
 
@@ -457,7 +472,7 @@ def find_peking_programs():
     count = 1
     while count < len(peking_programs):
         print(peking_programs[count].text.strip())
-        commit_to_sql("Peking University", peking_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(30), peking_programs[count].text.strip())
         count += 10
 
 
@@ -470,7 +485,7 @@ def find_kcl_programs():
     count = 1
     while count < len(kcl_programs):
         print(kcl_programs[count].text.strip())
-        commit_to_sql("King's College London", kcl_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(31), kcl_programs[count].text.strip())
         count += 7
 
 
@@ -484,7 +499,7 @@ def find_ucla_programs():
     while count < len(ucla_programs):
         if len(ucla_programs[count].text.strip()) > 1:
             print(ucla_programs[count].text.strip())
-            commit_to_sql("University of California, Los Angeles (UCLA)", ucla_programs[count].text.strip())
+            commit_to_sql(fetch_uni_name(32), ucla_programs[count].text.strip())
         count += 24
 
 
@@ -496,7 +511,7 @@ def find_mcgill_programs():
     count = 0
     while count < len(mcgill_programs):
         print(mcgill_programs[count].text.strip())
-        commit_to_sql("McGill University", mcgill_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(33), mcgill_programs[count].text.strip())
         count += 45
 
 
@@ -509,7 +524,7 @@ def find_northwestern_programs():
     count = 1
     while count < len(northwestern_programs):
         print(northwestern_programs[count].text.strip())
-        commit_to_sql("Northwestern University", northwestern_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(34), northwestern_programs[count].text.strip())
         count += 20
 
 
@@ -521,7 +536,7 @@ def find_kyoto_programs():
     count = 1
     while count < len(kyoto_programs):
         print(kyoto_programs[count].text.strip())
-        commit_to_sql("University of Kyoto", kyoto_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(35), kyoto_programs[count].text.strip())
         count += 3
 
 
@@ -534,7 +549,7 @@ def find_snu_programs():
     count = 0
     while count < len(snu_programs):
         print(snu_programs[count].text.strip())
-        commit_to_sql("Seoul National University", snu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(36), snu_programs[count].text.strip())
         count += 3
 
 
@@ -547,7 +562,7 @@ def find_hkust_programs():
     count = 6
     while count < len(hkust_programs):
         print(hkust_programs[count].text.strip())
-        commit_to_sql("Hong Kong University of Science and Technology", hkust_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(37), hkust_programs[count].text.strip())
         count += 4
 
 
@@ -559,7 +574,7 @@ def find_lse_programs():
     count = 0
     while count < len(lse_programs):
         print(lse_programs[count].text.strip()[43:])
-        commit_to_sql("London School of Economics and Political Science (LSE)", lse_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(38), lse_programs[count].text.strip())
         count += 2
 
 
@@ -572,7 +587,7 @@ def find_unimelb_programs():
     count = 10
     while count < len(unimelb_programs):
         print(unimelb_programs[count].text.strip())
-        commit_to_sql("University of Melbourne", unimelb_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(39), unimelb_programs[count].text.strip())
         count += 5
 
 
@@ -582,14 +597,13 @@ def find_kaist_programs():
     kaist_programs = bs_format.findAll('dt')
 
     count = 22
-    while count < len(kaist_programs) - 1:
+    while count < len(kaist_programs)-1:
         print(kaist_programs[count].text.strip())
-        commit_to_sql("KAIST - Korea Advanced Institute of Science & Technology", kaist_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(40), kaist_programs[count].text.strip())
         count += 2
 
 
 # Main program code after this. Call each function to put the programs list for each respective Uni into the database
-
 
 find_mit_programs()
 find_harvard_programs()
@@ -610,7 +624,7 @@ find_columbia_programs()
 find_tsinghua_programs()
 find_edinburgh_programs()
 find_pennsylvania_programs()
-# find_michigan_programs()
+find_michigan_programs()
 find_jhu_programs()
 find_efpl_programs()
 find_utokyo_programs()
