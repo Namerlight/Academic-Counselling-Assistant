@@ -9,7 +9,6 @@
 
     <style>
         /*Autocomplete part*/
-
         .autocomplete {
             position: relative;
             display: inline-block;
