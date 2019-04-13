@@ -203,21 +203,6 @@ class LoginController extends Controller
 
     }
 
-    public function pythonReader()
-    {
 
-        $pythonInt = "C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe";
-        $pyFile = "\webcrawler\temp.py";
-
-        $string = "";
-
-        echo "Himel";
-
-        $output = shell_exec('ls -lart');
-        echo "<pre>$output</pre>";
-
-        echo "Himel";
-
-    }
 
 }

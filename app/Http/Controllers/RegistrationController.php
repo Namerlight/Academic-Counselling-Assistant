@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\StudentAcceptance;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Request;
 use App\User;
@@ -101,5 +102,19 @@ class RegistrationController extends Controller
 
         return redirect('/index')->with('verificationResponse', 'Registration Successful || Please Verify your email and login to continue');
         /*Registration Successful || Please Verify your email and login to continue*/
+    }
+
+    public function studentAcceptance($username,Request $request){
+        $uni = $request->input('university');
+
+        $studentAcceptance = new StudentAcceptance();
+
+        $studentAcceptance->username = $username;
+        $studentAcceptance->uni_name = $uni;
+
+        $studentAcceptance->save();
+
+        return redirect('/index');
+
     }
 }

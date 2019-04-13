@@ -72,6 +72,9 @@
             <li>
                 <a href="#">About Us</a>
             </li>
+            <li>
+                <a href="/{{$user->username}}/helpUs">Help us ?</a>
+            </li>
         </ul>
 
     </div>

@@ -81,9 +81,6 @@ Route::get('login/google', 'LoginController@redirectToProvider');
 Route::get('login/google/callback', 'LoginController@handleProviderCallback');
 
 
-/*for python script things*/
-Route::get('/python', 'LoginController@pythonReader');
-
 
 /**
  * course matching tool
@@ -147,3 +144,18 @@ Route::get('/universitySearch', function () {
 
 Route::post('/universitySearch/universityProfile',['uses' =>'suggestionController@universityProfile']);
 
+
+/**
+ * py to php
+ */
+Route::get('/python', 'suggestionController@python');
+
+/**
+ * help us !!
+ */
+
+Route::get('{username}/helpUs', function () {
+    return view('pages.helpUs');
+});
+
+Route::post('{username}/helpUs/studentAcceptance',['uses' =>'RegistrationController@studentAcceptance']);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2019 at 06:34 PM
+-- Generation Time: Apr 13, 2019 at 06:51 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -55,7 +55,14 @@ CREATE TABLE `competitive_entrance_exams` (
 --
 
 INSERT INTO `competitive_entrance_exams` (`username`, `ielts`, `sat`, `gre`, `toefl`, `gmat`, `created_at`, `updated_at`) VALUES
-('masudurhimel', 6.50, NULL, NULL, NULL, NULL, '2019-03-17 14:06:40', '2019-03-17 14:06:40');
+('masudurhimel', 6.50, NULL, NULL, NULL, NULL, '2019-03-17 14:06:40', '2019-03-17 14:06:40'),
+('ridwanshourov', 6.00, NULL, 280.00, NULL, NULL, '2019-04-13 10:35:41', '2019-04-13 10:35:41'),
+('rizonssh', 6.50, NULL, NULL, NULL, NULL, '2019-04-13 10:37:16', '2019-04-13 10:37:16'),
+('toushuju', 7.00, NULL, 300.00, NULL, NULL, '2019-04-13 10:39:18', '2019-04-13 10:39:18'),
+('bishwabrac', 6.00, NULL, NULL, NULL, NULL, '2019-04-13 10:41:05', '2019-04-13 10:41:05'),
+('nabilNSU', 7.00, NULL, NULL, NULL, NULL, '2019-04-13 10:42:21', '2019-04-13 10:42:21'),
+('muniraRahman', NULL, NULL, NULL, NULL, NULL, '2019-04-13 10:43:49', '2019-04-13 10:43:49'),
+('engrmizan', NULL, NULL, NULL, NULL, NULL, '2019-04-13 10:48:46', '2019-04-13 10:48:46');
 
 -- --------------------------------------------------------
 
@@ -125,7 +132,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2019_03_15_192435_add_timestamp_to_students', 8),
 (12, '2019_03_15_193006_add_timestamp_to_competitive_entrance_exams', 9),
 (13, '2019_03_15_203238_update_foreign_key_to_competitive_entrance_exams', 10),
-(14, '2019_03_17_170157_add_tokaten_to_users', 11);
+(14, '2019_03_17_170157_add_tokaten_to_users', 11),
+(15, '2019_04_13_161104_create_student_acceptance_table', 12),
+(16, '2019_04_13_161605_create_universities_requirements_table', 12);
 
 -- --------------------------------------------------------
 
@@ -167,7 +176,26 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`username`, `school_name`, `college_name`, `college_group`, `university`, `ssc_o_level`, `hsc_a_level`, `bachelor_subject`, `bachelor_credit`, `cgpa_bachelor`, `others`, `academic_point`, `created_at`, `updated_at`) VALUES
-('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'North South University', 5.00, 5.00, 'CSE', '130', 3.93, 'Project experience + have research works', NULL, '2019-03-17 14:06:40', '2019-03-26 10:34:31');
+('masudurhimel', 'BAF Shaheen College Kurmitola', 'NDC', 'Science', 'North South University', 5.00, 5.00, 'CSE', '130', 3.93, 'Project experience + have research works', NULL, '2019-03-17 14:06:40', '2019-03-26 10:34:31'),
+('ridwanshourov', 'DRMC', 'DRMC', 'Science', 'North South University', 5.00, 5.00, 'CSE', '130', 3.20, NULL, 660.00, '2019-04-13 10:35:41', '2019-04-13 10:35:41'),
+('rizonssh', 'DRMC', 'NDC', 'Science', 'MIST', 5.00, 5.00, 'CSE', '160', 3.60, NULL, 425.00, '2019-04-13 10:37:15', '2019-04-13 10:37:15'),
+('toushuju', 'ACC', 'NDC', 'Science', 'JU', 5.00, 5.00, 'BBA', '140', 3.80, NULL, 750.00, '2019-04-13 10:39:18', '2019-04-13 10:39:18'),
+('bishwabrac', 'DRMC', 'NDC', 'Science', 'BRACU', 5.00, 5.00, 'LLB', '120', 3.20, NULL, 380.00, '2019-04-13 10:41:05', '2019-04-13 10:41:05'),
+('nabilNSU', 'PKB', 'NDC', 'Science', 'NSU', 5.00, 5.00, 'BBA', '120', 3.20, NULL, 390.00, '2019-04-13 10:42:21', '2019-04-13 10:42:21'),
+('muniraRahman', 'BAF Shaheen KTL', 'BAF Shaheen KTL', 'Science', 'DU', 5.00, 5.00, 'Botany', '160', 3.60, NULL, 360.00, '2019-04-13 10:43:49', '2019-04-13 10:43:49'),
+('engrmizan', 'BAF Shaheen KTL', 'BAF Shaheen DHK', 'Science', 'RUET', 5.00, 5.00, 'Civil', '160', 3.50, NULL, 350.00, '2019-04-13 10:48:46', '2019-04-13 10:48:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_acceptance`
+--
+
+CREATE TABLE `student_acceptance` (
+  `acceptance_id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uni_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -297,260 +325,271 @@ INSERT INTO `universities` (`id`, `name`, `qs_ranking`, `research_output`, `stat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `universities_requirements`
+--
+
+CREATE TABLE `universities_requirements` (
+  `uni_id` int(10) UNSIGNED NOT NULL,
+  `university_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gre_reqs` double NOT NULL,
+  `ielts_reqs` double NOT NULL,
+  `cgpa_reqs` double NOT NULL,
+  `uni_score` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `university_programs`
 --
 
 CREATE TABLE `university_programs` (
+  `uni_prog_id` int(11) NOT NULL,
   `university_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `program_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `GRE_reqs` varchar(199) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ielts_reqs` varchar(199) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cgpa(bachelor)` double(8,2) DEFAULT NULL,
-  `others` mediumtext COLLATE utf8mb4_unicode_ci,
-  `extra_notes` mediumtext COLLATE utf8mb4_unicode_ci
+  `program_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `university_programs`
 --
 
-INSERT INTO `university_programs` (`university_name`, `program_name`, `GRE_reqs`, `ielts_reqs`, `cgpa(bachelor)`, `others`, `extra_notes`) VALUES
-('Massachusetts Institute of Technology (MIT)', 'Aerospace Engineering', NULL, NULL, NULL, NULL, NULL),
-('Massachusetts Institute of Technology (MIT)', 'Atmospheric Chemistry', NULL, NULL, NULL, NULL, NULL),
-('Massachusetts Institute of Technology (MIT)', 'Civil and Environmental Systems', NULL, NULL, NULL, NULL, NULL),
-('Massachusetts Institute of Technology (MIT)', 'Electrical Science and Engineering', NULL, NULL, NULL, NULL, NULL),
-('Massachusetts Institute of Technology (MIT)', 'International Development', NULL, NULL, NULL, NULL, NULL),
-('Massachusetts Institute of Technology (MIT)', 'Middle Eastern Studies', NULL, NULL, NULL, NULL, NULL),
-('Massachusetts Institute of Technology (MIT)', 'Statistics and Data Science', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'African and African American Studies', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'Classics', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'English', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'History and Science', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'Molecular and Cellular Biology', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'Romance Languages and Literatures', NULL, NULL, NULL, NULL, NULL),
-('Harvard University', 'Visual and Environmental Studies', NULL, NULL, NULL, NULL, NULL),
-('Stanford University', 'Artificial Intelligence Graduate Certificate', NULL, NULL, NULL, NULL, NULL),
-('Stanford University', 'Stanford Innovation and Entrepreneurship Certificate', NULL, NULL, NULL, NULL, NULL),
-('Stanford University', 'Biomedical Informatics: Data, Modeling and Analysis Graduate Certificate', NULL, NULL, NULL, NULL, NULL),
-('Stanford University', 'Civil and Environmental Engineering MS Degree', NULL, NULL, NULL, NULL, NULL),
-('Stanford University', 'Electrical Engineering MS Degree', NULL, NULL, NULL, NULL, NULL),
-('Stanford University', 'Financial Risk Analysis and Management Graduate Certificate', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Biology and Biological Engineering', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Applied and Computational Mathematics', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Geobiology', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Business, Economics & Management', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Political Science', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Control and Dynamical Systems', NULL, NULL, NULL, NULL, NULL),
-('California Institute of Technology (Caltech)', 'Philosophy', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'Archaeology and Anthropology', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'Classics and English', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'Engineering Science', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'History (Ancient and Modern)', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'Law', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'Modern Languages', NULL, NULL, NULL, NULL, NULL),
-('Oxford University', 'Physics', NULL, NULL, NULL, NULL, NULL),
-('Cambridge University', 'Anglo-Saxon, Norse, and Celtic', NULL, NULL, NULL, NULL, NULL),
-('Cambridge University', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('Cambridge University', 'History', NULL, NULL, NULL, NULL, NULL),
-('Cambridge University', 'Law', NULL, NULL, NULL, NULL, NULL),
-('Cambridge University', 'Medicine (Graduate Course)', NULL, NULL, NULL, NULL, NULL),
-('Cambridge University', 'Theology, Religion, and Philosophy of Religion', NULL, NULL, NULL, NULL, NULL),
-('Nanyang Technological University, Singapore (NTU)', 'Accountancy and Business', NULL, NULL, NULL, NULL, NULL),
-('Nanyang Technological University, Singapore (NTU)', 'Engineering', NULL, NULL, NULL, NULL, NULL),
-('Nanyang Technological University, Singapore (NTU)', 'Social Sciences', NULL, NULL, NULL, NULL, NULL),
-('Nanyang Technological University, Singapore (NTU)', 'Premier Scholars Programmes', NULL, NULL, NULL, NULL, NULL),
-('ETH Zurich - Swiss Federal Institute of Technology', 'Computer Science Bachelor', NULL, NULL, NULL, NULL, NULL),
-('ETH Zurich - Swiss Federal Institute of Technology', 'Electrical Engineering and Information Technology Bachelor', NULL, NULL, NULL, NULL, NULL),
-('ETH Zurich - Swiss Federal Institute of Technology', 'Materials Science Bachelor', NULL, NULL, NULL, NULL, NULL),
-('ETH Zurich - Swiss Federal Institute of Technology', 'Mechanical Engineering Bachelor', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'Bachelor of Science in Engineering (B.S.E.)', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'Art and Archaeology', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'East Asian Studies', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'German', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'Neuroscience', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'Slavic Languages and Literatures', NULL, NULL, NULL, NULL, NULL),
-('Princeton University', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Aeronautical Engineering with a Year Abroad', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Biological Sciences with Management', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Biotechnology with Spanish for Science', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Chemistry with Spanish for Science', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Electrical and Electronic Engineering with a Year Abroad', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Mathematics', NULL, NULL, NULL, NULL, NULL),
-('Imperial College London', 'Medical Biosciences', NULL, NULL, NULL, NULL, NULL),
-('University of Chicago', 'Master of Science from the Committee on Computational and Applied Mathematics (MCAM)', NULL, NULL, NULL, NULL, NULL),
-('University of Chicago', 'Graduate Program in Biophysical Sciences', NULL, NULL, NULL, NULL, NULL),
-('University of Chicago', 'Master of Science Program in Computer Science', NULL, NULL, NULL, NULL, NULL),
-('University of Chicago', 'Master of Science in Financial Mathematics', NULL, NULL, NULL, NULL, NULL),
-('University of Chicago', 'Master of Science in the Physical Sciences Division', NULL, NULL, NULL, NULL, NULL),
-('University of Chicago', 'Master of Science in Statistics', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Advanced Architectural Research PG Cert', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Child Health MRes', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Developmental Psychology and Clinical Practice MSc', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'European Studies: European Society MA/PG Dip', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Landscape Architecture MLA', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Paediatric Dentistry MSc/PG Dip/PG Cert', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Public Diplomacy and Global Communication MA', NULL, NULL, NULL, NULL, NULL),
-('UCL (University College London', 'Space Syntax: Architecture and Cities MSc', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Chinese Language', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Theatre Studies', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Global Studies', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Industrial Design', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Industrial and Systems Engineering', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Applied Mathematics with specialisation in Mathematical Modelling and Data Analytics', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Life Sciences', NULL, NULL, NULL, NULL, NULL),
-('National University of Singapore (NUS)', 'Physics (with specialisation in Quantum Technologies)', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Africana Studies', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Biological Sciences', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Fiber Science and Apparel Design', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Human Development', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Mathematics', NULL, NULL, NULL, NULL, NULL),
-('Cornell University', 'Religious Studies', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'African Studies (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Astrophysics (B.S.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Computer Science and Psychology (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Engineering Sciences (Chemical) (B.S.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Film and Media Studies (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'History of Science, Medicine, and Public Health (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Mathematics and Philosophy (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Philosophy (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Yale University', 'Russian and East European Studies (B.A.)', NULL, NULL, NULL, NULL, NULL),
-('Columbia University', 'American Studies', NULL, NULL, NULL, NULL, NULL),
-('Columbia University', 'Chemical Physics', NULL, NULL, NULL, NULL, NULL),
-('Columbia University', 'Economics-Mathematics', NULL, NULL, NULL, NULL, NULL),
-('Columbia University', 'French and Francophone Studies', NULL, NULL, NULL, NULL, NULL),
-('Columbia University', 'Linguistics (Special Concentration)', NULL, NULL, NULL, NULL, NULL),
-('Columbia University', 'Regional Studies', NULL, NULL, NULL, NULL, NULL),
-('Tsinghua University', 'Architecture', NULL, NULL, NULL, NULL, NULL),
-('Tsinghua University', 'Aeronautical and Astronautical Engineering', NULL, NULL, NULL, NULL, NULL),
-('Tsinghua University', 'Mathematics and Physics', NULL, NULL, NULL, NULL, NULL),
-('Tsinghua University', 'Economics', NULL, NULL, NULL, NULL, NULL),
-('Tsinghua University', 'Painting', NULL, NULL, NULL, NULL, NULL),
-('Edinburgh University', 'Accounting and Business (MA) NN14', NULL, NULL, NULL, NULL, NULL),
-('Edinburgh University', 'Artificial Intelligence (BSc) G700', NULL, NULL, NULL, NULL, NULL),
-('Edinburgh University', 'Celtic and Linguistics (MA) QQ15', NULL, NULL, NULL, NULL, NULL),
-('Edinburgh University', 'Computer Science (BSc) G400', NULL, NULL, NULL, NULL, NULL),
-('Edinburgh University', 'Fashion (BA) W230', NULL, NULL, NULL, NULL, NULL),
-('Edinburgh University', 'Geophysics (MEarthPhys) M7G6', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', '#', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'Architecture: Design (Intensive), BA', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'Comparative Literature: Theory, BA', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'English: Drama, BA', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'History of Art, Minor', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'Mathematics: Biological Mathematics, BA', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'Philosophy: Humanistic Philosophy, BA', NULL, NULL, NULL, NULL, NULL),
-('University of Pennsylvania', 'South Asia Regional Studies, MA', NULL, NULL, NULL, NULL, NULL),
-('John Hopkins University', 'Applied Biomedical Engineering', NULL, NULL, NULL, NULL, NULL),
-('John Hopkins University', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('John Hopkins University', 'Environmental Engineering', NULL, NULL, NULL, NULL, NULL),
-('John Hopkins University', 'Information Systems Engineering', NULL, NULL, NULL, NULL, NULL),
-('John Hopkins University', 'Technical Management', NULL, NULL, NULL, NULL, NULL),
-('EPFL - Ecole Polytechnique Federale de Lausanne', 'Chemistry and Chemical Engineering', NULL, NULL, NULL, NULL, NULL),
-('EPFL - Ecole Polytechnique Federale de Lausanne', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('EPFL - Ecole Polytechnique Federale de Lausanne', 'Mechanical Engineering', NULL, NULL, NULL, NULL, NULL),
-('EPFL - Ecole Polytechnique Federale de Lausanne', 'Life Sciences Engineering', NULL, NULL, NULL, NULL, NULL),
-('EPFL - Ecole Polytechnique Federale de Lausanne', 'Environmental Sciences and Engineering', NULL, NULL, NULL, NULL, NULL),
-('University of Tokyo', 'International Program in Economics', NULL, NULL, NULL, NULL, NULL),
-('University of Tokyo', 'International Graduate Program in the Field of Civil Engineering and Infrastructure Studies', NULL, NULL, NULL, NULL, NULL),
-('University of Tokyo', 'Architecture and Urban Design Program', NULL, NULL, NULL, NULL, NULL),
-('University of Tokyo', 'The English Program in Information Science and Technology', NULL, NULL, NULL, NULL, NULL),
-('Australian National University', 'Bachelor of Actuarial Studies', NULL, NULL, NULL, NULL, NULL),
-('Australian National University', 'Bachelor of Philosophy (Honours) / Bachelor of Arts (Honours)', NULL, NULL, NULL, NULL, NULL),
-('Australian National University', 'Bachelor of Science (Psychology)', NULL, NULL, NULL, NULL, NULL),
-('Australian National University', 'Master of Accounting', NULL, NULL, NULL, NULL, NULL),
-('University of Hong Kong', 'Civil Engineering', NULL, NULL, NULL, NULL, NULL),
-('University of Hong Kong', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('University of Hong Kong', 'Electrical and Electronic Engineering', NULL, NULL, NULL, NULL, NULL),
-('University of Hong Kong', 'Industrial and Manufacturing Systems Engineering', NULL, NULL, NULL, NULL, NULL),
-('Duke University', 'African and African American Studies', NULL, NULL, NULL, NULL, NULL),
-('Duke University', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('Duke University', 'French Studies', NULL, NULL, NULL, NULL, NULL),
-('Duke University', 'Mechanical Engineering*', NULL, NULL, NULL, NULL, NULL),
-('Duke University', 'Romance Studies', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'Applied Mathematics', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'Chinese Studies', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'Electrical Engineering and Computer Sciences/Materials Science and Engineering Joint Major', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'Geosystems', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'Lesbian, Gay, Bisexual, and Transgender Studies', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'New Media', NULL, NULL, NULL, NULL, NULL),
-('University of California, Berkeley (UCB)', 'Social and Cultural Factors in Environmental Design', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Biological Chemistry', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Computer Science', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Environmental Chemistry', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Geographical Information Systems', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Italian', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Mental Health Studies', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Planetary Science', NULL, NULL, NULL, NULL, NULL),
-('University of Toronto', 'Urban Studies', NULL, NULL, NULL, NULL, NULL),
-('University of Manchester', 'Accounting and Finance', NULL, NULL, NULL, NULL, NULL),
-('University of Manchester', 'Civil Engineering', NULL, NULL, NULL, NULL, NULL),
-('University of Manchester', 'Environmental Sciences', NULL, NULL, NULL, NULL, NULL),
-('University of Manchester', 'Leadership & Management (Education)', NULL, NULL, NULL, NULL, NULL),
-('University of Manchester', 'Pharmacy and Pharmaceutical Sciences', NULL, NULL, NULL, NULL, NULL),
-('University of Manchester', 'Speech and Hearing', NULL, NULL, NULL, NULL, NULL),
-('Peking University', 'Probability   and Statistics', NULL, NULL, NULL, NULL, NULL),
-('Peking University', 'Intelligence   Science and Technology', NULL, NULL, NULL, NULL, NULL),
-('Peking University', 'Chemical   Biology', NULL, NULL, NULL, NULL, NULL),
-('Peking University', 'Geochemical', NULL, NULL, NULL, NULL, NULL),
-('King\'s College London', 'BEng Electronic Engineering', NULL, NULL, NULL, NULL, NULL),
-('King\'s College London', 'BSc Computer Science with Management & a Year Abroad', NULL, NULL, NULL, NULL, NULL),
-('King\'s College London', 'MSc Advanced Computing', NULL, NULL, NULL, NULL, NULL),
-('King\'s College London', 'MSc Electronic Engineering with Management', NULL, NULL, NULL, NULL, NULL),
-('King\'s College London', 'MSc Urban Informatics', NULL, NULL, NULL, NULL, NULL),
-('University of California, Los Angeles (UCLA)', 'Anthropology', NULL, NULL, NULL, NULL, NULL),
-('University of California, Los Angeles (UCLA)', 'Civil and Environmental Engineering', NULL, NULL, NULL, NULL, NULL),
-('University of California, Los Angeles (UCLA)', 'Epidemiology', NULL, NULL, NULL, NULL, NULL),
-('University of California, Los Angeles (UCLA)', 'International Development Studies', NULL, NULL, NULL, NULL, NULL),
-('University of California, Los Angeles (UCLA)', 'Molecular and Medical Pharmacology', NULL, NULL, NULL, NULL, NULL),
-('University of California, Los Angeles (UCLA)', 'Psychobiology', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BEng in Chemical Engineering', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BEng in Computer Engineering', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BEng in Industrial Engineering and Engineering Management', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BSc in Data Science and Technology', NULL, NULL, NULL, NULL, NULL),
-('McGill University', 'Accounting', NULL, NULL, NULL, NULL, NULL),
-('McGill University', 'Computer Science (Faculty of Arts)', NULL, NULL, NULL, NULL, NULL),
-('McGill University', 'Entrepreneurship for Science Students (Faculty of Science)', NULL, NULL, NULL, NULL, NULL),
-('McGill University', 'International Business', NULL, NULL, NULL, NULL, NULL),
-('McGill University', 'Music Entrepreneurship', NULL, NULL, NULL, NULL, NULL),
-('McGill University', 'Religion and Globalization', NULL, NULL, NULL, NULL, NULL),
-('Northwestern University', 'Accounting Information and ManagementPhD', NULL, NULL, NULL, NULL, NULL),
-('Northwestern University', 'Computer Science and Learning SciencesPhD', NULL, NULL, NULL, NULL, NULL),
-('Northwestern University', 'Health Sciences Integrated ProgramPhD', NULL, NULL, NULL, NULL, NULL),
-('Northwestern University', 'Medical AnthropologyPhD/MPH', NULL, NULL, NULL, NULL, NULL),
-('Northwestern University', 'Screen CulturesPhD', NULL, NULL, NULL, NULL, NULL),
-('University of Kyoto', 'Activity Database on Education and Research', NULL, NULL, NULL, NULL, NULL),
-('University of Kyoto', '【International Graduate Programme for East Asia Sustainable Economic Development Studies 】', NULL, NULL, NULL, NULL, NULL),
-('University of Kyoto', '【Integrated Engineering Course, Human Security Engineering Field】', NULL, NULL, NULL, NULL, NULL),
-('University of Kyoto', '【International Course in Intelligence Science and Technology】', NULL, NULL, NULL, NULL, NULL),
-('University of Kyoto', '【Global Frontier in Life Science Program】', NULL, NULL, NULL, NULL, NULL),
-('University of Kyoto', '【International Project Management Course】', NULL, NULL, NULL, NULL, NULL),
-('Seoul National University', 'H: Homepage, C: Curriculum, E: English-taught Courses', NULL, NULL, NULL, NULL, NULL),
-('Seoul National University', 'Mechanical Engineering  H C E', NULL, NULL, NULL, NULL, NULL),
-('Seoul National University', 'Dept. of Electrical and Computer Engineering  H C E', NULL, NULL, NULL, NULL, NULL),
-('Seoul National University', 'Dept. of Architecture and Architectural Engineering   Architecture  H C E    Architecture Engineering  H C E', NULL, NULL, NULL, NULL, NULL),
-('Seoul National University', 'Dept. of Industrial Engineering  H C E', NULL, NULL, NULL, NULL, NULL),
-('Seoul National University', 'Dept. of Naval Architecture and Ocean Engineering  H C E', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BEng in Chemical Engineering', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BEng in Computer Engineering', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BEng in Industrial Engineering and Engineering Management', NULL, NULL, NULL, NULL, NULL),
-('Hong Kong University of Science and Technology', 'BSc in Data Science and Technology', NULL, NULL, NULL, NULL, NULL),
-('London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BA Anthropology and Law', NULL, NULL, NULL, NULL, NULL),
-('London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BA History', NULL, NULL, NULL, NULL, NULL),
-('London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BSc Actuarial Science', NULL, NULL, NULL, NULL, NULL),
-('London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BSc Econometrics and Mathematical Economics', NULL, NULL, NULL, NULL, NULL),
-('London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BSc Economic History and Geography', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Engineering (Civil with Business)', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Engineering (Materials)', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Engineering (Software with Business)', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Engineering Structures', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Geoscience', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Philosophy (Engineering and IT)', NULL, NULL, NULL, NULL, NULL),
-('University of Melbourne', 'Master of Science (Computer Science)', NULL, NULL, NULL, NULL, NULL),
-('KAIST - Korea Advanced Institute of Science & Technology', 'Aerospace Engineering', NULL, NULL, NULL, NULL, NULL),
-('KAIST - Korea Advanced Institute of Science & Technology', 'Chemical and Biomolecular Engineering', NULL, NULL, NULL, NULL, NULL),
-('KAIST - Korea Advanced Institute of Science & Technology', 'Industrial & System Engineering', NULL, NULL, NULL, NULL, NULL),
-('KAIST - Korea Advanced Institute of Science & Technology', 'Materials Science & Engineering', NULL, NULL, NULL, NULL, NULL),
-('KAIST - Korea Advanced Institute of Science & Technology', 'Nuclear & Quantum Engineering', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `university_programs` (`uni_prog_id`, `university_name`, `program_name`) VALUES
+(1, 'Massachusetts Institute of Technology (MIT)', 'Aerospace Engineering'),
+(2, 'Massachusetts Institute of Technology (MIT)', 'Atmospheric Chemistry'),
+(3, 'Massachusetts Institute of Technology (MIT)', 'Civil and Environmental Systems'),
+(4, 'Massachusetts Institute of Technology (MIT)', 'Electrical Science and Engineering'),
+(5, 'Massachusetts Institute of Technology (MIT)', 'International Development'),
+(6, 'Massachusetts Institute of Technology (MIT)', 'Middle Eastern Studies'),
+(7, 'Massachusetts Institute of Technology (MIT)', 'Statistics and Data Science'),
+(8, 'Harvard University', 'African and African American Studies'),
+(9, 'Harvard University', 'Classics'),
+(10, 'Harvard University', 'English'),
+(11, 'Harvard University', 'History and Science'),
+(12, 'Harvard University', 'Molecular and Cellular Biology'),
+(13, 'Harvard University', 'Romance Languages and Literatures'),
+(14, 'Harvard University', 'Visual and Environmental Studies'),
+(15, 'Stanford University', 'Artificial Intelligence Graduate Certificate'),
+(16, 'Stanford University', 'Stanford Innovation and Entrepreneurship Certificate'),
+(17, 'Stanford University', 'Biomedical Informatics: Data, Modeling and Analysis Graduate Certificate'),
+(18, 'Stanford University', 'Civil and Environmental Engineering MS Degree'),
+(19, 'Stanford University', 'Electrical Engineering MS Degree'),
+(20, 'Stanford University', 'Financial Risk Analysis and Management Graduate Certificate'),
+(21, 'California Institute of Technology (Caltech)', 'Biology and Biological Engineering'),
+(22, 'California Institute of Technology (Caltech)', 'Applied and Computational Mathematics'),
+(23, 'California Institute of Technology (Caltech)', 'Geobiology'),
+(24, 'California Institute of Technology (Caltech)', 'Business, Economics & Management'),
+(25, 'California Institute of Technology (Caltech)', 'Political Science'),
+(26, 'California Institute of Technology (Caltech)', 'Control and Dynamical Systems'),
+(27, 'California Institute of Technology (Caltech)', 'Philosophy'),
+(28, 'Oxford University', 'Archaeology and Anthropology'),
+(29, 'Oxford University', 'Classics and English'),
+(30, 'Oxford University', 'Engineering Science'),
+(31, 'Oxford University', 'History (Ancient and Modern)'),
+(32, 'Oxford University', 'Law'),
+(33, 'Oxford University', 'Modern Languages'),
+(34, 'Oxford University', 'Physics'),
+(35, 'Cambridge University', 'Anglo-Saxon, Norse, and Celtic'),
+(36, 'Cambridge University', 'Computer Science'),
+(37, 'Cambridge University', 'History'),
+(38, 'Cambridge University', 'Law'),
+(39, 'Cambridge University', 'Medicine (Graduate Course)'),
+(40, 'Cambridge University', 'Theology, Religion, and Philosophy of Religion'),
+(41, 'Nanyang Technological University, Singapore (NTU)', 'Accountancy and Business'),
+(42, 'Nanyang Technological University, Singapore (NTU)', 'Engineering'),
+(43, 'Nanyang Technological University, Singapore (NTU)', 'Social Sciences'),
+(44, 'Nanyang Technological University, Singapore (NTU)', 'Premier Scholars Programmes'),
+(45, 'ETH Zurich - Swiss Federal Institute of Technology', 'Computer Science Bachelor'),
+(46, 'ETH Zurich - Swiss Federal Institute of Technology', 'Electrical Engineering and Information Technology Bachelor'),
+(47, 'ETH Zurich - Swiss Federal Institute of Technology', 'Materials Science Bachelor'),
+(48, 'ETH Zurich - Swiss Federal Institute of Technology', 'Mechanical Engineering Bachelor'),
+(49, 'Princeton University', 'Bachelor of Science in Engineering (B.S.E.)'),
+(50, 'Princeton University', 'Art and Archaeology'),
+(51, 'Princeton University', 'East Asian Studies'),
+(52, 'Princeton University', 'German'),
+(53, 'Princeton University', 'Neuroscience'),
+(54, 'Princeton University', 'Slavic Languages and Literatures'),
+(55, 'Princeton University', 'Computer Science'),
+(56, 'Imperial College London', 'Aeronautical Engineering with a Year Abroad'),
+(57, 'Imperial College London', 'Biological Sciences with Management'),
+(58, 'Imperial College London', 'Biotechnology with Spanish for Science'),
+(59, 'Imperial College London', 'Chemistry with Spanish for Science'),
+(60, 'Imperial College London', 'Electrical and Electronic Engineering with a Year Abroad'),
+(61, 'Imperial College London', 'Mathematics'),
+(62, 'Imperial College London', 'Medical Biosciences'),
+(63, 'University of Chicago', 'Master of Science from the Committee on Computational and Applied Mathematics (MCAM)'),
+(64, 'University of Chicago', 'Graduate Program in Biophysical Sciences'),
+(65, 'University of Chicago', 'Master of Science Program in Computer Science'),
+(66, 'University of Chicago', 'Master of Science in Financial Mathematics'),
+(67, 'University of Chicago', 'Master of Science in the Physical Sciences Division'),
+(68, 'University of Chicago', 'Master of Science in Statistics'),
+(69, 'UCL (University College London', 'Advanced Architectural Research PG Cert'),
+(70, 'UCL (University College London', 'Child Health MRes'),
+(71, 'UCL (University College London', 'Developmental Psychology and Clinical Practice MSc'),
+(72, 'UCL (University College London', 'European Studies: European Society MA/PG Dip'),
+(73, 'UCL (University College London', 'Landscape Architecture MLA'),
+(74, 'UCL (University College London', 'Paediatric Dentistry MSc/PG Dip/PG Cert'),
+(75, 'UCL (University College London', 'Public Diplomacy and Global Communication MA'),
+(76, 'UCL (University College London', 'Space Syntax: Architecture and Cities MSc'),
+(77, 'National University of Singapore (NUS)', 'Chinese Language'),
+(78, 'National University of Singapore (NUS)', 'Theatre Studies'),
+(79, 'National University of Singapore (NUS)', 'Global Studies'),
+(80, 'National University of Singapore (NUS)', 'Industrial Design'),
+(81, 'National University of Singapore (NUS)', 'Industrial and Systems Engineering'),
+(82, 'National University of Singapore (NUS)', 'Applied Mathematics with specialisation in Mathematical Modelling and Data Analytics'),
+(83, 'National University of Singapore (NUS)', 'Life Sciences'),
+(84, 'National University of Singapore (NUS)', 'Physics (with specialisation in Quantum Technologies)'),
+(85, 'Cornell University', 'Africana Studies'),
+(86, 'Cornell University', 'Biological Sciences'),
+(87, 'Cornell University', 'Computer Science'),
+(88, 'Cornell University', 'Fiber Science and Apparel Design'),
+(89, 'Cornell University', 'Human Development'),
+(90, 'Cornell University', 'Mathematics'),
+(91, 'Cornell University', 'Religious Studies'),
+(92, 'Yale University', 'African Studies (B.A.)'),
+(93, 'Yale University', 'Astrophysics (B.S.)'),
+(94, 'Yale University', 'Computer Science and Psychology (B.A.)'),
+(95, 'Yale University', 'Engineering Sciences (Chemical) (B.S.)'),
+(96, 'Yale University', 'Film and Media Studies (B.A.)'),
+(97, 'Yale University', 'History of Science, Medicine, and Public Health (B.A.)'),
+(98, 'Yale University', 'Mathematics and Philosophy (B.A.)'),
+(99, 'Yale University', 'Philosophy (B.A.)'),
+(100, 'Yale University', 'Russian and East European Studies (B.A.)'),
+(101, 'Columbia University', 'American Studies'),
+(102, 'Columbia University', 'Chemical Physics'),
+(103, 'Columbia University', 'Economics-Mathematics'),
+(104, 'Columbia University', 'French and Francophone Studies'),
+(105, 'Columbia University', 'Linguistics (Special Concentration)'),
+(106, 'Columbia University', 'Regional Studies'),
+(107, 'Tsinghua University', 'Architecture'),
+(108, 'Tsinghua University', 'Aeronautical and Astronautical Engineering'),
+(109, 'Tsinghua University', 'Mathematics and Physics'),
+(110, 'Tsinghua University', 'Economics'),
+(111, 'Tsinghua University', 'Painting'),
+(112, 'Edinburgh University', 'Accounting and Business (MA) NN14'),
+(113, 'Edinburgh University', 'Artificial Intelligence (BSc) G700'),
+(114, 'Edinburgh University', 'Celtic and Linguistics (MA) QQ15'),
+(115, 'Edinburgh University', 'Computer Science (BSc) G400'),
+(116, 'Edinburgh University', 'Fashion (BA) W230'),
+(117, 'Edinburgh University', 'Geophysics (MEarthPhys) M7G6'),
+(118, 'University of Pennsylvania', '#'),
+(119, 'University of Pennsylvania', 'Architecture: Design (Intensive), BA'),
+(120, 'University of Pennsylvania', 'Comparative Literature: Theory, BA'),
+(121, 'University of Pennsylvania', 'English: Drama, BA'),
+(122, 'University of Pennsylvania', 'History of Art, Minor'),
+(123, 'University of Pennsylvania', 'Mathematics: Biological Mathematics, BA'),
+(124, 'University of Pennsylvania', 'Philosophy: Humanistic Philosophy, BA'),
+(125, 'University of Pennsylvania', 'South Asia Regional Studies, MA'),
+(126, 'John Hopkins University', 'Applied Biomedical Engineering'),
+(127, 'John Hopkins University', 'Computer Science'),
+(128, 'John Hopkins University', 'Environmental Engineering'),
+(129, 'John Hopkins University', 'Information Systems Engineering'),
+(130, 'John Hopkins University', 'Technical Management'),
+(131, 'EPFL - Ecole Polytechnique Federale de Lausanne', 'Chemistry and Chemical Engineering'),
+(132, 'EPFL - Ecole Polytechnique Federale de Lausanne', 'Computer Science'),
+(133, 'EPFL - Ecole Polytechnique Federale de Lausanne', 'Mechanical Engineering'),
+(134, 'EPFL - Ecole Polytechnique Federale de Lausanne', 'Life Sciences Engineering'),
+(135, 'EPFL - Ecole Polytechnique Federale de Lausanne', 'Environmental Sciences and Engineering'),
+(136, 'University of Tokyo', 'International Program in Economics'),
+(137, 'University of Tokyo', 'International Graduate Program in the Field of Civil Engineering and Infrastructure Studies'),
+(138, 'University of Tokyo', 'Architecture and Urban Design Program'),
+(139, 'University of Tokyo', 'The English Program in Information Science and Technology'),
+(140, 'Australian National University', 'Bachelor of Actuarial Studies'),
+(141, 'Australian National University', 'Bachelor of Philosophy (Honours) / Bachelor of Arts (Honours)'),
+(142, 'Australian National University', 'Bachelor of Science (Psychology)'),
+(143, 'Australian National University', 'Master of Accounting'),
+(144, 'University of Hong Kong', 'Civil Engineering'),
+(145, 'University of Hong Kong', 'Computer Science'),
+(146, 'University of Hong Kong', 'Electrical and Electronic Engineering'),
+(147, 'University of Hong Kong', 'Industrial and Manufacturing Systems Engineering'),
+(148, 'Duke University', 'African and African American Studies'),
+(149, 'Duke University', 'Computer Science'),
+(150, 'Duke University', 'French Studies'),
+(151, 'Duke University', 'Mechanical Engineering*'),
+(152, 'Duke University', 'Romance Studies'),
+(153, 'University of California, Berkeley (UCB)', 'Applied Mathematics'),
+(154, 'University of California, Berkeley (UCB)', 'Chinese Studies'),
+(155, 'University of California, Berkeley (UCB)', 'Electrical Engineering and Computer Sciences/Materials Science and Engineering Joint Major'),
+(156, 'University of California, Berkeley (UCB)', 'Geosystems'),
+(157, 'University of California, Berkeley (UCB)', 'Lesbian, Gay, Bisexual, and Transgender Studies'),
+(158, 'University of California, Berkeley (UCB)', 'New Media'),
+(159, 'University of California, Berkeley (UCB)', 'Social and Cultural Factors in Environmental Design'),
+(160, 'University of Toronto', 'Biological Chemistry'),
+(161, 'University of Toronto', 'Computer Science'),
+(162, 'University of Toronto', 'Environmental Chemistry'),
+(163, 'University of Toronto', 'Geographical Information Systems'),
+(164, 'University of Toronto', 'Italian'),
+(165, 'University of Toronto', 'Mental Health Studies'),
+(166, 'University of Toronto', 'Planetary Science'),
+(167, 'University of Toronto', 'Urban Studies'),
+(168, 'University of Manchester', 'Accounting and Finance'),
+(169, 'University of Manchester', 'Civil Engineering'),
+(170, 'University of Manchester', 'Environmental Sciences'),
+(171, 'University of Manchester', 'Leadership & Management (Education)'),
+(172, 'University of Manchester', 'Pharmacy and Pharmaceutical Sciences'),
+(173, 'University of Manchester', 'Speech and Hearing'),
+(174, 'Peking University', 'Probability   and Statistics'),
+(175, 'Peking University', 'Intelligence   Science and Technology'),
+(176, 'Peking University', 'Chemical   Biology'),
+(177, 'Peking University', 'Geochemical'),
+(178, 'King\'s College London', 'BEng Electronic Engineering'),
+(179, 'King\'s College London', 'BSc Computer Science with Management & a Year Abroad'),
+(180, 'King\'s College London', 'MSc Advanced Computing'),
+(181, 'King\'s College London', 'MSc Electronic Engineering with Management'),
+(182, 'King\'s College London', 'MSc Urban Informatics'),
+(183, 'University of California, Los Angeles (UCLA)', 'Anthropology'),
+(184, 'University of California, Los Angeles (UCLA)', 'Civil and Environmental Engineering'),
+(185, 'University of California, Los Angeles (UCLA)', 'Epidemiology'),
+(186, 'University of California, Los Angeles (UCLA)', 'International Development Studies'),
+(187, 'University of California, Los Angeles (UCLA)', 'Molecular and Medical Pharmacology'),
+(188, 'University of California, Los Angeles (UCLA)', 'Psychobiology'),
+(189, 'Hong Kong University of Science and Technology', 'BEng in Chemical Engineering'),
+(190, 'Hong Kong University of Science and Technology', 'BEng in Computer Engineering'),
+(191, 'Hong Kong University of Science and Technology', 'BEng in Industrial Engineering and Engineering Management'),
+(192, 'Hong Kong University of Science and Technology', 'BSc in Data Science and Technology'),
+(193, 'McGill University', 'Accounting'),
+(194, 'McGill University', 'Computer Science (Faculty of Arts)'),
+(195, 'McGill University', 'Entrepreneurship for Science Students (Faculty of Science)'),
+(196, 'McGill University', 'International Business'),
+(197, 'McGill University', 'Music Entrepreneurship'),
+(198, 'McGill University', 'Religion and Globalization'),
+(199, 'Northwestern University', 'Accounting Information and ManagementPhD'),
+(200, 'Northwestern University', 'Computer Science and Learning SciencesPhD'),
+(201, 'Northwestern University', 'Health Sciences Integrated ProgramPhD'),
+(202, 'Northwestern University', 'Medical AnthropologyPhD/MPH'),
+(203, 'Northwestern University', 'Screen CulturesPhD'),
+(204, 'University of Kyoto', 'Activity Database on Education and Research'),
+(205, 'University of Kyoto', '【International Graduate Programme for East Asia Sustainable Economic Development Studies 】'),
+(206, 'University of Kyoto', '【Integrated Engineering Course, Human Security Engineering Field】'),
+(207, 'University of Kyoto', '【International Course in Intelligence Science and Technology】'),
+(208, 'University of Kyoto', '【Global Frontier in Life Science Program】'),
+(209, 'University of Kyoto', '【International Project Management Course】'),
+(210, 'Seoul National University', 'H: Homepage, C: Curriculum, E: English-taught Courses'),
+(211, 'Seoul National University', 'Mechanical Engineering  H C E'),
+(212, 'Seoul National University', 'Dept. of Electrical and Computer Engineering  H C E'),
+(213, 'Seoul National University', 'Dept. of Architecture and Architectural Engineering   Architecture  H C E    Architecture Engineering  H C E'),
+(214, 'Seoul National University', 'Dept. of Industrial Engineering  H C E'),
+(215, 'Seoul National University', 'Dept. of Naval Architecture and Ocean Engineering  H C E'),
+(216, 'Hong Kong University of Science and Technology', 'BEng in Chemical Engineering'),
+(217, 'Hong Kong University of Science and Technology', 'BEng in Computer Engineering'),
+(218, 'Hong Kong University of Science and Technology', 'BEng in Industrial Engineering and Engineering Management'),
+(219, 'Hong Kong University of Science and Technology', 'BSc in Data Science and Technology'),
+(220, 'London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BA Anthropology and Law'),
+(221, 'London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BA History'),
+(222, 'London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BSc Actuarial Science'),
+(223, 'London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BSc Econometrics and Mathematical Economics'),
+(224, 'London School of Economics and Political Science (LSE)', 'Undergraduate\n                             BSc Economic History and Geography'),
+(225, 'University of Melbourne', 'Master of Engineering (Civil with Business)'),
+(226, 'University of Melbourne', 'Master of Engineering (Materials)'),
+(227, 'University of Melbourne', 'Master of Engineering (Software with Business)'),
+(228, 'University of Melbourne', 'Master of Engineering Structures'),
+(229, 'University of Melbourne', 'Master of Geoscience'),
+(230, 'University of Melbourne', 'Master of Philosophy (Engineering and IT)'),
+(231, 'University of Melbourne', 'Master of Science (Computer Science)'),
+(232, 'KAIST - Korea Advanced Institute of Science & Technology', 'Aerospace Engineering'),
+(233, 'KAIST - Korea Advanced Institute of Science & Technology', 'Chemical and Biomolecular Engineering'),
+(234, 'KAIST - Korea Advanced Institute of Science & Technology', 'Industrial & System Engineering'),
+(235, 'KAIST - Korea Advanced Institute of Science & Technology', 'Materials Science & Engineering'),
+(236, 'KAIST - Korea Advanced Institute of Science & Technology', 'Nuclear & Quantum Engineering');
 
 -- --------------------------------------------------------
 
@@ -576,7 +615,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `email_verified_at`, `password`, `created_at`, `updated_at`, `remember_token`, `token`) VALUES
-(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$aXdsA4W7lSuPJZ8fS6ZlF.xxFjAmUGIazH8D46fDwpp8NVdYZCRGu', '2019-03-17 14:06:40', '2019-03-30 14:00:22', 'O7hJz0wsXXbIiC2zOVvpojg4OjKUMywZfz2wpjGtHwhpcDBcHGbyii0KgB6d', NULL);
+(9, 'masudurhimel', 'Md. Masudur Rahman', 'masudurhimel@gmail.com', NULL, '$2y$10$aXdsA4W7lSuPJZ8fS6ZlF.xxFjAmUGIazH8D46fDwpp8NVdYZCRGu', '2019-03-17 14:06:40', '2019-03-30 14:00:22', 'O7hJz0wsXXbIiC2zOVvpojg4OjKUMywZfz2wpjGtHwhpcDBcHGbyii0KgB6d', NULL),
+(10, 'ridwanshourov', 'Ridwan Shourov', 'ridwanshourov@gmail.com', NULL, '$2y$10$OyoK5rUrCQVIHbwVgluJSO/Zu3MrTLJGgSa5QLCH0LV.zcPA9Ezzy', '2019-04-13 10:35:41', '2019-04-13 10:50:27', NULL, NULL),
+(11, 'rizonssh', 'Rabius Sunny', 'rabuis@gmail.com', NULL, '$2y$10$1wRzV9DT.us0YLQIjoWW.O5crz54ILm6SLgF4fWQeNBB53.lIu1/m', '2019-04-13 10:37:15', '2019-04-13 10:50:21', NULL, NULL),
+(12, 'toushuju', 'Taowshiqur Rahman', 'toshu@gmail.com', NULL, '$2y$10$dpGVHm7F7CyBN4y6NZwc1Oj3H4iioyV.1gFjGfIoUk5El2M4OTjIO', '2019-04-13 10:39:18', '2019-04-13 10:50:17', NULL, NULL),
+(13, 'bishwabrac', 'Bishwajit Ghosh', 'bishwa@gmail.com', NULL, '$2y$10$94MgQCuVGb1o1JJ66AiajeMOu0ua7JRJYqkgQ.togmW/8/lqJmPPG', '2019-04-13 10:41:05', '2019-04-13 10:50:14', NULL, NULL),
+(14, 'nabilNSU', 'Nabil Shahriar', 'nabil@gmail.com', NULL, '$2y$10$jbx8Ymids1GrwS5ixoEBvuvvww4ooYLf3bXxU4v1ePf6HbrMGuVxm', '2019-04-13 10:42:21', '2019-04-13 10:50:08', NULL, NULL),
+(15, 'muniraRahman', 'Munira  Rahman', 'munira@gmail.com', NULL, '$2y$10$nuL3zYB7/obfkOTjxq0dj.Xb.qxr4PO4doUA14LXUmbQ2D5mGQ4NS', '2019-04-13 10:43:49', '2019-04-13 10:50:03', NULL, NULL),
+(16, 'engrmizan', 'Mizanur Rahman', 'engrmizan@gmail.com', NULL, '$2y$10$zZ/CxlYyrKx48UhmwuwYcuygJslhYxoTx1JqGqBvgdPAdOOcHSphe', '2019-04-13 10:48:46', '2019-04-13 10:49:59', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -619,11 +665,31 @@ ALTER TABLE `students`
   ADD KEY `FKusername` (`username`);
 
 --
+-- Indexes for table `student_acceptance`
+--
+ALTER TABLE `student_acceptance`
+  ADD PRIMARY KEY (`acceptance_id`),
+  ADD UNIQUE KEY `student_acceptance_username_unique` (`username`);
+
+--
 -- Indexes for table `universities`
 --
 ALTER TABLE `universities`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `universities_name_unique` (`name`);
+
+--
+-- Indexes for table `universities_requirements`
+--
+ALTER TABLE `universities_requirements`
+  ADD PRIMARY KEY (`uni_id`),
+  ADD UNIQUE KEY `universities_requirements_university_name_unique` (`university_name`);
+
+--
+-- Indexes for table `university_programs`
+--
+ALTER TABLE `university_programs`
+  ADD PRIMARY KEY (`uni_prog_id`);
 
 --
 -- Indexes for table `users`
@@ -647,7 +713,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `student_acceptance`
+--
+ALTER TABLE `student_acceptance`
+  MODIFY `acceptance_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `universities`
@@ -656,10 +728,22 @@ ALTER TABLE `universities`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
+-- AUTO_INCREMENT for table `universities_requirements`
+--
+ALTER TABLE `universities_requirements`
+  MODIFY `uni_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `university_programs`
+--
+ALTER TABLE `university_programs`
+  MODIFY `uni_prog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

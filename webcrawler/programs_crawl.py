@@ -39,7 +39,7 @@ except Error as e:
 cursor = connection.cursor()
 
 # Creating table that will hold the data to be crawled by this script
-sql0 = "CREATE TABLE IF NOT EXISTS university_programs (id int NOT NULL AUTO_INCREMENT,university_name varchar(199), program_name varchar(199), GRE_reqs varchar(199), ielts_reqs varchar(199), PRIMARY KEY (id))"
+sql0 = "CREATE TABLE IF NOT EXISTS university_programs (uni_prog_id int NOT NULL AUTO_INCREMENT,university_name varchar(199), program_name varchar(199), PRIMARY KEY (uni_prog_id))"
 cursor.execute(sql0)
 connection.commit()
 
