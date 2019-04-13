@@ -167,7 +167,7 @@ sql2 = "ALTER TABLE universities AUTO_INCREMENT = 1"
 cursor.execute(sql2)
 connection.commit()
 
-# Placing the crawled data into the SQL database by calliing each list, where they all contain respective information
+# Placing the crawled data into the SQL database by calling each list, where they all contain respective information
 for rw in range(0, len(list_of_names)-1):
     sql2 = "INSERT INTO universities(name, qs_ranking, research_output, status, total_student, average_fees, country) " \
            "VALUES (%s, %s, %s, %s, %s, %s, %s)"

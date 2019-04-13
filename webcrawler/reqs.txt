@@ -1,0 +1,101 @@
+Massachusetts Institute of Technology (MIT) 	98.53	83.33	92.75
+Stanford University 	98.53	83.33	92.5
+Harvard University 	96.47	83.33	96
+California Institute of Technology (Caltech) 	94.71	77.78	87.5
+University of Oxford 	95.59	83.33	92.5
+University of Cambridge 	95.59	83.33	93.75
+ETH Zurich - Swiss Federal Institute of Technology 	94.71	77.78	82.5
+Imperial College London 	95	77.78	77.5
+University of Chicago 	94.12	77.78	90
+UCL (University College London) 	94.12	77.78	82.5
+National University of Singapore (NUS) 	97.06	77.78	95
+"Nanyang Technological University, Singapore (NTU) "	92.65	77.78	92.5
+Princeton University 	91.18	77.78	97.5
+Cornell University 	92.65	83.33	90
+Yale University 	93.24	83.33	87.5
+Columbia University 	92.06	77.78	92.5
+Tsinghua University 	88.24	77.78	82.5
+University of Edinburgh 	88.82	72.22	92.5
+University of Pennsylvania 	91.47	77.78	68.75
+University of Michigan 	94.41	77.78	92.5
+Johns Hopkins University 	93.82	77.78	75
+EPFL - Ecole Polytechnique Federale de Lausanne 	88.53	77.78	82.5
+University of Tokyo 	88.24	72.22	82.5
+Australian National University 	90.59	77.78	75
+University of Hong Kong 	88.53	77.78	85
+Duke University 	95	77.78	90
+"University of California, Berkeley (UCB) "	95	83.33	96.75
+University of Toronto 	97.06	77.78	75
+University of Manchester 	97.06	77.78	75
+Peking University 	86.76	77.78	75
+King's College London 	92.65	77.78	82.5
+"University of California, Los Angeles (UCLA) "	87.94	77.78	92.5
+McGill University 	95.59	83.33	92.5
+Northwestern University 	93.53	77.78	75
+Kyoto University 	91.18	77.78	67.5
+Seoul National University 	87.35	77.78	67.5
+Hong Kong University of Science and Technology 	86.76	77.78	75
+London School of Economics and Political Science (LSE) 	89.71	77.78	87.5
+University of Melbourne 	91.18	77.78	90
+KAIST - Korea Advanced Institute of Science & Technology 	88.82	72.22	75
+"University of California, San Diego (UCSD) "			
+University of Sydney 			
+New York University (NYU) 			
+Fudan University 			
+University of New South Wales (UNSW Sydney) 			
+Carnegie Mellon University 			
+University of British Columbia 			
+University of Queensland 			
+Chinese University of Hong Kong (CUHK) 			
+Universite PSL 			
+University of Bristol 			
+Delft University of Technology 			
+University of Wisconsin-Madison 			
+University of Warwick 			
+City University of Hong Kong 			
+Brown University 			
+University of Amsterdam 			
+Tokyo Institute of Technology 			
+Monash University 			
+Shanghai Jiao Tong University 			
+Technical University of Munich 			
+Ludwig-Maximilians-Universität München 			
+University of Texas at Austin 			
+Ruprecht-Karls-Universitat Heidelberg 			
+Ecole Polytechnique 			
+University of Washington 			
+Osaka University 			
+Zhejiang University 			
+Georgia Institute of Technology 			
+University of Glasgow 			
+University of Illinois at Urbana-Champaign 			
+National Taiwan University (NTU) 			
+Universidad de Buenos Aires (UBA) 			
+Durham University 			
+Sorbonne University 			
+University of Sheffield 			
+Tohoku Univeristy 			
+University of Zurich 			
+University of Birmingham 			
+University of Copenhagen 			
+KU Leuven 			
+University of Nottingham 			
+Pohang University of Science and Technology (POSTECH) 			
+"University of North Carolina, Chapel Hill "			
+University of Auckland 			
+Korea University 			
+Rice University 			
+Universiti Malaya (UM) 			
+Ohio State University 			
+Lomonosov Moscow State University 			
+University of Western Australia 			
+Lund University 			
+Boston University 			
+University of Leeds 			
+Pennsylvania State University 			
+University of Southampton 			
+University of St Andrews 			
+University of Science and Technology of China 			
+Eindhoven University of Technology 			
+Purdue University 			
+Sungkyunkwan University (SKKU) 			
