@@ -67,7 +67,10 @@ Route::get('/verify/{token}','VerifyController@verify')->name('verify');
 
 Route::get('/profile/{username}','LoginController@updateView');
 
-/*updating profile*/
+/**
+ * updating profile
+ */
+
 Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);
 
 /**
@@ -77,9 +80,6 @@ Route::post('/profile/{username}/update',['uses' =>'LoginController@update']);
 Route::get('login/google', 'LoginController@redirectToProvider');
 Route::get('login/google/callback', 'LoginController@handleProviderCallback');
 
-
-/*for python script things*/
-Route::get('/python', 'LoginController@pythonReader');
 
 
 /**
@@ -97,8 +97,11 @@ Route::get('/courseMatching/{studyType}/{country}', function () {
     return view('pages.courseMatchingSubjectPage');
 });
 
+/**
+ * for financial calculator Go back button
+ */
 Route::get('/courseMatching/{studyType}/{country}/{subject}', function () {
-    return view('pages.suggestionLandingPage');
+         /*return view(pages.suggestionLandingPage);*/
 });
 
 
@@ -141,3 +144,18 @@ Route::get('/universitySearch', function () {
 
 Route::post('/universitySearch/universityProfile',['uses' =>'suggestionController@universityProfile']);
 
+
+/**
+ * py to php
+ */
+Route::get('/python', 'suggestionController@python');
+
+/**
+ * help us !!
+ */
+
+Route::get('{username}/helpUs', function () {
+    return view('pages.helpUs');
+});
+
+Route::post('{username}/helpUs/studentAcceptance',['uses' =>'RegistrationController@studentAcceptance']);

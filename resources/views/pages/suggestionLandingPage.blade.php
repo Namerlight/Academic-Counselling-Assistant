@@ -17,11 +17,13 @@
 </head>
 784BA0
 
-/*style="background-color: rgba(104,169,163,0.98)"*/
-
-<body style="background-color: #784BA0;
+/*
+style="background-color: rgba(104,169,163,0.98)"
+background-color: #784BA0;
 background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%);
-">
+*/
+
+<body background="/images/gradient_5.jpg">
 
 <!--for checking session-->
 @if (isset(Auth::user()->email))

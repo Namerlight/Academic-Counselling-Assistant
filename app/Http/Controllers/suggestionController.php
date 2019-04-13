@@ -158,5 +158,11 @@ class suggestionController extends Controller
 
     }
 
+    function python()
+    {
+       return "Himel";
+
+    }
+
 
 }

@@ -40,45 +40,22 @@
 <br><br>
 
 
-<form id="msform">
+<form id="msform" method="post" action="{{url()->current()}}/studentAcceptance" autocomplete="off">
+    {{csrf_field()}}
 
-    <div class="jumbotron" style="width: 130%;margin-left: -15%">
-        <h4><u>Financial Calculator</u></h4>
-        <big><b><u>{{$name}}</u></b></big><br><br>
-        <div><b>
-                <p align="left">University Average Fees : <span style="float: right">{{$average_fees}}</span></p>
-                <br><br>
+    <div>
+        <h3>How to help us ? </h3>
 
-                <p align="left">Average Living Cost in {{$country}} : <span
-                            style="float: right">$ {{$countryObject->average_annual_living_cost}}</span>
-                </p>
+        <h4>Help us by giving us some information so that we can improve our service</h4>
+        <div class="jumbotron">
+            <h4>Have you got chance in any of the university ?</h4>
+            <input id="university" name="university" type="text" required="required" placeholder="University Name">
+            <input type="submit" name="submit" class="btn btn-success" style="color: white;width: 35%" value="Submit"/>
+        </div>
 
-                <hr style="background-color: #00000a">
-
-
-                <p align="left">Total Cost(Approx) : <span style="float: right">$ {{$totalCost}}</span></p>
-                <br><br>
-
-
-            </b></div>
-
-        <button onclick="goBack()"
-                class="btn btn-success">Go Back
-        </button>
-
-        <p>**Costing may differ from the real world time to time </p>
     </div>
-
 </form>
 
-
-<!-- for going to previous page -->
-
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 
 </body>
 
