@@ -45,9 +45,6 @@
 <!--for checking session-->
 @if (isset(Auth::user()->email))
 
-@elseif(session('verificationResponse') || session('success'))
-    <!--for redirect to this page after registration till now-->
-<!-- need to put a middle verification page-->
 @else
     <script> window.location = "/index";</script>
 @endif
