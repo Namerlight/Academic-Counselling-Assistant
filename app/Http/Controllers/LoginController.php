@@ -51,6 +51,11 @@ class LoginController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * will redirect to the homepage after verifying the credential
+     */
+
     function successLogin()
     {
         $username = auth()->user()->username;
@@ -61,7 +66,9 @@ class LoginController extends Controller
         return view('pages.homepage')->with('students', $students)->with('user', $user);
     }
 
-    // profile view
+    /**
+     * profile view
+     */
 
     function profile()
     {
@@ -74,6 +81,10 @@ class LoginController extends Controller
 
         return view('pages.profile')->with('student', $student)->with('user', $user)->with('exams', $exams);
     }
+
+    /**
+     * profile update
+     */
 
     function updateView()
     {

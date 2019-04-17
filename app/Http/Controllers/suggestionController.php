@@ -25,6 +25,8 @@ class suggestionController extends Controller
 
         $customSubject = substr($subject, 0, 5);
 
+        $flag = 0;
+
 
         $universitySubjectFiltered = UniversityProgram::where('program_name', 'LIKE', "%{$customSubject}%")->get();
 
@@ -44,7 +46,8 @@ class suggestionController extends Controller
             ->with('subject', $subject)
             ->with('country', $country)
             ->with('studyType', $studyType)
-            ->with('universitySubjectFiltered', $universitySubjectFiltered);
+            ->with('universitySubjectFiltered', $universitySubjectFiltered)
+            ->with('flag', $flag);
 
     }
 
@@ -149,8 +152,7 @@ class suggestionController extends Controller
 
         if ($university) {
 
-        }
-        else {
+        } else {
             $university = "null";
         }
 
@@ -160,8 +162,11 @@ class suggestionController extends Controller
 
     function python()
     {
-       return "Himel";
+        $py = "C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe";
+        $script = "C:\xampp\htdocs\ACADEMIC_COUNSELLING_ASSISTANT\resources\views\pyScripts";
 
+        $ss = exec($py ,$script);
+        echo $ss;
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Student;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use App\User;
@@ -57,9 +58,26 @@ class UIPageTesting extends TestCase
         ]);
 
 
-
         $this->actingAs($user)
             ->get('/Login/successLogin')
+            ->assertStatus(200);
+
+
+    }
+
+    /**
+     * profile view page testing
+     */
+    public function testProfile()
+    {
+
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $this->actingAs($user)
+            ->get('/profile')
             ->assertStatus(200);
 
 

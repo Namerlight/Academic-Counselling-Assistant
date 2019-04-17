@@ -86,6 +86,7 @@ background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%)
                 <!--for checking the university subject-->
                     @foreach($universitySubjectFiltered as $filter)
                         @if($uni->name == $filter->university_name)
+                            <small style="visibility: hidden;margin-top: -100%">{{$flag =1}}</small>
                             <div class="card" style="width: 177%;height: 20%;margin-left: -30%">
                                 <p align="center" style="font-size: 20px">
                                     <b>{{$uni->name}}</b>
@@ -124,6 +125,21 @@ background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%)
                         @endif
                     @endforeach
                 @endforeach
+
+                <! -- if no perfect university found -- >
+                @if($flag == 0)
+                    <div class="card" style="width: 177%;height: 20%;margin-left: -30%">
+                        <h3>We can't find anything suitable for you</h3>
+                        <h4>Please try with another course or in another country</h4>
+                        <div>
+                            <a style="color: white" onclick="goBack()" class="btn btn-success">Search With another
+                                                                                               subject</a>
+
+                            <a href="/courseMatching/Masters" class="btn btn-success">Search With another country</a>
+                        </div>
+                    </div>
+                @endif
+
             @else
                 <h3>No university found</h3>
             @endif
@@ -137,5 +153,11 @@ background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%)
 
 </body>
 
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </html>

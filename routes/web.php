@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-//    return view('welcome');
-    return view('pages.index');
+   return view('pages.index');
 
 });
 
+/**
+ * index page
+ */
 
 Route::get('/index', function () {
     return view('pages.index');
@@ -42,7 +44,9 @@ Route::get('/homepage', function () {
     return view('pages.homepage');
 });
 
-
+/**
+ * profile view
+ */
 Route::get('/profile','LoginController@profile');
 
 /**
@@ -152,6 +156,8 @@ Route::get('/python', 'suggestionController@python');
 
 /**
  * help us !!
+ * for improving our database
+ * for enriching data for AI algorithm
  */
 
 Route::get('{username}/helpUs', function () {
@@ -159,3 +165,5 @@ Route::get('{username}/helpUs', function () {
 });
 
 Route::post('{username}/helpUs/studentAcceptance',['uses' =>'RegistrationController@studentAcceptance']);
+
+
