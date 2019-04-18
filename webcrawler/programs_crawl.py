@@ -667,6 +667,7 @@ def find_cmu_programs():
         count += 10
 
 
+<<<<<<< HEAD
 def find_ubc_programs():
     page_being_crawled = 'https://www.grad.ubc.ca/prospective-students/graduate-degree-programs'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -783,6 +784,7 @@ def find_brown_programs():
 
 
 # Main program code after this. Call each function to put the programs list for each respective Uni into the database
+
 
 find_mit_programs()
 find_harvard_programs()

@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-//    return view('welcome');
-    return view('pages.index');
+   return view('pages.index');
 
 });
 
+/**
+ * index page
+ */
 
 Route::get('/index', function () {
     return view('pages.index');
@@ -42,7 +44,9 @@ Route::get('/homepage', function () {
     return view('pages.homepage');
 });
 
-
+/**
+ * profile view
+ */
 Route::get('/profile','LoginController@profile');
 
 /**
@@ -136,6 +140,7 @@ Route::get('autosuggestion/{name}', 'suggestionController@autoSuggestion');
 
 /**
  * University Profile search
+ * direct link access
  */
 
 Route::get('/universitySearch', function () {
@@ -143,15 +148,18 @@ Route::get('/universitySearch', function () {
 });
 
 Route::post('/universitySearch/universityProfile',['uses' =>'suggestionController@universityProfile']);
-
+Route::get('/{uni}', 'suggestionController@universityProfileDirectLink');
 
 /**
  * py to php
+ * ai implementation
  */
-Route::get('/python', 'suggestionController@python');
+Route::get('/{username}/autoSuggestion', 'suggestionController@ai');
 
 /**
  * help us !!
+ * for improving our database
+ * for enriching data for AI algorithm
  */
 
 Route::get('{username}/helpUs', function () {
@@ -159,3 +167,5 @@ Route::get('{username}/helpUs', function () {
 });
 
 Route::post('{username}/helpUs/studentAcceptance',['uses' =>'RegistrationController@studentAcceptance']);
+
+

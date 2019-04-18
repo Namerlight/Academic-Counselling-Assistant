@@ -1,3 +1,4 @@
+import cgi
 import numpy
 import matplotlib.pyplot as plt
 import mysql.connector
@@ -214,5 +215,5 @@ def suggest_university(username):
         print(uni_nm)
 
 
-suggest_university("engrmizan")
-suggest_university("rizonssh")
+suggest_university("masudurhimel")
+

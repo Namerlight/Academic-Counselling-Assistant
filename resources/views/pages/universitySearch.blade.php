@@ -223,7 +223,29 @@
     }
 
     /*An array containing subject names*/
-    var countries = ["University of Oxford"];
+    var countries = ["Australian National University","Boston University","Brown University","California Institute of Technology (Caltech)",
+        "Carnegie Mellon University","Chinese University of Hong Kong (CUHK)","City University of Hong Kong","Columbia University","Cornell University",
+        "Delft University of Technology","Duke University","Durham University","Ecole Polytechnique","Eindhoven University of Technology",
+        "EPFL - Ecole Polytechnique Federale de Lausanne","ETH Zurich - Swiss Federal Institute of Technology","Fudan University","Georgia Institute of Technology",
+        "Harvard University","Hong Kong University of Science and Technology","Imperial College London","Johns Hopkins University",
+        "KAIST - Korea Advanced Institute of Science & Technology","King's College London","Korea University","KU Leuven","Kyoto University",
+        "Lomonosov Moscow State University","London School of Economics and Political Science (LSE)","Ludwig-Maximilians-Universität München","Lund University",
+        "Massachusetts Institute of Technology (MIT)","McGill University","Monash University","Nanyang Technological University, Singapore (NTU)","National Taiwan University (NTU)",
+        "National University of Singapore (NUS)","New York University (NYU)","Northwestern University","Ohio State University","Osaka University",
+        "Peking University","Pennsylvania State University","Pohang University of Science and Technology (POSTE...","Princeton University",
+        "Purdue University","Rice University","Ruprecht-Karls-Universitat Heidelberg","Seoul National University","Shanghai Jiao Tong University",
+        "Sorbonne University","Stanford University","Sungkyunkwan University (SKKU)","Technical University of Munich","Tohoku Univeristy",
+        "Tokyo Institute of Technology","Tsinghua University","UCL (University College London)","Universidad de Buenos Aires (UBA)","Universite PSL",
+        "Universiti Malaya (UM)","University of Amsterdam","University of Auckland","University of Birmingham","University of Bristol","University of British Columbia",
+        "University of California, Berkeley (UCB)","University of California, Los Angeles (UCLA)","University of California, San Diego (UCSD)",
+        "University of Cambridge","University of Chicago","University of Copenhagen","University of Edinburgh","University of Glasgow",
+        "University of Hong Kong","University of Illinois at Urbana-Champaign","University of Leeds","University of Manchester",
+        "University of Melbourne","University of Michigan","University of New South Wales (UNSW Sydney)","University of North Carolina, Chapel Hill",
+        "University of Nottingham","University of Oxford","University of Pennsylvania","University of Queensland",
+        "University of Science and Technology of China","University of Sheffield","University of Southampton","University of St Andrews",
+        "University of Sydney","University of Texas at Austin","University of Tokyo","University of Toronto","University of Warwick",
+        "University of Washington","University of Western Australia","University of Wisconsin-Madison","University of Zurich","Yale University",
+        "Zhejiang University"];
 
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
     autocomplete(document.getElementById("university"), countries);

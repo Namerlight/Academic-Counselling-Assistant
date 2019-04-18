@@ -1,8 +1,4 @@
-# analyse_string.py
-#!/usr/bin/python
+x = 5
+y = 2
 
-import sys
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-analyser = SentimentIntensityAnalyzer()
-print(str(analyser.polarity_scores(sys.argv[1])))
+print(x+y)

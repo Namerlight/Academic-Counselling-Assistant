@@ -45,9 +45,6 @@
 <!--for checking session-->
 @if (isset(Auth::user()->email))
 
-@elseif(session('verificationResponse') || session('success'))
-    <!--for redirect to this page after registration till now-->
-<!-- need to put a middle verification page-->
 @else
     <script> window.location = "/index";</script>
 @endif
@@ -128,8 +125,10 @@
                         <a id="button" class="btn btn-warning" href="/universitySearch">University Profile</a> &nbsp;
                         <p class="text-divider" style="width: 80%;margin-left: 10%"></p>
 
-                        <a id="button" class="btn  btn-lg btn-success" href="/autosuggestion/{{$user->username}}">Auto
-                                                                                                                  Suggestion</a>
+
+                        <!--/autosuggestion/{{$user->username}}-->
+
+                        <a id="button" class="btn  btn-lg btn-success" href="/{{$user->username}}/autoSuggestion">Auto Suggestion</a>
 
                     </div>
 
