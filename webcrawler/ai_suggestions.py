@@ -178,7 +178,6 @@ def calculate_ai_suggestions():
         list_of_university_scores.append(uni_scr)
 
 
-calculate_student_scores()
 calculate_ai_suggestions()
 
 

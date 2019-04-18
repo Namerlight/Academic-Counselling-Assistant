@@ -39,7 +39,7 @@ except Error as e:
 cursor = connection.cursor()
 
 # Creating table that will hold the data to be crawled by this script
-sql0 = "CREATE TABLE IF NOT EXISTS university_programs (uni_prog_id int NOT NULL AUTO_INCREMENT,university_name varchar(199), program_name varchar(199), PRIMARY KEY (uni_prog_id))"
+sql0 = "CREATE TABLE IF NOT EXISTS university_programs (uni_prog_id INT NOT NULL AUTO_INCREMENT, university_name VARCHAR(199), program_name VARCHAR(199), GRE_reqs VARCHAR(199), ielts_reqs VARCHAR(199), PRIMARY KEY (uni_prog_id))"
 cursor.execute(sql0)
 connection.commit()
 
@@ -166,19 +166,6 @@ def find_cambridge_programs():
         count += 6
 
 
-def find_ntu_programs():
-    page_being_crawled = 'https://www.ntu.edu.sg/Academics/Pages/UndergraduateProgrammes.aspx'
-    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
-
-    ntu_programs = bs_format.findAll('a', attrs={'href': '/#'})
-
-    count = 0
-    while count < len(ntu_programs):
-        print(ntu_programs[count].text.strip())
-        commit_to_sql(fetch_uni_name(12), ntu_programs[count].text.strip())
-        count += 4
-
-
 def find_ethzurich_programs():
     page_being_crawled = 'https://www.ethz.ch/students/en/studies/degree-programmes.html'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -190,19 +177,6 @@ def find_ethzurich_programs():
         print(ethzurich_programs[count].text.strip())
         commit_to_sql(fetch_uni_name(7), ethzurich_programs[count].text.strip())
         count += 1
-
-
-def find_princeton_programs():
-    page_being_crawled = 'https://admission.princeton.edu/academics/degrees-departments'
-    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
-
-    princeton_programs = bs_format.findAll('strong')
-
-    count = 1
-    while count < len(princeton_programs):
-        print(princeton_programs[count].text.strip())
-        commit_to_sql(fetch_uni_name(13), princeton_programs[count].text.strip())
-        count += 6
 
 
 def find_icl_programs():
@@ -257,6 +231,32 @@ def find_nus_programs():
         print(nus_programs[count].text.strip())
         commit_to_sql(fetch_uni_name(11), nus_programs[count].text.strip())
         count += 10
+
+
+def find_ntu_programs():
+    page_being_crawled = 'https://www.ntu.edu.sg/Academics/Pages/UndergraduateProgrammes.aspx'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+
+    ntu_programs = bs_format.findAll('a', attrs={'href': '/#'})
+
+    count = 0
+    while count < len(ntu_programs):
+        print(ntu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(12), ntu_programs[count].text.strip())
+        count += 4
+
+
+def find_princeton_programs():
+    page_being_crawled = 'https://admission.princeton.edu/academics/degrees-departments'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+
+    princeton_programs = bs_format.findAll('strong')
+
+    count = 1
+    while count < len(princeton_programs):
+        print(princeton_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(13), princeton_programs[count].text.strip())
+        count += 6
 
 
 def find_cornell_programs():
@@ -603,6 +603,185 @@ def find_kaist_programs():
         count += 2
 
 
+def find_ucsd_programs():
+    page_being_crawled = 'https://apply.grad.ucsd.edu/masters-programs#b-s-m-s-bs-ms'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    ucsd_programs = bs_format.findAll('a')
+
+    count = 64
+    while count < len(ucsd_programs)-1:
+        print(ucsd_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(41), ucsd_programs[count].text.strip())
+        count += 10
+
+
+def find_usydney_programs():
+    page_being_crawled = 'https://sydney.edu.au/engineering/study-engineering-and-it/' \
+                         'postgraduate-coursework-degrees.html'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    usydney_programs = bs_format.findAll('h3')
+
+    count = 0
+    while count < len(usydney_programs)-3:
+        print(usydney_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(42), usydney_programs[count].text.strip())
+        count += 1
+
+
+def find_nyu_programs():
+    page_being_crawled = 'https://engineering.nyu.edu/academics/programs/master-science'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    nyu_programs = bs_format.findAll('span', attrs={'class': 'field field--name-title field--type-string '
+                                                             'field--label-hidden'})
+
+    count = 1
+    while count < len(nyu_programs)-3:
+        print(nyu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(43), nyu_programs[count].text.strip())
+        count += 4
+
+def find_fudan_programs():
+    return 0
+
+def find_unsw_programs():
+    page_being_crawled = 'https://www.international.unsw.edu.au/faculty/engineering-postgraduate-degree-programs'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    unsw_programs = bs_format.findAll('h5', attrs={'class': 'degree-title'})
+
+    count = 1
+    while count < len(unsw_programs) - 3:
+        print(unsw_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(45), unsw_programs[count].text.strip())
+        count += 10
+
+
+def find_cmu_programs():
+    page_being_crawled = 'https://www.cmu.edu/graduate/academics/guide-to-graduate-degrees-and-programs/index.html'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    cmu_programs = bs_format.findAll('li')
+
+    count = 1
+    while count < len(cmu_programs) - 120:
+        print(cmu_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(46), cmu_programs[count].text.strip())
+        count += 10
+
+
+def find_ubc_programs():
+    page_being_crawled = 'https://www.grad.ubc.ca/prospective-students/graduate-degree-programs'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    ubc_programs = bs_format.findAll('h4')
+
+    count = 1
+    while count < len(ubc_programs):
+        print(ubc_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(47), ubc_programs[count].text.strip())
+        count += 3
+
+
+def find_uq_programs():
+    page_being_crawled = 'https://my.uq.edu.au/programs-courses/browse.html?level=pgpg'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    uq_programs = bs_format.findAll('td', attrs={'class': 'plan'})
+
+    count = 1
+    while count < len(uq_programs):
+        print(uq_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(48), uq_programs[count].text.strip())
+        count += 54
+
+
+def find_cuhk_programs():
+    page_being_crawled = 'https://www.gs.cuhk.edu.hk/admissions/programme/engineering'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    cuhk_programs = bs_format.findAll('a', attrs={'data-ix': 'taught-programmes'})
+
+    count = 1
+    while count < len(cuhk_programs):
+        print(cuhk_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(49), cuhk_programs[count].text.strip())
+        count += 2
+
+
+def find_psl_programs():
+    page_being_crawled = 'https://www.psl.eu/en/formations?field_discipline=&domaine%5B28%5D=28&field_mots_cles='
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.findAll('a', attrs={'class': 'formation_row'})
+
+    count = 0
+    while count < len(list_of_programs):
+        psl_programs = list_of_programs[count].findAll('div', attrs={'class': 'col'})
+        print(psl_programs[1].text.strip())
+        commit_to_sql(fetch_uni_name(50), psl_programs[1].text.strip())
+        count += 3
+
+
+def find_bristol_programs():
+    page_being_crawled = 'http://www.bristol.ac.uk/study/postgraduate/search/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('ul', attrs={'class': 'list-no-style list-half-spacing prog-results-list'})
+    bristol_programs = list_of_programs.findAll('li')
+
+    count = 1
+    while count < len(bristol_programs):
+        print(bristol_programs[count].find('a').text.strip())
+        commit_to_sql(fetch_uni_name(51), bristol_programs[count].find('a').text.strip())
+        count += 6
+
+
+def find_delft_programs():
+    page_being_crawled = 'https://www.tudelft.nl/en/education/programmes/masters/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    delft_programs = bs_format.findAll('h4', attrs={'class': 'h3'})
+
+    count = 1
+    while count < len(delft_programs):
+        print(delft_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(52), delft_programs[count].text.strip())
+        count += 6
+
+
+def find_uwmad_programs():
+    page_being_crawled = 'https://grad.wisc.edu/academic-programs/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    list_of_programs = bs_format.find('ul', attrs={'class': 'mas-list'})
+    uwmad_programs = list_of_programs.findAll('a')
+
+    count = 6
+    while count < len(uwmad_programs):
+        print(uwmad_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(53), uwmad_programs[count].text.strip())
+        count += 55
+
+
+def find_warwick_programs():
+    page_being_crawled = 'https://warwick.ac.uk/study/postgraduate/courses-2019/'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    warwick_programs = bs_format.findAll('h6')
+
+    count = 6
+    while count < len(warwick_programs):
+        print(warwick_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(54), warwick_programs[count].text.strip())
+        count += 30
+
+
+def find_cityuhk_programs():
+    return 0
+
+
+def find_brown_programs():
+    page_being_crawled = 'https://www.brown.edu/graduate_programs'
+    bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
+    brown_programs = bs_format.findAll('h3', attrs={'class': 'component_title'})
+
+    count = 30
+    while count < len(brown_programs):
+        print(brown_programs[count].text.strip())
+        commit_to_sql(fetch_uni_name(56), brown_programs[count].text.strip())
+        count += 10
+
+
 # Main program code after this. Call each function to put the programs list for each respective Uni into the database
 
 find_mit_programs()
@@ -646,5 +825,24 @@ find_hkust_programs()
 find_lse_programs()
 find_unimelb_programs()
 find_kaist_programs()
+find_ucsd_programs()
+find_usydney_programs()
+find_nyu_programs()
+find_unsw_programs()
+find_cmu_programs()
+find_ubc_programs()
+find_uq_programs()
+find_cuhk_programs()
+find_psl_programs()
+find_bristol_programs()
+find_delft_programs()
+find_uwmad_programs()
+find_warwick_programs()
+find_cityuhk_programs()
+find_brown_programs()
 
 print("\n<<Database of Programs Updated>>")
+
+
+
+
