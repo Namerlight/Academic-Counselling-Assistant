@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\suggestionController;
 use App\Student;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -76,10 +78,24 @@ class UIPageTesting extends TestCase
             'username' => 'tempValue'
         ]);
 
-        $this->actingAs($user)
+        $student = factory(Student::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $this->actingAs($user, $student)
             ->get('/profile')
             ->assertStatus(200);
 
 
     }
+
+    /**
+     * controller
+     */
+
+    public function testSuggestionController()
+    {
+
+    }
+
 }

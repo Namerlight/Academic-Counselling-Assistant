@@ -1,9 +1,10 @@
-
 import cgi
 import numpy
 import matplotlib.pyplot as plt
 import mysql.connector
+import sys
 from mysql.connector import Error
+
 
 list_of_student_scores = []
 list_of_university_scores = []
@@ -20,13 +21,13 @@ try:
     )
     if connection.is_connected():
             db_Info = connection.get_server_info()
-            print("Connected to MySQL database... MySQL Server version on ", db_Info)
+            #print("Connected to MySQL database... MySQL Server version on ", db_Info)
             cursor = connection.cursor()
             cursor.execute("select database()")
             record = cursor.fetchone()
-            print("You're connected to", record)
+           # print("You're connected to", record)
 except Error as e:
-        print("Error while connecting to MySQL", e)
+         print("Error while connecting to MySQL", e)
 
 # Setting cursor to database head
 cursor = connection.cursor()
@@ -79,22 +80,22 @@ def calculate_student_scores():
     num = num.replace('(', '')
     num = num.replace(',)', '')
     num = int(num)
-    print(num)
+    #print(num)
     count = 0
     sql0 = "SELECT username FROM students"
     cursor.execute(sql0)
     std_name = cursor.fetchall()
-    print(std_name)
+    #print(std_name)
     while count < num:
         std_str_nm = str(std_name[count])
         std_nm = std_str_nm.replace('(\'', '')
         std_nm = std_nm.replace('\',)', '')
-        print(std_nm)
+       # print(std_nm)
         sql1 = "SELECT ssc_o_level, hsc_a_level, cgpa_bachelor, others FROM students WHERE username = %s"
         cursor.execute(sql1, (std_nm, ))
         std_info = cursor.fetchone()
         o_levels, a_levels, ug_cgpa, others = float(std_info[0]), float(std_info[1]), float(std_info[2]), std_info[3]
-        print(o_levels, a_levels, ug_cgpa, others)
+        #print(o_levels, a_levels, ug_cgpa, others)
         sql2 = "SELECT ielts FROM competitive_entrance_exams WHERE username = %s"
         cursor.execute(sql2, (std_nm, ))
         std_info = cursor.fetchone()
@@ -103,7 +104,7 @@ def calculate_student_scores():
             ielts = ielts.replace('(', '')
             ielts = ielts.replace(',)', '')
             ielts = float(ielts)
-            print(ielts)
+          #  print(ielts)
         except ValueError:
             ielts = 0
         oscore = int(o_levels * 40)
@@ -115,7 +116,7 @@ def calculate_student_scores():
         else:
             otherscore = 150
         student_total = oscore + ascore + ugscore + otherscore + ieltscore
-        print(student_total)
+        #print(student_total)
         sql3 = "UPDATE students SET academic_point = %s WHERE username = %s"
         cursor.execute(sql3, (student_total, std_nm, ))
         connection.commit()
@@ -142,7 +143,7 @@ def plot_regression_line(x, y, b):
     plt.plot(x, y_pred, color="g")
     plt.xlabel('Student Score')
     plt.ylabel('University Score')
-    plt.show()
+
 
 
 def calculate_ai_suggestions():
@@ -206,15 +207,17 @@ def suggest_university(username):
     cursor.execute(sql2, (uni_range_lower, uni_range_upper))
     list_of_suggestions = cursor.fetchall()
 
-    print("Suggested Universities for", username, ":")
+   # print("Suggested Universities for", username, ":*")
     for uni_nm in list_of_suggestions[0:5]:
         uni_nm = str(uni_nm)
         uni_nm = uni_nm.replace('(\'', '')
         uni_nm = uni_nm.replace('\',)', '')
         uni_nm = uni_nm.replace('(\"', '')
         uni_nm = uni_nm.replace('\",)', '')
-        print(uni_nm)
+        print("*", uni_nm)
 
-print("done!")
-suggest_university("masudurhimel")
 
+x = sys.argv[1]
+suggest_university(x)
+
+#suggest_university("engrmizan")

@@ -1,3 +1,4 @@
+import cgi
 import numpy
 import matplotlib.pyplot as plt
 import mysql.connector

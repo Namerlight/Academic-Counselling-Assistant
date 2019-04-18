@@ -15,9 +15,8 @@
     </style>
 
 </head>
-784BA0
 
-/*style="background-color: rgba(104,169,163,0.98)"*/
+/*style="background-color: rgba(104,169,163,0.98)"  784BA0*/
 
 <<body background="/images/gradient_5.jpg">
 

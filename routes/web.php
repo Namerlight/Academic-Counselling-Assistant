@@ -140,6 +140,7 @@ Route::get('autosuggestion/{name}', 'suggestionController@autoSuggestion');
 
 /**
  * University Profile search
+ * direct link access
  */
 
 Route::get('/universitySearch', function () {
@@ -147,12 +148,13 @@ Route::get('/universitySearch', function () {
 });
 
 Route::post('/universitySearch/universityProfile',['uses' =>'suggestionController@universityProfile']);
-
+Route::get('/{uni}', 'suggestionController@universityProfileDirectLink');
 
 /**
  * py to php
+ * ai implementation
  */
-Route::get('/python', 'suggestionController@python');
+Route::get('/{username}/autoSuggestion', 'suggestionController@ai');
 
 /**
  * help us !!

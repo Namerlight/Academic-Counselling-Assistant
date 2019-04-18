@@ -145,6 +145,10 @@ class suggestionController extends Controller
 
     }
 
+    /**
+     * university profile search
+     */
+
     function universityProfile(Request $request)
     {
         $universityName = $request->input('university');
@@ -160,13 +164,36 @@ class suggestionController extends Controller
 
     }
 
-    function python()
+    function universityProfileDirectLink($uni)
     {
-        $py = "C:\Users\Computer Mania\AppData\Local\Programs\Python\Python37-32\python.exe";
-        $script = "C:\xampp\htdocs\ACADEMIC_COUNSELLING_ASSISTANT\resources\views\pyScripts";
+        $universityName = substr($uni,1,strlen($uni));
+        $university = University::where('name', $universityName)->first();
 
-        $ss = exec($py ,$script);
-        echo $ss;
+        if ($university) {
+
+        } else {
+            $university = "null";
+        }
+
+        return view("pages.universityProfile")->with('university', $university);
+
+    }
+
+    /**
+     * for ai implementation
+     */
+    function ai($username)
+    {
+        $py = "E:/Python37-32/python.exe";
+        $script = "C:/xampp/htdocs/ACADEMIC_COUNSELLING_ASSISTANT/webcrawler/ai.py";
+
+        $result = shell_exec("$py $script $username" );
+
+        $university = explode("*",$result);
+
+        array_splice($university, 0, 1);
+        return view("pages.aiSuggestion")->with('university',$university);
+
     }
 
 
