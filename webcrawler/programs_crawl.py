@@ -667,7 +667,7 @@ def find_cmu_programs():
         count += 10
 
 
-<<<<<<< HEAD
+
 def find_ubc_programs():
     page_being_crawled = 'https://www.grad.ubc.ca/prospective-students/graduate-degree-programs'
     bs_format = BeautifulSoup(find_page_html(page_being_crawled), 'html.parser')
@@ -805,7 +805,7 @@ find_columbia_programs()
 find_tsinghua_programs()
 find_edinburgh_programs()
 find_pennsylvania_programs()
-find_michigan_programs()
+#find_michigan_programs()
 find_jhu_programs()
 find_efpl_programs()
 find_utokyo_programs()
@@ -834,7 +834,7 @@ find_unsw_programs()
 find_cmu_programs()
 find_ubc_programs()
 find_uq_programs()
-find_cuhk_programs()
+#find_cuhk_programs()
 find_psl_programs()
 find_bristol_programs()
 find_delft_programs()
