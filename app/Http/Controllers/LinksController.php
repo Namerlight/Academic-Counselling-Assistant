@@ -25,4 +25,5 @@ class LinksController extends Controller
     public function howToApply(){
         return view('pages.howToApply');
     }
+
 }

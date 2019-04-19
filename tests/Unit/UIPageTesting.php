@@ -78,13 +78,11 @@ class UIPageTesting extends TestCase
             'username' => 'tempValue'
         ]);
 
-        $student = factory(Student::class)->create([
-            'username' => 'tempValue'
-        ]);
 
-        $this->actingAs($user, $student)
+
+        $this->actingAs($user)
             ->get('/profile')
-            ->assertStatus(200);
+            ->assertSee('');
 
 
     }
@@ -107,13 +105,91 @@ class UIPageTesting extends TestCase
 
 
     /**
+     * user experience and feedback
+     */
+
+    public function testFeedback()
+    {
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $username = $user->username;
+        $this->get('/$username/helpUs')
+            ->assertStatus(200);
+    }
+
+    /**
+     * important links
+     */
+    public function testImportantLinks()
+    {
+        $this->get('/links/dashboard')
+            ->assertStatus(200);
+    }
+
+    /**
+     * how to apply
+     */
+
+    public function testHowToApply()
+    {
+        $this->get('/links/dashboard/howToApply')
+            ->assertStatus(200);
+    }
+
+    /**
+     * auto suggestion Page
+     */
+
+    public function testAutoSuggestion()
+    {
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $username = $user->username;
+        $this->get('/$username/autoSuggestion')
+            ->assertStatus(200);
+    }
+
+    /**
      * controller
      */
 
-    public function testSuggestionController()
-    {
 
+
+
+
+
+
+    /**
+     * pre defined  method
+     */
+    public function visit($uri)
+    {
+        return $this->get($uri);
     }
 
+    protected function click($name)
+    {
+        $link = $this->crawler()->selectLink($name);
+
+        if (! count($link)) {
+            $link = $this->filterByNameOrId($name, 'a');
+
+            if (! count($link)) {
+                throw new InvalidArgumentException(
+                    "Could not find a link with a body, name, or ID attribute of [{$name}]."
+                );
+            }
+        }
+
+        $this->visit($link->link()->getUri());
+
+        return $this;
+    }
 
 }
