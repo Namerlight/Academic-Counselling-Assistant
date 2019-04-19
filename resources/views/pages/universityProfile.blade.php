@@ -82,8 +82,8 @@
 
                     <hr style="background-color: #00000a">
 
-                    <a class="btn btn-success" href="/universitySearch">Search Again</a>
-                    <a class="btn btn-primary" href="/index">Go Back</a>
+                        <a class="btn btn-success" href="/index" >Homepage</a>
+                        <a class="btn btn-primary" onclick="goBack()" style="color: white">Go Back</a>
 
                 </b>
             </div>
@@ -94,5 +94,12 @@
 
 
 </body>
+
+<!--for going to the previous history page-->
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </html>

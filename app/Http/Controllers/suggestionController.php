@@ -19,6 +19,14 @@ class suggestionController extends Controller
      * University Profile
      */
 
+
+    /**
+     * @param Request $request
+     * @param $studyType
+     * @param $country
+     * @return mixed
+     */
+
     function suggestion(Request $request, $studyType, $country)
     {
         $subject = $request->input('subject');
@@ -51,6 +59,11 @@ class suggestionController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+
     function suggestionCountry(Request $request)
     {
         $country = $request->input('country');
@@ -68,6 +81,14 @@ class suggestionController extends Controller
 
 
     }
+
+    /**
+     * @param $studyType
+     * @param $country
+     * @param $average_fees
+     * @param $name
+     * @return mixed
+     */
 
     function financialCalculator($studyType, $country, $average_fees, $name)
     {
@@ -135,15 +156,7 @@ class suggestionController extends Controller
 
     }
 
-    function autoSuggestion($username)
-    {
 
-        $user = User::where('username', $username)->first();
-        $academicInfo = Student::where('username', $username)->first();
-
-        echo $academicInfo;
-
-    }
 
     /**
      * university profile search
@@ -164,6 +177,13 @@ class suggestionController extends Controller
 
     }
 
+    /**
+     * @param $uni
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * this method is for directly getting the university prorfile direct
+     * from auto suggestion page
+     */
+
     function universityProfileDirectLink($uni)
     {
         $universityName = substr($uni,1,strlen($uni));
@@ -175,12 +195,13 @@ class suggestionController extends Controller
             $university = "null";
         }
 
-        return view("pages.universityProfile")->with('university', $university);
+        return view("pages.universityProfile")->with('university', $university)->with('From_AI','From_AI');
 
     }
 
     /**
      * for ai implementation
+     * auto-suggestion part
      */
     function ai($username)
     {

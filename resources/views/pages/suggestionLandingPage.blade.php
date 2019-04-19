@@ -128,7 +128,7 @@ background-image: linear-gradient(225deg, #784BA0 0%, #d151ff 90%, #2B86C5 100%)
 
                 <! -- if no perfect university found -- >
                 @if($flag == 0)
-                    <div class="card" style="width: 177%;height: 20%;margin-left: -30%">
+                    <div class="card" style="width: 177%;height: 20%;margin-left: -30%;background-color: whitesmoke">
                         <h3>We can't find anything suitable for you</h3>
                         <h4>Please try with another course or in another country</h4>
                         <div>

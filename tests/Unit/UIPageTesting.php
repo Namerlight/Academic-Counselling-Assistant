@@ -90,6 +90,23 @@ class UIPageTesting extends TestCase
     }
 
     /**
+     * University profile
+     */
+
+    public function testUniversitySearch()
+    {
+        $this->get('/universitySearch')
+            ->assertStatus(200);
+    }
+
+    public function testUniversityProfile()
+    {
+        $this->get('/universitySearch')
+            ->assertStatus(200);
+    }
+
+
+    /**
      * controller
      */
 
@@ -97,5 +114,6 @@ class UIPageTesting extends TestCase
     {
 
     }
+
 
 }
