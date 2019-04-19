@@ -3,7 +3,7 @@
 <head>
     <title>ACA</title>
 
-    <!for fb logo>
+
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
 
 
@@ -50,7 +50,7 @@
     </style>
 
 </head>
-
+<!--for user feedback and for enriching our database -->
 <body>
 
 @if (isset(Auth::user()->email))

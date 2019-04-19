@@ -16,6 +16,7 @@ Route::get('/', function () {
 
 });
 
+
 /**
  * index page
  */
@@ -167,5 +168,12 @@ Route::get('{username}/helpUs', function () {
 });
 
 Route::post('{username}/helpUs/studentAcceptance',['uses' =>'RegistrationController@studentAcceptance']);
+
+/**
+ * important links
+ */
+
+Route::get('/links/dashboard' , 'LinksController@importantLinks');
+Route::get('/links/dashboard/howToApply' , 'LinksController@howToApply');
 
 

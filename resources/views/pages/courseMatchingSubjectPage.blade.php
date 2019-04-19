@@ -118,6 +118,7 @@
 </body>
 
 
+<!-- script for course autosuggestion-->
 <script>
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,

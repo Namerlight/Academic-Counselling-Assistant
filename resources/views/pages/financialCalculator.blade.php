@@ -56,7 +56,7 @@
                 <hr style="background-color: #00000a">
 
 
-                <p align="left">Total Cost(Approx) : <span style="float: right">$ {{$totalCost}}</span></p>
+                <p align="left">Total Cost(Approx - Annual) : <span style="float: right">$ {{$totalCost}}</span></p>
                 <br><br>
 
 

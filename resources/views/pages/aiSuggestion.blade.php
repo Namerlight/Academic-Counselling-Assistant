@@ -9,6 +9,8 @@
 
 </head>
 
+<!-- for suggesting universities  using AI -->
+
 <body>
 
 @if (isset(Auth::user()->email))

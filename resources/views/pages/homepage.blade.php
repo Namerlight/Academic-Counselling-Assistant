@@ -64,7 +64,7 @@
 
 
             <li>
-                <a href="#">Instructions</a>
+                <a href="/links/dashboard">Important Links</a>
             </li>
             <li>
                 <a href="#">About Us</a>

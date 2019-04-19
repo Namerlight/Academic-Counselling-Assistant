@@ -274,42 +274,43 @@
             </div>
         @endif
 
-        <h2><b>Academic Counselling Assistant</b></h2>
+
+            <h2 style="color: #000000"><b>Academic Counselling Assistant</b></h2>
+
     </div>
 </div>
 
 <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-    <h3 style="text-align:center;">Scroll</h3>
-    <p>Motto #1</p>
+    <h3 style="text-align:center;"><b>A website for you to help you to discover the world of higher studies</b></h3>
 </div>
 
 <div class="bgimg-2">
     <div class="caption">
-        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">Scroll</span>
+        <span class="border" style="background-color:transparent;font-size:25px;color: #000000;"><b>Make your life easier, let us do all the hassle</b></span>
     </div>
 </div>
 
 <div style="position:relative;">
     <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-        <p>Motto #2</p>
+        <h3 style="text-align:center;"><b>Over 100 universities with all the information you need is in your hand now</b></h3>
     </div>
 </div>
 
 <div class="bgimg-3">
     <div class="caption">
-        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span>
+        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">ACA! A smart-place for you</span>
     </div>
 </div>
 
 <div style="position:relative;">
     <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-        <p>Motto #3</p>
+        <h3 style="text-align:center;"><b>Still now you are thinking?</b></h3>
     </div>
 </div>
 
 <div class="bgimg-1">
     <div class="caption">
-        <span class="border">COOL!</span>
+        <span class="border">Let us to do this job !! </span>
     </div>
 </div>
 
