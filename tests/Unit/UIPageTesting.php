@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\suggestionController;
 use App\Student;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -58,6 +59,7 @@ class UIPageTesting extends TestCase
         $user = factory(User::class)->create([
             'username' => 'tempValue'
         ]);
+
 
 
         $this->actingAs($user)
@@ -158,6 +160,8 @@ class UIPageTesting extends TestCase
     /**
      * controller
      */
+
+
 
 
 

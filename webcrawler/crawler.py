@@ -126,6 +126,8 @@ def crawl_uni_info():
         print('\n', end='')
         unilist_iter += 1
 
+#For updated info extension will happen here
+
 
 # Main. Executing the functions defined so far in order to fill up the lists with information
 page_crawl_unilist()
