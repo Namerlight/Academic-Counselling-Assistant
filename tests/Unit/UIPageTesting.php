@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\suggestionController;
 use App\Student;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -61,7 +63,6 @@ class UIPageTesting extends TestCase
         ]);
 
 
-
         $this->actingAs($user)
             ->get('/Login/successLogin')
             ->assertStatus(200);
@@ -79,7 +80,6 @@ class UIPageTesting extends TestCase
         $user = factory(User::class)->create([
             'username' => 'tempValue'
         ]);
-
 
 
         $this->actingAs($user)
@@ -157,16 +157,47 @@ class UIPageTesting extends TestCase
             ->assertStatus(200);
     }
 
+
     /**
-     * controller
+     * testing for login controller working or not
      */
 
+    public function testLogin()
+    {
 
 
+        $user = factory(User::class)->create([
+            'username' => 'tempvalue',
+            'password' => bcrypt('i-love-laravel'),
+        ]);
 
+        $response = $this->from('/Login/checkLogin')->post('/Login/checkLogin', [
+            'email' => $user->email,
+            'password' => 'invalid-password',
+        ]);
 
+        $response->assertRedirect('/Login/checkLogin');
+        $response->assertSessionHasErrors('email');
+        $this->assertTrue(session()->hasOldInput('email'));
+        $this->assertFalse(session()->hasOldInput('password'));
 
+    }
 
+    /**
+     * registration controller
+     */
+
+    public function testRegistrationController(){
+        $reg = new RegistrationController();
+
+        $user = factory(User::class)->create([
+            'username' => 'tempvalue',
+        ]);
+
+        $student = factory(Student::class)->create();
+
+        $reg->register()
+    }
 
 
     /**
@@ -181,10 +212,10 @@ class UIPageTesting extends TestCase
     {
         $link = $this->crawler()->selectLink($name);
 
-        if (! count($link)) {
+        if (!count($link)) {
             $link = $this->filterByNameOrId($name, 'a');
 
-            if (! count($link)) {
+            if (!count($link)) {
                 throw new InvalidArgumentException(
                     "Could not find a link with a body, name, or ID attribute of [{$name}]."
                 );
