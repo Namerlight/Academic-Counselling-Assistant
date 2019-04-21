@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Competitive_Entrance_Exams;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\suggestionController;
 use App\Student;
@@ -84,7 +85,7 @@ class UIPageTesting extends TestCase
 
 
         $this->actingAs($user)
-            ->get('/profile')
+            ->visit('/profile')
             ->assertSee('');
 
 
@@ -241,10 +242,10 @@ class UIPageTesting extends TestCase
 
 
         $student->save();
+        $cExam->save();
 
 
-
-        $student = Student::where('username','tempValue')->first();
+        $student = Student::where('username', 'tempValue')->first();
 
 
         $reg = new RegistrationController();
@@ -255,12 +256,99 @@ class UIPageTesting extends TestCase
 
         $point = $reg->getAcademicPoint($student->username);
 
-        $expectedResult = (3.93*100)+(150)+(5*40)+(5*40)+(6.5*20);
+        $expectedResult = (3.93 * 100) + (150) + (5 * 40) + (5 * 40) + (6.5 * 20);
 
 
-        $this->assertEquals($expectedResult,$point);
+        $this->assertEquals($expectedResult, $point);
     }
 
+    /**
+     * session tester
+     */
+    public function testSession()
+    {
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $this->actingAs($user)
+            ->withSession(['foo' => 'bar'])
+            ->visit('/Login/successLogin')
+            ->assertSee($user->name);
+    }
+
+    /**
+     * profile controllers
+     */
+
+    public function testShowProfile()
+    {
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $student = new Student();
+        $cExam = new Competitive_Entrance_Exams();
+        $student->username = 'tempValue';
+        $student->cgpa_bachelor = 3.93;
+        $student->others = 'something';
+        $student->ssc_o_level = 5.0;
+        $student->hsc_a_level = 5.0;
+        $cExam->username = 'tempValue';
+        $cExam->ielts = 6.5;
+
+        $student->save();
+        $cExam->save();
+
+        $profile = new LoginController();
+
+
+
+        $this->actingAs($user)
+            ->withSession(['foo' => 'bar']);
+
+        $link = $profile->profile();
+
+        $this->visit('pages.profile')
+            ->assertSee('');
+    }
+
+    /**
+     * ai testing
+     */
+
+    public function testAI(){
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue',
+        ]);
+
+
+        $student = new Student();
+        $cExam = new Competitive_Entrance_Exams();
+        $student->username = 'tempValue';
+        $student->cgpa_bachelor = 3.93;
+        $student->others = 'something';
+        $student->ssc_o_level = 5.0;
+        $student->hsc_a_level = 5.0;
+        $cExam->username = 'tempValue';
+        $cExam->ielts = 6.5;
+        $student->save();
+        $cExam->save();
+        $student = Student::where('username', 'tempValue')->first();
+
+        $reg = new RegistrationController();
+
+        $student->academic_point = $reg->academicPointGenerator($student->username);
+
+        $suggestion = new suggestionController();
+
+        $content = $suggestion->directAiResult($user->username);
+
+        $this->assertSee('(MIT)');
+
+
+    }
 
 
     /**

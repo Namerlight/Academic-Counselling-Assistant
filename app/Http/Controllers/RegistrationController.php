@@ -100,21 +100,7 @@ class RegistrationController extends Controller
 
         $user->sendVerificationEmail();
 
-        /**
-         * for updating academic point
-         * ai updates the academic points
-         */
 
-        $py = "E:/Python37-32/python.exe";
-        $script = "C:/xampp/htdocs/ACADEMIC_COUNSELLING_ASSISTANT/webcrawler/ai.py";
-
-        $ai_ref = 'masudurhimel';
-
-        $result = shell_exec("$py $script $ai_ref");
-
-        /**
-         * returning parameters
-         */
 
         return redirect('/index')->with('verificationResponse', 'Registration Successful || Please Verify your email and login to continue');
         /*Registration Successful || Please Verify your email and login to continue*/

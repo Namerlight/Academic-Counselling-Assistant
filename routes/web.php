@@ -182,4 +182,4 @@ Route::get('/links/dashboard/howToApply' , 'LinksController@howToApply');
  */
 
 
-Route::get('/test/{username}' , 'RegistrationController@academicPointGenerator');
+Route::get('/test/{username}' , 'suggestionController@directAiResult');
