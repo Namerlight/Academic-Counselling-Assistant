@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Competitive_Entrance_Exams;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\RegistrationController;
@@ -187,7 +188,8 @@ class UIPageTesting extends TestCase
      * registration controller
      */
 
-    public function testRegistrationController(){
+    public function testRegistrationController()
+    {
         $reg = new RegistrationController();
 
         $user = factory(User::class)->create([
@@ -196,8 +198,69 @@ class UIPageTesting extends TestCase
 
         $student = factory(Student::class)->create();
 
-        $reg->register()
+        $reg->register();
     }
+
+    /**
+     * testing unit test
+     */
+
+    public function testAdd()
+    {
+        $x = 5;
+        $y = 6;
+
+        $reg = new RegistrationController();
+
+        $sum = $reg->add($x, $y);
+
+        $this->assertEquals(11, $sum);
+
+    }
+
+    /**
+     * academic point testing
+     */
+    public function testAcademicPoint()
+    {
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue',
+        ]);
+
+
+        $student = new Student();
+        $cExam = new Competitive_Entrance_Exams();
+        $student->username = 'tempValue';
+        $student->cgpa_bachelor = 3.93;
+        $student->others = 'something';
+        $student->ssc_o_level = 5.0;
+        $student->hsc_a_level = 5.0;
+        $cExam->username = 'tempValue';
+        $cExam->ielts = 6.5;
+
+
+        $student->save();
+
+
+
+        $student = Student::where('username','tempValue')->first();
+
+
+        $reg = new RegistrationController();
+
+
+        $student->academic_point = $reg->academicPointGenerator($student->username);
+
+
+        $point = $reg->getAcademicPoint($student->username);
+
+        $expectedResult = (3.93*100)+(150)+(5*40)+(5*40)+(6.5*20);
+
+
+        $this->assertEquals($expectedResult,$point);
+    }
+
 
 
     /**
