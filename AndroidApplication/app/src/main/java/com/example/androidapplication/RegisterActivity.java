@@ -28,15 +28,17 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    // Initializing the inputs we'll use
     private EditText editTextUsername, editTextName, editTextEmail, editTextPassword;
     private Button buttonRegister;
     private ProgressDialog progressDialog;
 
     private TextView textViewLogin;
 
+    // This opens the screen for registration
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         textViewLogin.setOnClickListener(this);
     }
 
+    // Runs a function to record the values input into the respective fields, then put them into the database
     private void registerUser() {
         final String email = editTextEmail.getText().toString().trim();
         final String username = editTextUsername.getText().toString().trim();
@@ -75,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         progressDialog.setMessage("Registering user...");
         progressDialog.show();
-        try {
+        try { // Takes the inputs from the fields and passes it as a request to the registerUser.php file as a JSON objects
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
                     Constants.URL_REGISTER,
                     new Response.Listener<String>() {
@@ -109,7 +112,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     params.put("password", password);
                     return params;
                 }
-            }; } catch(Exception NullPointerException) {
+
+            }; } catch(Exception NullPointerException) { // If an error occurs while registering, excepts it and opens login page again
                 System.out.println("Error. Value not Registered");
                 Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(myIntent);
@@ -120,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
-
+    // When clicking the register button, the onClick function activates and run the registerUser function
     @Override
     public void onClick(View v) {
         registerUser();

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    // Opens the profile page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
