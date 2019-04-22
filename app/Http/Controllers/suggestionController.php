@@ -157,7 +157,6 @@ class suggestionController extends Controller
     }
 
 
-
     /**
      * university profile search
      */
@@ -186,7 +185,7 @@ class suggestionController extends Controller
 
     function universityProfileDirectLink($uni)
     {
-        $universityName = substr($uni,1,strlen($uni));
+        $universityName = substr($uni, 1, strlen($uni));
         $university = University::where('name', $universityName)->first();
 
         if ($university) {
@@ -195,7 +194,7 @@ class suggestionController extends Controller
             $university = "null";
         }
 
-        return view("pages.universityProfile")->with('university', $university)->with('From_AI','From_AI');
+        return view("pages.universityProfile")->with('university', $university)->with('From_AI', 'From_AI');
 
     }
 
@@ -208,13 +207,21 @@ class suggestionController extends Controller
         $py = "E:/Python37-32/python.exe";
         $script = "C:/xampp/htdocs/ACADEMIC_COUNSELLING_ASSISTANT/webcrawler/ai.py";
 
-        $result = shell_exec("$py $script $username" );
+        $result = shell_exec("$py $script $username");
 
-        $university = explode("*",$result);
+        $university = explode("*", $result);
 
         array_splice($university, 0, 1);
-        return view("pages.aiSuggestion")->with('university',$university);
+        return view("pages.aiSuggestion")->with('university', $university);
 
+    }
+
+    function directAiResult($username)
+    {
+        $py = "E:/Python37-32/python.exe";
+        $script = "C:/xampp/htdocs/ACADEMIC_COUNSELLING_ASSISTANT/webcrawler/ai.py";
+        $result = shell_exec("$py $script $username");
+        return $result;
     }
 
 

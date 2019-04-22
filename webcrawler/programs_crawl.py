@@ -782,6 +782,7 @@ def find_brown_programs():
         commit_to_sql(fetch_uni_name(56), brown_programs[count].text.strip())
         count += 10
 
+#For new university programs things will be added here
 
 # Main program code after this. Call each function to put the programs list for each respective Uni into the database
 

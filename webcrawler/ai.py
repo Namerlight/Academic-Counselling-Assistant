@@ -72,7 +72,11 @@ def calculate_uni_scores():
         connection.commit()
         count += 1
 
-
+# Calculates a student's overall score, used for the AI functionality for student suggestions
+# Selects the needed information from the students and competitive exams tables
+# Converts all output data into int for calculation: gpa, ECAs, o and a level results, ielts, etc
+# Calculates the individual scores from each aspect, then sums up to get a total score, placing it in academic point
+# Updates the studennts table with the final score and commits the update.
 def calculate_student_scores():
     sql0 = "SELECT COUNT(*) FROM students"
     cursor.execute(sql0)
@@ -144,8 +148,11 @@ def plot_regression_line(x, y, b):
     plt.xlabel('Student Score')
     plt.ylabel('University Score')
 
-
-
+# Calculates the suggestions by selecting students who were accepted into an university.
+# sql0 selects students, sql1 selects universities, std_nm and uni_nm are used to convert to strings for searching
+# Finds that student's academic point and that university's score and puts into
+# list_of_student_scores and list_of_university_scores
+# Creates a list of academic points with the respective university score
 def calculate_ai_suggestions():
     sql0 = "SELECT COUNT(*) FROM student_acceptance"
     cursor.execute(sql0)
@@ -183,7 +190,9 @@ def calculate_ai_suggestions():
 calculate_student_scores()
 calculate_ai_suggestions()
 
-
+# Takes the two lists generated earlier, list_of_student_scores and list_of_unversity scores
+# plot_regression_line Carries out linear regression and estimates the eqivalent uni score for the given student's academic point
+# Outputs the top 5 unis within a 5% range of tht equivalent uni score
 def suggest_university(username):
     sql0 = "SELECT academic_point FROM students WHERE username = %s"
     cursor.execute(sql0, (username, ))

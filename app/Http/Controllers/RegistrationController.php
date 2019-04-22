@@ -88,7 +88,7 @@ class RegistrationController extends Controller
         $toefl = $cExam->toefl;
         $gmat = $cExam->gmat;
 
-        $student->academic_point = ($bachelorCGPA*100) + ($ielts*10) + ($gre) + ($sat) + ($toefl) + ($gmat);
+        $student->academic_point = ($bachelorCGPA * 100) + ($ielts * 10) + ($gre) + ($sat) + ($toefl) + ($gmat);
 
         /**
          * for saving all the data into DB
@@ -100,11 +100,14 @@ class RegistrationController extends Controller
 
         $user->sendVerificationEmail();
 
+
+
         return redirect('/index')->with('verificationResponse', 'Registration Successful || Please Verify your email and login to continue');
         /*Registration Successful || Please Verify your email and login to continue*/
     }
 
-    public function studentAcceptance($username,Request $request){
+    public function studentAcceptance($username, Request $request)
+    {
         $uni = $request->input('university');
 
         $studentAcceptance = new StudentAcceptance();
@@ -117,4 +120,45 @@ class RegistrationController extends Controller
         return redirect('/index');
 
     }
+
+    public function add($x, $y)
+    {
+        $add = $x + $y;
+        return $add;
+    }
+
+    public function getAcademicPoint($username)
+    {
+        $student = Student::where('username', $username)->first();
+
+        $academicPoint = $student->academic_point;
+
+        return $academicPoint;
+    }
+
+    public function academicPointGenerator($username)
+    {
+        $student = Student::where('username', $username)->first();
+        $cExam = Competitive_Entrance_Exams::where('username', $username)->first();
+
+        $o_level = $student->ssc_o_level*40;
+        $a_level = $student->hsc_a_level*40;
+        $bachelorCgpa = $student->cgpa_bachelor*100;
+        if ($student->others) {
+            $others = 150;
+        }
+        else{
+            $others = 0;
+        }
+        $ielts = ($cExam->ielts)*20;
+
+
+        $point = $o_level+$a_level+$bachelorCgpa+$others+$ielts;
+
+        return $point;
+
+
+    }
+
+
 }

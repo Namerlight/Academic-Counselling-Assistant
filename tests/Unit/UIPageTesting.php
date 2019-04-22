@@ -2,6 +2,11 @@
 
 namespace Tests\Unit;
 
+use App\Competitive_Entrance_Exams;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\suggestionController;
 use App\Student;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -79,9 +84,8 @@ class UIPageTesting extends TestCase
         ]);
 
 
-
         $this->actingAs($user)
-            ->get('/profile')
+            ->visit('/profile')
             ->assertSee('');
 
 
@@ -155,11 +159,211 @@ class UIPageTesting extends TestCase
             ->assertStatus(200);
     }
 
+
     /**
-     * controller
+     * testing for login controller working or not
      */
 
+    public function testLogin()
+    {
 
+
+        $user = factory(User::class)->create([
+            'username' => 'tempvalue',
+            'password' => bcrypt('i-love-laravel'),
+        ]);
+
+        $response = $this->from('/Login/checkLogin')->post('/Login/checkLogin', [
+            'email' => $user->email,
+            'password' => 'invalid-password',
+        ]);
+
+        $response->assertRedirect('/Login/checkLogin');
+        $response->assertSessionHasErrors('email');
+        $this->assertTrue(session()->hasOldInput('email'));
+        $this->assertFalse(session()->hasOldInput('password'));
+
+    }
+
+    /**
+     * testing unit test
+     */
+
+    public function testAdd()
+    {
+        $x = 5;
+        $y = 6;
+
+        $reg = new RegistrationController();
+
+        $sum = $reg->add($x, $y);
+
+        $this->assertEquals(11, $sum);
+
+    }
+
+    /**
+     * academic point testing
+     */
+    public function testAcademicPoint()
+    {
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue',
+        ]);
+
+
+        $student = new Student();
+        $cExam = new Competitive_Entrance_Exams();
+        $student->username = 'tempValue';
+        $student->cgpa_bachelor = 3.93;
+        $student->others = 'something';
+        $student->ssc_o_level = 5.0;
+        $student->hsc_a_level = 5.0;
+        $cExam->username = 'tempValue';
+        $cExam->ielts = 6.5;
+
+
+        $student->save();
+        $cExam->save();
+
+
+        $student = Student::where('username', 'tempValue')->first();
+
+
+        $reg = new RegistrationController();
+
+
+        $student->academic_point = $reg->academicPointGenerator($student->username);
+
+
+        $point = $reg->getAcademicPoint($student->username);
+
+        $expectedResult = (3.93 * 100) + (150) + (5 * 40) + (5 * 40) + (6.5 * 20);
+
+
+        $this->assertEquals($expectedResult, $point);
+    }
+
+    /**
+     * session tester
+     */
+    public function testSession()
+    {
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $this->actingAs($user)
+            ->withSession(['foo' => 'bar'])
+            ->visit('/Login/successLogin')
+            ->assertSee($user->name);
+    }
+
+    /**
+     * profile controllers
+     */
+
+    public function testShowProfile()
+    {
+        $user = factory(User::class)->create([
+            'username' => 'tempValue'
+        ]);
+
+        $student = new Student();
+        $cExam = new Competitive_Entrance_Exams();
+        $student->username = 'tempValue';
+        $student->cgpa_bachelor = 3.93;
+        $student->others = 'something';
+        $student->ssc_o_level = 5.0;
+        $student->hsc_a_level = 5.0;
+        $cExam->username = 'tempValue';
+        $cExam->ielts = 6.5;
+
+        $student->save();
+        $cExam->save();
+
+        $profile = new LoginController();
+
+
+
+        $this->actingAs($user)
+            ->withSession(['foo' => 'bar']);
+
+        $link = $profile->profile();
+
+        $this->visit('pages.profile')
+            ->assertSee('');
+    }
+
+    /**
+     * ai testing
+     */
+
+    public function testAI(){
+
+        /**
+         * need to give a actual value
+         * or do it without Database Transaction
+         */
+
+        $user = factory(User::class)->create([
+            'username' => 'tempValue',
+        ]);
+
+        $student = new Student();
+        $cExam = new Competitive_Entrance_Exams();
+        $student->username = 'tempValue';
+        $student->cgpa_bachelor = 3.93;
+        $student->others = 'something';
+        $student->ssc_o_level = 5.0;
+        $student->hsc_a_level = 5.0;
+        $cExam->username = 'tempValue';
+        $cExam->ielts = 6.5;
+        $student->save();
+        $cExam->save();
+        $student = Student::where('username', 'tempValue')->first();
+
+        $reg = new RegistrationController();
+
+        $student->academic_point = $reg->academicPointGenerator($student->username);
+
+
+        $suggestion = new suggestionController();
+
+        $content = $suggestion->directAiResult($user->username);
+
+        $actual = $content[41].$content[42].$content[43];
+
+
+
+        $this->assertEquals('MIT',$actual);
+
+
+    }
+
+    /**
+     * registration controller
+     */
+
+    public function testRegistrationController()
+    {
+        /**
+         * Unable to locate factory with name [default] [App\Student].
+         */
+
+        $reg = new RegistrationController();
+
+        $user = factory(User::class)->create([
+            'username' => 'tempvalue',
+        ]);
+
+        $student = factory(Student::class)->create([
+            'username' => 'tempValue',
+        ]);
+
+        $reg->register();
+    }
 
 
 
@@ -177,10 +381,10 @@ class UIPageTesting extends TestCase
     {
         $link = $this->crawler()->selectLink($name);
 
-        if (! count($link)) {
+        if (!count($link)) {
             $link = $this->filterByNameOrId($name, 'a');
 
-            if (! count($link)) {
+            if (!count($link)) {
                 throw new InvalidArgumentException(
                     "Could not find a link with a body, name, or ID attribute of [{$name}]."
                 );

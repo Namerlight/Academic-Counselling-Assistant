@@ -177,3 +177,9 @@ Route::get('/links/dashboard' , 'LinksController@importantLinks');
 Route::get('/links/dashboard/howToApply' , 'LinksController@howToApply');
 
 
+/**
+ * for testing purpose
+ */
+
+
+Route::get('/test/{username}' , 'suggestionController@directAiResult');
