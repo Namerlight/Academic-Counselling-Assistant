@@ -220,7 +220,6 @@ class suggestionController extends Controller
     {
         $py = "E:/Python37-32/python.exe";
         $script = "C:/xampp/htdocs/ACADEMIC_COUNSELLING_ASSISTANT/webcrawler/ai.py";
-
         $result = shell_exec("$py $script $username");
         return $result;
     }

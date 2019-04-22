@@ -23,7 +23,9 @@ class DbOperations
         if ($this->isUserExist($username, $email)) {
             return 0;
         } else {
-            $password = md5($pass);
+//            $password = md5($pass);
+            $password = password_hash($pass, PASSWORD_BCRYPT, [20]);
+
             $stmt = $this->con->prepare("INSERT INTO `users` (`id`, `username`,`name`, `password`, `email`) VALUES (NULL, ?, ?, ?, ?);");
             $stmt->bind_param("ssss", $username, $name,$password, $email);
 

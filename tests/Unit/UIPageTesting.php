@@ -186,23 +186,6 @@ class UIPageTesting extends TestCase
     }
 
     /**
-     * registration controller
-     */
-
-    public function testRegistrationController()
-    {
-        $reg = new RegistrationController();
-
-        $user = factory(User::class)->create([
-            'username' => 'tempvalue',
-        ]);
-
-        $student = factory(Student::class)->create();
-
-        $reg->register();
-    }
-
-    /**
      * testing unit test
      */
 
@@ -319,10 +302,14 @@ class UIPageTesting extends TestCase
 
     public function testAI(){
 
+        /**
+         * need to give a actual value
+         * or do it without Database Transaction
+         */
+
         $user = factory(User::class)->create([
             'username' => 'tempValue',
         ]);
-
 
         $student = new Student();
         $cExam = new Competitive_Entrance_Exams();
@@ -341,14 +328,45 @@ class UIPageTesting extends TestCase
 
         $student->academic_point = $reg->academicPointGenerator($student->username);
 
+
         $suggestion = new suggestionController();
 
         $content = $suggestion->directAiResult($user->username);
 
-        $this->assertSee('(MIT)');
+        $actual = $content[41].$content[42].$content[43];
+
+
+
+        $this->assertEquals('MIT',$actual);
 
 
     }
+
+    /**
+     * registration controller
+     */
+
+    public function testRegistrationController()
+    {
+        /**
+         * Unable to locate factory with name [default] [App\Student].
+         */
+
+        $reg = new RegistrationController();
+
+        $user = factory(User::class)->create([
+            'username' => 'tempvalue',
+        ]);
+
+        $student = factory(Student::class)->create([
+            'username' => 'tempValue',
+        ]);
+
+        $reg->register();
+    }
+
+
+
 
 
     /**
