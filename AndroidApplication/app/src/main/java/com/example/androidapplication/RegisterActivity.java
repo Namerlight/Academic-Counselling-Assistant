@@ -31,14 +31,19 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // Initializing the inputs we'll use
+    /**
+     * Connect the UI and the php server
+     * Initializing the inputs we'll use
+     */
     private EditText editTextUsername, editTextName, editTextEmail, editTextPassword;
     private Button buttonRegister;
     private ProgressDialog progressDialog;
 
     private TextView textViewLogin;
 
-    // This opens the screen for registration
+    /**
+     * This opens the screen for registration
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }*/
 
-        /*
+        /**
          * for getting the submitted  value for user table
          */
 
