@@ -13,4 +13,6 @@ Probably the most expansive project done so far. The SRS and SDS contain more de
 
 Far too many different aspects involved for my liking, honestly, and integration was extremely messy too. Might as well just use Firebase next time.
 
+
 Credits: Shadab Hafiz Choudhury, Md. Masudur Rahman, Saraf Sumaita, Ishrat Jahan Ananya
+
