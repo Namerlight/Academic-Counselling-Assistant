@@ -4,7 +4,7 @@ For NSU CSE327 (Software Engineering). A fully fledged web application, with the
 
 Probably the most expansive project done so far. The SRS and SDS contain more details, but the basic list of features include:
 - Website with User Registration and Account Management.
-- List of top 100 Universities with some details.
+- List of top ~~100~~ 60 Universities with some details.
 - A selection of programs from those universities.
 - Searching and filtering for the above two info sets.
 - A MySQL database to hold all the information involved.
